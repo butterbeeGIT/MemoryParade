@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace DI{
+namespace Assets.MemoryParade.Scripts.DI{
     class DIRegistration{
         /// <summary>
         /// делигат 
