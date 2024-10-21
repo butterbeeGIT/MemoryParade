@@ -1,19 +1,16 @@
 using System;
 using Assets.MemoryParade.Scripts.Game.GameRoot;
+using Assets.MemoryParade.Scripts.Game.MainMenu.Root.View;
 using UnityEngine;
 
-namespace Assets.MemoryParade.Scripts.Game.Gameplay.Root
-{
-    //Программаная точка входа 
-    public class GameplayEntryPoint : MonoBehaviour
+namespace Assets.MemoryParade.Scripts.Game.MainMenu.Root{
+    public class MainMenuEntryPoint:MonoBehaviour
     {
-        //тут будет связваться представление и логика модели
-
-        public event Action GoToMainMenuSceneRequested;
+        public event Action GoToGameplaySceneRequested;
 
        // [SerializeField] private GameObject _sceneRootBinder;
 
-        [SerializeField] private UIGameplyBinder _sceneUIRootPrefab;
+        [SerializeField] private UIMainMenuBinder _sceneUIRootPrefab;
         
         //TODO должен передаваться DI контейнер 
         /// <summary>
@@ -29,8 +26,8 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.Root
             uIRoot.AttachSceneUI(uiScene.gameObject);
 
             //подписка на событие клика
-            uiScene.GoToMainMenuButtonClicked += () =>{
-                GoToMainMenuSceneRequested?.Invoke();
+            uiScene.GoToGameplayButtonClicked += () =>{
+                GoToGameplaySceneRequested?.Invoke();
             };
         }
     }

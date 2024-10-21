@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/MemoryParade/Scenes/Gameplay.unity
     guid: 81fc275e7bd59dc41a552650d66be855
+  - enabled: 1
+    path: Assets/MemoryParade/Scenes/MainMenu.unity
+    guid: 377940a7fe3149341808216e26839371
   m_configObjects: {}

@@ -1,13 +1,14 @@
 using System.Collections;
 using Assets.MemoryParade.Scripts.Game.Gameplay.Root;
 using Assets.MemoryParade.Scripts.Game.GameRoot;
+using Assets.MemoryParade.Scripts.Game.MainMenu.Root;
 using Assets.MemoryParade.Scripts.Utils;
 using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 //using System.Linq;
 
-namespace Assets.MemoryParade
+namespace Assets.MemoryParade.Scripts.Game.GameRoot
 {
     /// <summary>
     /// точка входа в игру
@@ -51,6 +52,12 @@ namespace Assets.MemoryParade
                 _coroutines.StartCoroutine(LoadAndStartGameplay());
                 return;
             }
+            if (sceneName == Scenes.MAIN_MENU)
+            {
+                //начнем загрузку этой сцены 
+                _coroutines.StartCoroutine(LoadAndStartMainMenu());
+                return;
+            }
             if (sceneName != Scenes.BOOT)
             {
                 return;
@@ -79,7 +86,39 @@ namespace Assets.MemoryParade
 
             //поиск по типу
             var sceneEntryPoint = Object.FindFirstObjectByType<GameplayEntryPoint>();
-            sceneEntryPoint.RunGameplay();
+            sceneEntryPoint.RunGameplay(_uiRoot);
+
+            //TODO удалить потом нафиг
+            sceneEntryPoint.GoToMainMenuSceneRequested += () =>
+            {
+                _coroutines.StartCoroutine(LoadAndStartMainMenu());
+            };
+            
+            _uiRoot.HideLoadingScreen();
+        }
+
+        private IEnumerator LoadAndStartMainMenu()
+        {
+            _uiRoot.ShowLoadingScreen();
+
+            //визуал Unity
+            yield return LoadScene(Scenes.BOOT);
+            yield return LoadScene(Scenes.MAIN_MENU);
+            //чтобы все успело загрузиться
+            yield return new WaitForSeconds(2);
+            
+            //TODO создать DI контейнер 
+
+            //поиск по типу
+            var sceneEntryPoint = Object.FindFirstObjectByType<MainMenuEntryPoint>();
+            sceneEntryPoint.RunGameplay(_uiRoot);
+
+            //TODO удалить потом нафиг
+            sceneEntryPoint.GoToGameplaySceneRequested += () =>
+            {
+                _coroutines.StartCoroutine(LoadAndStartGameplay());
+            };
+            
             
             _uiRoot.HideLoadingScreen();
         }
