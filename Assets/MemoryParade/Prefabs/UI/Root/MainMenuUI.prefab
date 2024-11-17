@@ -333,7 +333,7 @@ MonoBehaviour:
       - m_Target: {fileID: 2044244478872938811}
         m_TargetAssemblyTypeName: Assets.MemoryParade.Scripts.Game.MainMenu.Root.View.UIMainMenuBinder,
           Assembly-CSharp
-        m_MethodName: HandleGoToGameplayButtonClicked
+        m_MethodName: HandleGoToGameplayButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

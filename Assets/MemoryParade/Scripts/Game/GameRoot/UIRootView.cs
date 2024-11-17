@@ -33,15 +33,21 @@ namespace Assets.MemoryParade.Scripts.Game.GameRoot
         /// <summary>
         /// прикрепляет UI сцены
         /// </summary>
-        public void AttachSceneUI(GameObject SceneUI){
+        public void AttachSceneUI(GameObject SceneUI)
+        {
             ClearSceneUI();
             //устанавливает родителя и говорит пересчитать координаты в соотвествии с ним
             SceneUI.transform.SetParent(_uiSceneContainer, false);
         }
 
-        private void ClearSceneUI(){
+        /// <summary>
+        /// убирает все что было на экране до этого
+        /// </summary>
+        private void ClearSceneUI()
+        {
             var childCount = _uiSceneContainer.childCount;
-            for (int i = 0;i<childCount; i++){
+            for (int i = 0; i < childCount; i++)
+            {
                 //.gameObject - потому что не дает уничтожать Transform 
                 Destroy(_uiSceneContainer.GetChild(i).gameObject);
             }
