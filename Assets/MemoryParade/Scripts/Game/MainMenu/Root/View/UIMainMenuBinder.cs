@@ -22,6 +22,7 @@ namespace Assets.MemoryParade.Scripts.Game.MainMenu.Root.View
         public void HandleGoToGameplayButtonClick()
         {
             //если сигнал сработал - уведомить остальных
+            Debug.Log("я нажата, и работаю");
             _exitSceneSignalSubj?.OnNext(Unit.Default);
         }
 
