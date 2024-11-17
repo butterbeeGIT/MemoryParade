@@ -20,7 +20,6 @@ public class UIGameplyBinder : MonoBehaviour
     /// </summary>
     public void HandleGoToMainMenuButtonClicked(){
         //OnNext(value) – Отправляет новое значение всем подписчикам. 
-        Debug.Log("я нажата, но нихера не работаю");
         _exitSceneSignalSubj?.OnNext(Unit.Default);
     }
 
@@ -29,7 +28,6 @@ public class UIGameplyBinder : MonoBehaviour
     /// </summary>
     /// <param name="exitSceneSignal"></param>
     public void Bind(R3.Subject<R3.Unit> exitSceneSignal){
-        Debug.Log("присоединение выполнено");
         _exitSceneSignalSubj = exitSceneSignal;     
     }
 }
