@@ -5,5 +5,6 @@ namespace Assets.MemoryParade.Scripts.Game.GameRoot{
     public static class Scenes{
         public const string BOOT = "Boot";//пустая сцена загрузки 
         public const string GAMEPLAY = "Gameplay";
+        public const string MAIN_MENU = "MainMenu";
     }
 }

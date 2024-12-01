@@ -1,13 +1,15 @@
 using System.Collections;
 using Assets.MemoryParade.Scripts.Game.Gameplay.Root;
 using Assets.MemoryParade.Scripts.Game.GameRoot;
+using Assets.MemoryParade.Scripts.Game.MainMenu.Root;
 using Assets.MemoryParade.Scripts.Utils;
 using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using R3;
 //using System.Linq;
 
-namespace Assets.MemoryParade
+namespace Assets.MemoryParade.Scripts.Game.GameRoot
 {
     /// <summary>
     /// точка входа в игру
@@ -41,6 +43,10 @@ namespace Assets.MemoryParade
 
         private void RunGame()
         {
+            //параметры входа в сцену по умолчанию
+            EntryParamsGameplay entryGameplayParams = new EntryParamsGameplay(0, null, false);
+            EntryParamsMainMenu entryMainMenuParams= new EntryParamsMainMenu(0,null);
+
             //на момент начала выполнения метода, программа не знает на какой сцене она находится 
             //Директива #if используется для проверки препроцессорного выражения. 
 #if UNITY_EDITOR //работа в редакторе
@@ -48,7 +54,13 @@ namespace Assets.MemoryParade
             if (sceneName == Scenes.GAMEPLAY)
             {
                 //начнем загрузку этой сцены 
-                _coroutines.StartCoroutine(LoadAndStartGameplay());
+                _coroutines.StartCoroutine(LoadAndStartGameplay(entryGameplayParams));
+                return;
+            }
+            if (sceneName == Scenes.MAIN_MENU)
+            {
+                //начнем загрузку этой сцены 
+                _coroutines.StartCoroutine(LoadAndStartMainMenu(entryMainMenuParams));
                 return;
             }
             if (sceneName != Scenes.BOOT)
@@ -57,7 +69,7 @@ namespace Assets.MemoryParade
             }
 #endif
             //непосредственно запуск игры 
-            _coroutines.StartCoroutine(LoadAndStartGameplay());
+            _coroutines.StartCoroutine(LoadAndStartGameplay(entryGameplayParams));
 
         }
 
@@ -65,7 +77,7 @@ namespace Assets.MemoryParade
         /// Корутина для старта геймплея 
         /// </summary>
         /// <returns></returns>
-        private IEnumerator LoadAndStartGameplay()
+        private IEnumerator LoadAndStartGameplay(EntryParamsGameplay entryParams)
         {
             _uiRoot.ShowLoadingScreen();
 
@@ -79,7 +91,39 @@ namespace Assets.MemoryParade
 
             //поиск по типу
             var sceneEntryPoint = Object.FindFirstObjectByType<GameplayEntryPoint>();
-            sceneEntryPoint.RunGameplay();
+            
+            //запуск сцены и сохранение наблюдателя за выходом из сцены
+            Observable<ExitParamsGameplay> monitorsGoToAnotherScene = sceneEntryPoint.RunGameplay(entryParams, _uiRoot);
+            //переход на другую сцену при измении наблюдаемого объекта. В меню
+            monitorsGoToAnotherScene.Subscribe(exitParamsGameplay =>
+            {
+                _coroutines.StartCoroutine(LoadAndStartMainMenu(exitParamsGameplay.EntryParamsMainMenu));
+            });
+            //спрятать загрузочный экран
+            _uiRoot.HideLoadingScreen();
+        }
+
+        private IEnumerator LoadAndStartMainMenu(EntryParamsMainMenu entryParams)
+        {
+            _uiRoot.ShowLoadingScreen();
+
+            //визуал Unity
+            yield return LoadScene(Scenes.BOOT);
+            yield return LoadScene(Scenes.MAIN_MENU);
+            //чтобы все успело загрузиться
+            yield return new WaitForSeconds(2);
+            
+            //TODO создать DI контейнер 
+
+            //поиск по типу
+            var sceneEntryPoint = Object.FindFirstObjectByType<MainMenuEntryPoint>();
+            //запуск сцены и сохранение наблюдателя за выходом из сцены
+            Observable<ExitParamsMainMenu> monitorsGoToAnotherScene = sceneEntryPoint.Run(_uiRoot,entryParams);
+            //переход на другую сцену при измении наблюдаемого объекта. В геймплей
+            monitorsGoToAnotherScene.Subscribe(exitParamsMainMenu =>
+            {
+                _coroutines.StartCoroutine(LoadAndStartGameplay(exitParamsMainMenu.EntryParamsGameplay));
+            });
             
             _uiRoot.HideLoadingScreen();
         }
