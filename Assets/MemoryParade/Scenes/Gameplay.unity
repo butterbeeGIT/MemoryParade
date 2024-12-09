@@ -675,6 +675,7 @@ GameObject:
   - component: {fileID: 1280211466}
   - component: {fileID: 1280211469}
   - component: {fileID: 1280211468}
+  - component: {fileID: 1280211470}
   - component: {fileID: 1280211467}
   m_Layer: 5
   m_Name: ButtonToMainMenu
@@ -700,7 +701,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -152.14, y: -81.01}
+  m_AnchoredPosition: {x: -152.14001, y: -81.01001}
   m_SizeDelta: {x: 205.31, y: 52.02}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1280211467
@@ -746,7 +747,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1280211468}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1280211470}
+        m_TargetAssemblyTypeName: Assets.MemoryParade.Scripts.Game.forSceneTransition.GoToMainMenuButton,
+          Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1280211468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -785,6 +799,62 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1280211465}
   m_CullTransparentMesh: 1
+--- !u!114 &1280211470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1280211465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c2bc2c18531f1746898bb4c57004469, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1633486309
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1633486311}
+  - component: {fileID: 1633486310}
+  m_Layer: 0
+  m_Name: SceneTransitionManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1633486310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1633486309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 446e7093088cf4d43bae86924c9a04ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1633486311
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1633486309}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.29600522, y: 0.71119106, z: -2.816173}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2095205744
 GameObject:
   m_ObjectHideFlags: 0
@@ -929,3 +999,4 @@ SceneRoots:
   - {fileID: 1177641048}
   - {fileID: 891313437}
   - {fileID: 759494179}
+  - {fileID: 1633486311}
