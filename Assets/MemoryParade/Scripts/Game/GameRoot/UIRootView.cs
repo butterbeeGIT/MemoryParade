@@ -5,6 +5,8 @@ namespace Assets.MemoryParade.Scripts.Game.GameRoot
 
     public class UIRootView : MonoBehaviour
     {
+        //private static UIRootView _instance;
+        //public static UIRootView Instance => _instance;
         /// <summary>
         /// SerializeField нужны чтобы переменные оставалить приватными, 
         /// но их можно было изменять в инспекторе Unity
@@ -45,12 +47,22 @@ namespace Assets.MemoryParade.Scripts.Game.GameRoot
         /// </summary>
         private void ClearSceneUI()
         {
+            
             var childCount = _uiSceneContainer.childCount;
-            for (int i = 0; i < childCount; i++)
+            if (childCount > 0)
             {
-                //.gameObject - потому что не дает уничтожать Transform 
-                Destroy(_uiSceneContainer.GetChild(i).gameObject);
+                for (int i = 0; i < childCount; i++)
+                {
+                    //.gameObject - потому что не дает уничтожать Transform 
+
+                    Destroy(_uiSceneContainer.GetChild(i).gameObject);
+                }
             }
+            else
+            {
+                Debug.LogWarning("У объекта нет дочерних элементов!");
+            }
+            
         }
     }
 }

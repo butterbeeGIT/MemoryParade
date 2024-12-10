@@ -89,16 +89,16 @@ namespace Assets.MemoryParade.Scripts.Game.GameRoot
             
             //TODO создать DI контейнер 
 
-            //поиск по типу
-            var sceneEntryPoint = Object.FindFirstObjectByType<GameplayEntryPoint>();
+            ////поиск по типу
+            //var sceneEntryPoint = Object.FindFirstObjectByType<GameplayEntryPoint>();
             
-            //запуск сцены и сохранение наблюдателя за выходом из сцены
-            Observable<ExitParamsGameplay> monitorsGoToAnotherScene = sceneEntryPoint.RunGameplay(entryParams, _uiRoot);
-            //переход на другую сцену при измении наблюдаемого объекта. В меню
-            monitorsGoToAnotherScene.Subscribe(exitParamsGameplay =>
-            {
-                _coroutines.StartCoroutine(LoadAndStartMainMenu(exitParamsGameplay.EntryParamsMainMenu));
-            });
+            ////запуск сцены и сохранение наблюдателя за выходом из сцены
+            //Observable<ExitParamsGameplay> monitorsGoToAnotherScene = sceneEntryPoint.RunGameplay(entryParams, _uiRoot);
+            ////переход на другую сцену при измении наблюдаемого объекта. В меню
+            //monitorsGoToAnotherScene.Subscribe(exitParamsGameplay =>
+            //{
+            //    _coroutines.StartCoroutine(LoadAndStartMainMenu(exitParamsGameplay.EntryParamsMainMenu));
+            //});
             //спрятать загрузочный экран
             _uiRoot.HideLoadingScreen();
         }
@@ -112,19 +112,19 @@ namespace Assets.MemoryParade.Scripts.Game.GameRoot
             yield return LoadScene(Scenes.MAIN_MENU);
             //чтобы все успело загрузиться
             yield return new WaitForSeconds(2);
-            
-            //TODO создать DI контейнер 
 
-            //поиск по типу
-            var sceneEntryPoint = Object.FindFirstObjectByType<MainMenuEntryPoint>();
-            //запуск сцены и сохранение наблюдателя за выходом из сцены
-            Observable<ExitParamsMainMenu> monitorsGoToAnotherScene = sceneEntryPoint.Run(_uiRoot,entryParams);
-            //переход на другую сцену при измении наблюдаемого объекта. В геймплей
-            monitorsGoToAnotherScene.Subscribe(exitParamsMainMenu =>
-            {
-                _coroutines.StartCoroutine(LoadAndStartGameplay(exitParamsMainMenu.EntryParamsGameplay));
-            });
-            
+            ////TODO создать DI контейнер 
+
+            ////поиск по типу
+            //var sceneEntryPoint = Object.FindFirstObjectByType<MainMenuEntryPoint>();
+            ////запуск сцены и сохранение наблюдателя за выходом из сцены
+            //Observable<ExitParamsMainMenu> monitorsGoToAnotherScene = sceneEntryPoint.Run(_uiRoot,entryParams);
+            ////переход на другую сцену при измении наблюдаемого объекта. В геймплей
+            //monitorsGoToAnotherScene.Subscribe(exitParamsMainMenu =>
+            //{
+            //    _coroutines.StartCoroutine(LoadAndStartGameplay(exitParamsMainMenu.EntryParamsGameplay));
+            //});
+
             _uiRoot.HideLoadingScreen();
         }
 
