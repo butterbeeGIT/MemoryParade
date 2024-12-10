@@ -47,12 +47,22 @@ namespace Assets.MemoryParade.Scripts.Game.GameRoot
         /// </summary>
         private void ClearSceneUI()
         {
+            
             var childCount = _uiSceneContainer.childCount;
-            for (int i = 0; i < childCount; i++)
+            if (childCount > 0)
             {
-                //.gameObject - потому что не дает уничтожать Transform 
-                Destroy(_uiSceneContainer.GetChild(i).gameObject);
+                for (int i = 0; i < childCount; i++)
+                {
+                    //.gameObject - потому что не дает уничтожать Transform 
+
+                    Destroy(_uiSceneContainer.GetChild(i).gameObject);
+                }
             }
+            else
+            {
+                Debug.LogWarning("У объекта нет дочерних элементов!");
+            }
+            
         }
     }
 }
