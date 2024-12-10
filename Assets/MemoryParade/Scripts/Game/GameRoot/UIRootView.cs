@@ -5,6 +5,8 @@ namespace Assets.MemoryParade.Scripts.Game.GameRoot
 
     public class UIRootView : MonoBehaviour
     {
+        //private static UIRootView _instance;
+        //public static UIRootView Instance => _instance;
         /// <summary>
         /// SerializeField нужны чтобы переменные оставалить приватными, 
         /// но их можно было изменять в инспекторе Unity

@@ -13,6 +13,8 @@ namespace Assets.MemoryParade.Scripts.Game.GameRoot
         private static SceneTransitionManager _instance;
         public static SceneTransitionManager Instance => _instance;
 
+        private UIRootView _uiRoot;
+
         /// <summary>
         /// Название предыдущей сцены
         /// </summary>
@@ -28,6 +30,10 @@ namespace Assets.MemoryParade.Scripts.Game.GameRoot
 
             _instance = this;
             DontDestroyOnLoad(gameObject);
+
+            var prefabUIRoot = Resources.Load<UIRootView>("UIRoot");
+            _uiRoot = Object.Instantiate(prefabUIRoot);
+            Object.DontDestroyOnLoad(_uiRoot.gameObject);
         }
 
         /// <summary>
@@ -75,19 +81,21 @@ namespace Assets.MemoryParade.Scripts.Game.GameRoot
         private IEnumerator LoadSceneWithLoadingScreen(string sceneName)
         {
             // Показать экран загрузки
-            // UIManager.Instance.ShowLoadingScreen();
+            _uiRoot.ShowLoadingScreen();
 
             // Загрузить сцену асинхронно
             Debug.Log("Загрузка сцены " + sceneName);
             AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
+            int loadNum = 0;
             while (!operation.isDone)
             {
+                loadNum++;
                 //TODO обновление загрузки
-                yield return null;
+                yield return loadNum;
             }
 
             // Скрыть экран загрузки
-            // UIManager.Instance.HideLoadingScreen();
+            _uiRoot.HideLoadingScreen();
         }
     }
 }
