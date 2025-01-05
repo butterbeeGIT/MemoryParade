@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 public class CharacterMove : MonoBehaviour
 {
     private Animator _animator;
+    
     void Start()
     {
         _animator = GetComponent<Animator>();
@@ -42,6 +43,15 @@ public class CharacterMove : MonoBehaviour
             _animator.SetFloat("Y", 0);
         }
 
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Attack();
+        }
+    }
+
+    void Attack()
+    {
+        _animator.SetTrigger("Attack");
     }
 
     private Vector2 GetMove()
