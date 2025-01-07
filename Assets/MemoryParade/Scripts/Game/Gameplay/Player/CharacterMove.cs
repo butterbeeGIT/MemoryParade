@@ -29,16 +29,24 @@ public class CharacterMove : MonoBehaviour
         }
 
         var move = GetMove();
+        /*float lastX = 0;
+        float lastY = 0;*/
 
         if (move != Vector2.zero)
         {
             _animator.SetFloat("X", move.x);
             _animator.SetFloat("Y", move.y);
+            /*lastX = move.x;
+            lastY = move.y;*/
+            // ѕредыдущие значени€ дл€ того, чтобы знать в какую сторону атаковать
+            _animator.SetFloat("attackX", move.x);
+            _animator.SetFloat("attackY", move.y);
 
             transform.Translate(move * 0.02f); // скорость
         }
         else
         {
+            // ќбнол€ем основные параметры, дл€ того, чтобы персонаж сто€л
             _animator.SetFloat("X", 0);
             _animator.SetFloat("Y", 0);
         }

@@ -9,6 +9,7 @@ public class PositionRendererSorter : MonoBehaviour
     [SerializeField]
     private bool runOnlyOnce = false;
     private Renderer myRenderer;
+    private SpriteRenderer spriteRenderer;
 
     private void Awake()
     {
@@ -17,10 +18,15 @@ public class PositionRendererSorter : MonoBehaviour
 
     private void LateUpdate()
     {
-        myRenderer.sortingOrder = (int)(sortingOrderBase - transform.position.y - offset);
+        myRenderer.sortingOrder =  (int)(sortingOrderBase - transform.position.y - offset);
         if (runOnlyOnce)
         {
             Destroy(this);
         }
     }
+    /*void Update()
+    {
+
+        spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
+    }*/
 }
