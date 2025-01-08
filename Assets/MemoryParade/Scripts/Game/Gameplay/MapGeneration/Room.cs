@@ -6,40 +6,35 @@ using System.Threading.Tasks;
 
 namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
 {
-    /// <summary>
-    /// Описывает объект комнаты
-    /// </summary>
     public class Room
     {
-        /// <summary>
-        ///  Координаты на карте
-        /// </summary>
-        public int x, y;
-        /// <summary>
-        /// параметры комнаты в сетке карты
-        /// </summary>
-        public int width, height;
-        /// <summary>
-        /// тип комнаты
-        /// </summary>
-        public RoomType roomType;
+        public int X { get; private set; }
+        public int Y { get; private set; }
+        public int Width { get; private set; }
+        public int Height { get; private set; }
 
-        public Room(int x, int y, int width, int height, RoomType roomType)
+        public Room(int x, int y, int width, int height)
         {
-            this.x = x;
-            this.y = y;
-            this.width = width;
-            this.height = height;
-            this.roomType = roomType;
+            X = x;
+            Y = y;
+            Width = width;
+            Height = height;
+        }
+
+        public (int, int) Center()
+        {
+            return (X + Width / 2, Y + Height / 2);
         }
 
         /// <summary>
-        /// Проверяет пересечение двух комнат
+        /// проверяет, является ли точка стеной этой комнаты
         /// </summary>
-        public bool Intersects(Room other)
+        /// <param name="other_x"></param>
+        /// <param name="other_y"></param>
+        /// <returns></returns>
+        public bool isWall(int other_x, int other_y)
         {
-            return (x < other.x + other.width && x + width > other.x &&
-                    y < other.y + other.height && y + height > other.y);
+            return other_y == Y || other_y == Y + Height - 1 || other_x == X || other_x == X + Width - 1;
         }
     }
 }
