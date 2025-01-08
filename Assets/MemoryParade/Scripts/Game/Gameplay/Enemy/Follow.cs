@@ -5,9 +5,11 @@ public class Follow : MonoBehaviour
     public float speed;
     public Transform player;
     public SpriteRenderer sr;
+    private Animator animator;
 
     void Awake()
     {
+        animator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
