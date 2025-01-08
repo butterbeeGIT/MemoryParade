@@ -29,16 +29,11 @@ public class CharacterMove : MonoBehaviour
         }
 
         var move = GetMove();
-        /*float lastX = 0;
-        float lastY = 0;*/
 
         if (move != Vector2.zero)
         {
             _animator.SetFloat("X", move.x);
             _animator.SetFloat("Y", move.y);
-            /*lastX = move.x;
-            lastY = move.y;*/
-            // Предыдущие значения для того, чтобы знать в какую сторону атаковать
             _animator.SetFloat("attackX", move.x);
             _animator.SetFloat("attackY", move.y);
 

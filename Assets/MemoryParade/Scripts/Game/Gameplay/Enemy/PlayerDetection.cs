@@ -9,7 +9,6 @@ public class PlayerDetection : MonoBehaviour
         {
             follow = GetComponent<Follow>(); 
             Debug.Log("Персонаж обнаружен!");
-            // Здесь можно добавить логику для атаки или следования за персонажем
             follow.speed = 0.01f;
         }
     }
@@ -20,7 +19,6 @@ public class PlayerDetection : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("Персонаж покинул область!");
-            // Здесь можно добавить логику для прекращения действия
             follow.speed = 0f;
         }
     }
