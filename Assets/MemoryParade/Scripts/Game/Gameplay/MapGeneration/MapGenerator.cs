@@ -61,11 +61,11 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
 
         private static void ConnectRooms(Room room1, Room room2)
         {
-            var (x1, y1) = room1.Center();
-            var (x2, y2) = room2.Center();
+            //var (x1, y1) = room1.Center();
+            //var (x2, y2) = room2.Center();
 
             // Используем MapRenderer для отрисовки коридора
-            MapRenderer.AddCorridor(x1, y1, x2, y2);
+            MapRenderer.AddCorridor(room1, room2);
         }
     }
 }

@@ -35,17 +35,17 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
                     }
                     else if (i == room.Y + room.Height) // Нижняя стена
                     {
-                        InstantiatePrefab(WallPrefab, position, Quaternion.Euler(0, 180, 0));
+                        InstantiatePrefab(WallPrefab, position, Quaternion.Euler(0, 0, 180));
                     }
 
                     // Левые и правые стены
                     else if (j == room.X) // Левая стена
                     {
-                        InstantiatePrefab(WallPrefab, position, Quaternion.Euler(0, -90, 0));
+                        InstantiatePrefab(WallPrefab, position, Quaternion.Euler(0, 0, 90));
                     }
                     else if (j == room.X + room.Width) // Правая стена
                     {
-                        InstantiatePrefab(WallPrefab, position, Quaternion.Euler(0, 90, 0));
+                        InstantiatePrefab(WallPrefab, position, Quaternion.Euler(0, 0, -90));
                     }
 
                     // Пол комнаты
@@ -71,49 +71,70 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
             float topY = -room.Y * CellSize.y;
             float bottomY = -(room.Y + room.Height) * CellSize.y;
             // Левый верхний угол
-            Vector3 topLeft = new Vector3(leftX, 0, topY);
+            Vector3 topLeft = new Vector3(leftX, topY, 0 );
             InstantiatePrefab(WallAnglePrefab, topLeft, Quaternion.Euler(0, 0, 0));
 
             // Правый верхний угол
-            Vector3 topRight = new Vector3(rightX, 0, topY);
-            InstantiatePrefab(WallAnglePrefab, topRight, Quaternion.Euler(0, 90, 0));
+            Vector3 topRight = new Vector3(rightX, topY, 0);
+            InstantiatePrefab(WallAnglePrefab, topRight, Quaternion.Euler(0, 0, -90));
 
             // Левый нижний угол
-            Vector3 bottomLeft = new Vector3(leftX, 0, bottomY);
-            InstantiatePrefab(WallAnglePrefab, bottomLeft, Quaternion.Euler(0, -90, 0));
+            Vector3 bottomLeft = new Vector3(leftX, bottomY, 0);
+            InstantiatePrefab(WallAnglePrefab, bottomLeft, Quaternion.Euler(0, 0, 90));
 
             // Правый нижний угол
-            Vector3 bottomRight = new Vector3(rightX, 0, bottomY);
-            InstantiatePrefab(WallAnglePrefab, bottomRight, Quaternion.Euler(0, 180, 0));
+            Vector3 bottomRight = new Vector3(rightX, bottomY, 0);
+            InstantiatePrefab(WallAnglePrefab, bottomRight, Quaternion.Euler(0, 0, 180));
         }
 
 
         /// <summary>
         /// Добавляет визуально отрисованный коридор
         /// </summary>
-        public static void AddCorridor(int x1, int y1, int x2, int y2)
+        public static void AddCorridor(Room room1, Room room2)
         {
-            x1 = AddHorizontalCorridor(x1, y1, x2, y2);
-            AddVerticalCorridor(x1, y1, x2, y2);
+            var (x1, y1) = room1.Center();
+            var (x2, y2) = room2.Center();
+            x1 = AddHorizontalCorridor(room1,  room2, x1, y1, x2, y2);
+            AddVerticalCorridor(room1, room2, x1, y1, x2, y2);
         }
 
-        private static int AddHorizontalCorridor(int x1, int y1, int x2, int y2)
+        private static int AddHorizontalCorridor(Room room1, Room room2, int x1, int y1, int x2, int y2)
         {
             while (x1 != x2)
             {
                 Vector3 position = new Vector3(x1 * CellSize.x, -y1 * CellSize.y, 0);
-                InstantiatePrefab(HorizontalCorridorPrefab, position, Quaternion.identity);
+                if(!(room1.isFloorRoom(x1, y1) || room2.isFloorRoom(x1, y1))) //если не пол комнаты
+                {
+                    if(room1.isWall(x1, y1) || room2.isWall(x1, y1))//если стена
+                    {
+                        InstantiatePrefab(DoorPrefab, position, Quaternion.identity);
+                    }
+                    else //иначе коридор
+                        InstantiatePrefab(HorizontalCorridorPrefab, position, Quaternion.identity);
+                }
+                
                 x1 += x1 < x2 ? 1 : -1; // Двигаемся к целевой точке
             }
             return x1;
         }
 
-        private static int AddVerticalCorridor(int x1, int y1, int x2, int y2)
+        private static int AddVerticalCorridor(Room room1, Room room2, int x1, int y1, int x2, int y2)
         {
             while (y1 != y2)
             {
                 Vector3 position = new Vector3(x1 * CellSize.x, -y1 * CellSize.y, 0);
-                InstantiatePrefab(VerticalCorridorPrefab, position, Quaternion.identity);
+
+                if (!(room1.isFloorRoom(x1, y1) || room2.isFloorRoom(x1, y1))) //если не пол комнаты
+                {
+                    if (room1.isWall(x1, y1) || room2.isWall(x1, y1))//если стена
+                    {
+                        InstantiatePrefab(DoorPrefab, position, Quaternion.identity);
+                    }
+                    else //иначе коридор
+                        InstantiatePrefab(VerticalCorridorPrefab, position, Quaternion.identity);
+                }
+
                 y1 += y1 < y2 ? 1 : -1; // Двигаемся к целевой точке
             }
             return y1;
@@ -172,94 +193,94 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
 //            }
 //        }
 
-//        /// <summary>
-//        /// добавляет на карту символически отрисованный коридор
-//        /// </summary>
-//        /// <param name="room"></param>
-//        /// <param name="map"></param>
-//        public static void AddSymbolicCorridorOnMap(int x1, int y1, int x2, int y2, char[,] map)
+///// <summary>
+///// добавляет на карту символически отрисованный коридор
+///// </summary>
+///// <param name="room"></param>
+///// <param name="map"></param>
+//public static void AddSymbolicCorridorOnMap(int x1, int y1, int x2, int y2, char[,] map)
+//{
+//    x1 = AddSymbolicHorizontalCorridorOnMap(x1, y1, x2, y2, map);
+//    AddSymbolicVerticalCorridorOnMap(x1, y1, x2, y2, map);
+
+
+//}
+
+///// <summary>
+///// строит горизонтальный коридор при необходимости
+///// </summary>
+///// <param name="x1">начальная точка</param>
+///// <param name="y1"></param>
+///// <param name="x2">конечная точка</param>
+///// <param name="y2"></param>
+///// <param name="map">символьная карта</param>
+///// <returns>координата x до которой удалось построить коридор</returns>
+//public static int AddSymbolicHorizontalCorridorOnMap(int x1, int y1, int x2, int y2, char[,] map)
+//{
+
+//    while (x1 != x2)
+//    {
+//        int yOffset = y1; // Ограничиваем смещение, чтобы не выйти за границы карты.
+//        char originalSymb = map[yOffset, x1];
+//        int nextX = x1 < x2 ? x1 + 1 : x1 - 1;
+//        if (originalSymb == '#' && map[yOffset, nextX] == '#')
 //        {
-//            x1 = AddSymbolicHorizontalCorridorOnMap(x1, y1, x2, y2, map);
-//            AddSymbolicVerticalCorridorOnMap(x1, y1, x2, y2, map);
-
-
-//        }
-
-//        /// <summary>
-//        /// строит горизонтальный коридор при необходимости
-//        /// </summary>
-//        /// <param name="x1">начальная точка</param>
-//        /// <param name="y1"></param>
-//        /// <param name="x2">конечная точка</param>
-//        /// <param name="y2"></param>
-//        /// <param name="map">символьная карта</param>
-//        /// <returns>координата x до которой удалось построить коридор</returns>
-//        public static int AddSymbolicHorizontalCorridorOnMap(int x1, int y1, int x2, int y2, char[,] map)
-//        {
-
-//            while (x1 != x2)
+//            if (y1 != y2)
 //            {
-//                int yOffset = y1; // Ограничиваем смещение, чтобы не выйти за границы карты.
-//                char originalSymb = map[yOffset, x1];
-//                int nextX = x1 < x2 ? x1 + 1 : x1 - 1;
-//                if (originalSymb == '#' && map[yOffset, nextX] == '#')
-//                {
-//                    if (y1 != y2)
-//                    {
-//                        y1 = AddSymbolicVerticalCorridorOnMap(x1, y1, x2, y2, map);
-//                        break;
-//                    }
-//                    originalSymb = map[yOffset, x1];
-//                }
-
-//                map[yOffset, x1] = originalSymb switch
-//                {
-//                    ' ' => '-',
-//                    '#' => 'D',
-//                    _ => originalSymb
-//                };
-//                x1 += x1 < x2 ? 1 : -1; // Двигаемся к целевой точке.
+//                y1 = AddSymbolicVerticalCorridorOnMap(x1, y1, x2, y2, map);
+//                break;
 //            }
-//            return x1;
+//            originalSymb = map[yOffset, x1];
 //        }
 
-//        /// <summary>
-//        /// строит вертикальный коридор при необходимости
-//        /// </summary>
-//        /// <param name="x1">начальная точка</param>
-//        /// <param name="y1"></param>
-//        /// <param name="x2">конечная точка</param>
-//        /// <param name="y2"></param>
-//        /// <param name="map">символьная карта</param>
-//        /// <returns>координата y до которой удалось построить коридор</returns>
-
-//        public static int AddSymbolicVerticalCorridorOnMap(int x1, int y1, int x2, int y2, char[,] map)
+//        map[yOffset, x1] = originalSymb switch
 //        {
-//            while (y1 != y2)
-//            {
-//                int xOffset = x1; // Ограничиваем смещение.
-//                char originalSymb = map[y1, xOffset];
-//                int nextY = y1 < y2 ? y1 + 1 : y1 - 1;
-//                if (originalSymb == '#' && map[nextY, xOffset] == '#')
-//                {
-//                    if (x1 != x2)
-//                    {
-//                        x1 = AddSymbolicHorizontalCorridorOnMap(x1, y1, x2, y2, map);
-//                        break;
-//                    }
+//            ' ' => '-',
+//            '#' => 'D',
+//            _ => originalSymb
+//        };
+//        x1 += x1 < x2 ? 1 : -1; // Двигаемся к целевой точке.
+//    }
+//    return x1;
+//}
 
-//                    originalSymb = map[y1, xOffset];
-//                }
-//                map[y1, xOffset] = originalSymb switch
-//                {
-//                    ' ' => '|',
-//                    '#' => 'D',
-//                    _ => originalSymb
-//                };
-//                y1 += y1 < y2 ? 1 : -1; // Двигаемся к целевой точке.
+///// <summary>
+///// строит вертикальный коридор при необходимости
+///// </summary>
+///// <param name="x1">начальная точка</param>
+///// <param name="y1"></param>
+///// <param name="x2">конечная точка</param>
+///// <param name="y2"></param>
+///// <param name="map">символьная карта</param>
+///// <returns>координата y до которой удалось построить коридор</returns>
+
+//public static int AddSymbolicVerticalCorridorOnMap(int x1, int y1, int x2, int y2, char[,] map)
+//{
+//    while (y1 != y2)
+//    {
+//        int xOffset = x1; // Ограничиваем смещение.
+//        char originalSymb = map[y1, xOffset];
+//        int nextY = y1 < y2 ? y1 + 1 : y1 - 1;
+//        if (originalSymb == '#' && map[nextY, xOffset] == '#')
+//        {
+//            if (x1 != x2)
+//            {
+//                x1 = AddSymbolicHorizontalCorridorOnMap(x1, y1, x2, y2, map);
+//                break;
 //            }
-//            return y1;
+
+//            originalSymb = map[y1, xOffset];
 //        }
+//        map[y1, xOffset] = originalSymb switch
+//        {
+//            ' ' => '|',
+//            '#' => 'D',
+//            _ => originalSymb
+//        };
+//        y1 += y1 < y2 ? 1 : -1; // Двигаемся к целевой точке.
+//    }
+//    return y1;
+//}
 
 //    }
 //}
