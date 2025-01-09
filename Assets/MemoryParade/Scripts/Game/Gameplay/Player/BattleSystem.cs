@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Unity.VisualScripting;
+using UnityEngine;
 
 public class BattleSystem : MonoBehaviour
 {
@@ -8,33 +9,22 @@ public class BattleSystem : MonoBehaviour
     private Animator enemyAnimator;
     private BattleTrigger battle;
 
+    public bool BattleIsEnd = false;
+
+    private bool canAttack = true;
+    //private bool attack = false;
+
     void Start()
     {
         playerAnimator = GetComponent<Animator>(); // Предполагаем, что скрипт прикреплен к объекту игрока
         enemyAnimator = GameObject.Find("Mummy_0").GetComponent<Animator>(); // Найдите объект врага по имени
-        if (battle.BattleIsStart)
-            StartBattle();
-    }
 
-    void StartBattle()
-    {
-        while (playerHP > 0 && enemyHP > 0)
-        {
-            PlayerAttack();
-            if (enemyHP <= 0) 
-                break;
-            EnemyAttack();
-        }
-
-        if (playerHP <= 0)
-            Debug.Log("Игрок проиграл!");
-        else
-            Debug.Log("Игрок победил!");
+        battle = FindAnyObjectByType<BattleTrigger>();
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) )
+        if (Input.GetKeyDown(KeyCode.Space) && canAttack && battle.BattleIsStart)
         {
             PlayerAttack();
         }
@@ -46,13 +36,27 @@ public class BattleSystem : MonoBehaviour
 
     void PlayerAttack()
     {
+        canAttack = false;
         playerAnimator.SetBool("turn", true);
         playerAnimator.SetTrigger("Attack");
         enemyHP -= 50; // Пример урона
-        Debug.Log("Вы атаковали врага! HP врага: " + enemyHP);
+        if (enemyHP <= 0)
+        {
+            Debug.Log("Вы выиграли");
+            BattleIsEnd = true;
+            EnemyDie();
+            return;
+        }
+        else Debug.Log("Вы атаковали врага! HP врага: " + enemyHP);
 
         // После этого запускаем анимацию врага
         Invoke("EnemyAttack", 1f); // Время ожидания для завершения анимации атаки игрока
+    }
+
+    void EnemyDie()
+    {
+        enemyAnimator.SetBool("die", true);
+        enemyAnimator.transform.position = new Vector3(enemyAnimator.transform.position.x, (float)(enemyAnimator.transform.position.y - 0.3), 0);
     }
 
     void EnemyAttack()
@@ -62,6 +66,7 @@ public class BattleSystem : MonoBehaviour
         // Враг атакует
         int damage = Random.Range(1, 9); // Урон от врага
         playerHP -= damage;
+        canAttack = true;
         Debug.Log("Враг атаковал! Вы потеряли " + damage + " HP. Ваше HP: " + playerHP);
 
         // Возврат врага в базовую анимацию
