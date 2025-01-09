@@ -26,7 +26,7 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
             {
                 for (int j = room.X; j <= room.X + room.Width; j++)
                 {
-                    Vector3 position = new Vector3(j * CellSize.x, -i * CellSize.y, 0);
+                    Vector3 position = new Vector3(j * CellSize.x, -i * CellSize.y, 0.1f);
 
                     // Верхняя и нижняя стены
                     if (i == room.Y) // Верхняя стена
@@ -51,6 +51,7 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
                     // Пол комнаты
                     else
                     {
+                        position.z = -0.1f;
                         InstantiatePrefab(FloorPrefab, position, Quaternion.identity);
                     }
                 }
@@ -70,8 +71,9 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
             float rightX = (room.X + room.Width) * CellSize.x;
             float topY = -room.Y * CellSize.y;
             float bottomY = -(room.Y + room.Height) * CellSize.y;
+            //float constZ = -0.1f;
             // Левый верхний угол
-            Vector3 topLeft = new Vector3(leftX, topY, 0 );
+            Vector3 topLeft = new Vector3(leftX, topY, 0);
             InstantiatePrefab(WallAnglePrefab, topLeft, Quaternion.Euler(0, 0, 0));
 
             // Правый верхний угол
@@ -85,6 +87,8 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
             // Правый нижний угол
             Vector3 bottomRight = new Vector3(rightX, bottomY, 0);
             InstantiatePrefab(WallAnglePrefab, bottomRight, Quaternion.Euler(0, 0, 180));
+
+            
         }
 
 
@@ -98,7 +102,7 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
             x1 = AddHorizontalCorridor(room1,  room2, x1, y1, x2, y2);
             AddVerticalCorridor(room1, room2, x1, y1, x2, y2);
         }
-
+        //private const float СonstZ = -0.1f;
         private static int AddHorizontalCorridor(Room room1, Room room2, int x1, int y1, int x2, int y2)
         {
             while (x1 != x2)
