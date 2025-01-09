@@ -1645,6 +1645,7 @@ MonoBehaviour:
   floorPrefab: {fileID: 5774332063682212900, guid: 0f1163ce47badc7468c03c973b53cd2a, type: 3}
   doorPrefab: {fileID: 2061480868884694909, guid: c8349bb99309fdd42ac39a2cc58bb2e0, type: 3}
   wallAnglePrefab: {fileID: 748337316496497632, guid: 81f67ca1c5f807c46bc1869289ce7b74, type: 3}
+  player: {fileID: 273555598}
 --- !u!4 &1865237698
 Transform:
   m_ObjectHideFlags: 0

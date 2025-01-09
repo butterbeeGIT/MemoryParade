@@ -2,7 +2,9 @@
 
 namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
 {
-    
+    /// <summary>
+    /// загружает префабы карты
+    /// </summary>
     public class MapInitializer : MonoBehaviour
     {
         [Header("Prefabs")]
@@ -12,6 +14,10 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
         public GameObject floorPrefab;
         public GameObject doorPrefab;
         public GameObject wallAnglePrefab;
+        //персонаж
+        public GameObject player;
+
+        public static Vector2 CellSize = new Vector2(1, 1); // Размер одной клетки карты
 
         void Start()
         {
@@ -24,7 +30,24 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
             MapRenderer.WallAnglePrefab = wallAnglePrefab;
 
             // Генерируем и отрисовываем карту
-            MapGenerator.GenerateAndRenderMap();
+            Room spawnRoom = MapGenerator.GenerateAndRenderMap();
+            SpawnPlayerInRoom(player, spawnRoom);
+        }
+
+
+        /// <summary>
+        /// Перемещает игрока в центр одной из комнат
+        /// </summary>
+        /// <param name="player"></param>
+        /// <param name="spawnRoom"></param>
+        void SpawnPlayerInRoom(GameObject player, Room spawnRoom)
+        {
+            if (spawnRoom != null)
+            {
+                var (centerX, centerY) = spawnRoom.Center();
+
+                player.transform.position = new Vector3(centerX * CellSize.x, -centerY * CellSize.y, 0);
+            }
         }
     }
 

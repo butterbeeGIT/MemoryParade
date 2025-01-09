@@ -9,7 +9,11 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
         const int MAP_WIDTH = 50;
         const int MAP_HEIGHT = 50;
 
-        public static void GenerateAndRenderMap()
+        /// <summary>
+        /// Генерирует карту
+        /// </summary>
+        /// <returns>первая комната карты</returns>
+        public static Room GenerateAndRenderMap()
         {
             // Убедиться, что существует родительский объект для карты
             EnsureMapParentExists();
@@ -28,7 +32,11 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
             {
                 ConnectRooms(rooms[i], rooms[i + 1]);
             }
+
+            //комната спавна героя
+            return rooms[0];
         }
+
 
         private static void EnsureMapParentExists()
         {
