@@ -106,12 +106,14 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
                 Vector3 position = new Vector3(x1 * CellSize.x, -y1 * CellSize.y, 0);
                 if(!(room1.isFloorRoom(x1, y1) || room2.isFloorRoom(x1, y1))) //если не пол комнаты
                 {
-                    if(room1.isWall(x1, y1) || room2.isWall(x1, y1))//если стена
-                    {
-                        InstantiatePrefab(DoorPrefab, position, Quaternion.identity);
-                    }
-                    else //иначе коридор
-                        InstantiatePrefab(HorizontalCorridorPrefab, position, Quaternion.identity);
+                    //if(room1.isWall(x1, y1) || room2.isWall(x1, y1))//если стена
+                    //{
+                    //    InstantiatePrefab(DoorPrefab, position, Quaternion.identity);
+                    //}
+                    //else //иначе коридор
+                    //    InstantiatePrefab(HorizontalCorridorPrefab, position, Quaternion.identity);
+
+                    InstantiatePrefab(HorizontalCorridorPrefab, position, Quaternion.identity);
                 }
                 
                 x1 += x1 < x2 ? 1 : -1; // Двигаемся к целевой точке
@@ -127,12 +129,14 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
 
                 if (!(room1.isFloorRoom(x1, y1) || room2.isFloorRoom(x1, y1))) //если не пол комнаты
                 {
-                    if (room1.isWall(x1, y1) || room2.isWall(x1, y1))//если стена
-                    {
-                        InstantiatePrefab(DoorPrefab, position, Quaternion.identity);
-                    }
-                    else //иначе коридор
-                        InstantiatePrefab(VerticalCorridorPrefab, position, Quaternion.identity);
+                    //if (room1.isWall(x1, y1) || room2.isWall(x1, y1))//если стена
+                    //{
+                    //    InstantiatePrefab(DoorPrefab, position, Quaternion.identity);
+                    //}
+                    //else //иначе коридор
+                    //    InstantiatePrefab(VerticalCorridorPrefab, position, Quaternion.identity);
+
+                    InstantiatePrefab(VerticalCorridorPrefab, position, Quaternion.identity);
                 }
 
                 y1 += y1 < y2 ? 1 : -1; // Двигаемся к целевой точке
@@ -154,7 +158,7 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
 
             GameObject instance = UnityEngine.Object.Instantiate(prefab, position, rotation, MapParent);
             instance.name = prefab.name; // Опционально, для удобства отладки
-            Debug.Log($"Instantiated {prefab.name} at {position} with rotation {rotation}");
+           // Debug.Log($"Instantiated {prefab.name} at {position} with rotation {rotation}");
         }
     }
 }

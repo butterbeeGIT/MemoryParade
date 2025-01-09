@@ -20,13 +20,13 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
         {
             X = x;
             Y = y;
-            Width = width;
-            Height = height;
+            Width = width-1;
+            Height = height-1;
         }
 
         public (int, int) Center()
         {
-            return (X + Width / 2, Y + Height / 2);
+            return (X + (Width+1) / 2, Y + (Height+1) / 2);
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
         /// <returns></returns>
         public bool isRoom(int other_x, int other_y)
         {
-            return (other_x >= X && other_x - X <= Width - 1) && (other_y >= Y && other_y - Y <= Height - 1);
+            return (other_x >= X && other_x - X <= Width) && (other_y >= Y && other_y - Y <= Height );
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
         public bool isWall(int other_x, int other_y)
         {
             if(isRoom(other_x, other_y))
-                return other_y == Y || other_y == Y + Height - 1 || other_x == X || other_x == X + Width - 1;
+                return other_y == Y || other_y == Y + Height || other_x == X || other_x == X + Width;
             return false;
         }
 

@@ -31,7 +31,9 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
 
             // Генерируем и отрисовываем карту
             Room spawnRoom = MapGenerator.GenerateAndRenderMap();
+            HandleCollisions();
             SpawnPlayerInRoom(player, spawnRoom);
+            
         }
 
 
@@ -47,6 +49,28 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
                 var (centerX, centerY) = spawnRoom.Center();
 
                 player.transform.position = new Vector3(centerX * CellSize.x, -centerY * CellSize.y, 0);
+            }
+        }
+
+        /// <summary>
+        /// Обеспечивает проходимость коридоров
+        /// </summary>
+        void HandleCollisions()
+        {
+            foreach (var wall in GameObject.FindGameObjectsWithTag("Wall"))
+            {
+                BoxCollider2D wallCollider = wall.GetComponent<BoxCollider2D>();
+                if (wallCollider == null) continue;
+
+                Collider2D[] overlaps = Physics2D.OverlapBoxAll(wallCollider.bounds.center, wallCollider.bounds.size, 0);
+                foreach (var overlap in overlaps)
+                {
+                    if (overlap.CompareTag("Corridor"))
+                    {
+                        wallCollider.enabled = false;
+                        break;
+                    }
+                }
             }
         }
     }
