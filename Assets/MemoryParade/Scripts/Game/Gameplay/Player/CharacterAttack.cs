@@ -17,7 +17,7 @@ public class CharacterAttack : MonoBehaviour
 
         _animator.SetFloat("X", 0);
         _animator.SetFloat("Y", 0);
-        _animator.transform.position = new Vector3(_animator.transform.position.x - 1, (float)(_animator.transform.position.y + 0.37), 0);
+        _animator.transform.position = new Vector3(_animator.transform.position.x + 1, (float)(_animator.transform.position.y + 0.37), 0);
     }
 
     void FixedUpdate()

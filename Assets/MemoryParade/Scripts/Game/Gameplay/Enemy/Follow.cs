@@ -24,7 +24,7 @@ public class Follow : MonoBehaviour
         if (Vector2.Distance(player.transform.position, animator.transform.position) < 0.1f)
         {
             animator.SetBool("stay", true);
-            sr.flipX = false;
+            sr.flipX = true;
         }
     }
 }

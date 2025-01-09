@@ -50,6 +50,6 @@ public class BattleTrigger : MonoBehaviour
         // Отключаем камеру персонажа
         camera.enabled = false;
         // Двигаем врага на платформу
-        enemy.transform.position = new Vector3((float)(startPlayerPosition.x + 1 ), (float)(startPlayerPosition.y + 0.42), 0);
+        enemy.transform.position = new Vector3((float)(startPlayerPosition.x - 1 ), (float)(startPlayerPosition.y + 0.42), 0);
     }
 }
