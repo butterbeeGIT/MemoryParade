@@ -11,11 +11,16 @@ public class BattleTrigger : MonoBehaviour
     private CharacterAttack characterAttack;
     private Vector3 startPlayerPosition;
 
+    public bool BattleIsStart = false;
+
     private CinemachineVirtualCamera camera;
     private Camera main;
 
     void Start()
     {
+        /*enemyAnimator = GetComponent<Animator>();
+        playerAnimator = GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();*/
+
         playerMove = FindObjectOfType<CharacterMove>();
         characterAttack = FindObjectOfType<CharacterAttack>();
         enemy = FindObjectOfType<Follow>();
@@ -50,6 +55,7 @@ public class BattleTrigger : MonoBehaviour
         // Отключаем камеру персонажа
         camera.enabled = false;
         // Двигаем врага на платформу
-        enemy.transform.position = new Vector3((float)(startPlayerPosition.x - 1 ), (float)(startPlayerPosition.y + 0.42), 0);
+        enemy.transform.position = new Vector3((float)(startPlayerPosition.x - 0.8 ), (float)(startPlayerPosition.y + 0.42), 0);
+        BattleIsStart = true;
     }
 }

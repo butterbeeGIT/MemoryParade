@@ -22,13 +22,19 @@ public class CharacterAttack : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        /*if (Input.GetKeyDown(KeyCode.Space))
         {
             Attack();
         }
+        else
+        {
+            _animator.SetBool("turn", false);
+        }*/
     }
     void Attack()
     {
+        //_animator.SetBool("turn", true);
         _animator.SetTrigger("Attack");
+        //_animator.SetBool("turn", false);
     }
 }

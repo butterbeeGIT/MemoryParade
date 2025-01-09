@@ -34,8 +34,8 @@ public class CharacterMove : MonoBehaviour
         {
             _animator.SetFloat("X", move.x);
             _animator.SetFloat("Y", move.y);
-            _animator.SetFloat("attackX", move.x);
-            _animator.SetFloat("attackY", move.y);
+            //_animator.SetFloat("attackX", move.x);
+            //_animator.SetFloat("attackY", move.y);
 
             transform.Translate(move * 0.02f); // скорость
         }
