@@ -1,19 +1,23 @@
-﻿using System.Collections;
+﻿using Assets.MemoryParade.Scripts.Game.Gameplay.Player;
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class BattleSystem : MonoBehaviour
 {
+    public int attackCount = 0;
+
     private int playerHP = 100;
     private int enemyHP = 100;
+
     private Animator playerAnimator;
     private Animator enemyAnimator;
-    private BattleTrigger battle;
 
+    private BattleTrigger battle;
+    private PowerAttack powerAttack;
     public bool BattleIsEnd = false;
 
     private bool canAttack = true;
-    //private bool attack = false;
 
     void Start()
     {
@@ -21,6 +25,7 @@ public class BattleSystem : MonoBehaviour
         enemyAnimator = GameObject.Find("Mummy_0").GetComponent<Animator>(); // Найдите объект врага по имени
 
         battle = FindAnyObjectByType<BattleTrigger>();
+        powerAttack = FindAnyObjectByType<PowerAttack>();
     }
 
     void Update()
@@ -29,18 +34,41 @@ public class BattleSystem : MonoBehaviour
         {
             PlayerAttack();
         }
-        else
+        else if (!powerAttack.click)
         {
             playerAnimator.SetBool("turn", false);
         }
     }
+    
+    public void PlayerPowerAttack()
+    {
+        canAttack = false;
+        Attack();
+        enemyHP -= 10;
+        if (enemyHP <= 0)
+        {
+            Debug.Log("Вы выиграли");
+            EnemyDie();
+            BattleIsEnd = true;
+            playerAnimator.SetTrigger("win");
+            return;
+        }
+        else Debug.Log("Вы атаковали врага! HP врага: " + enemyHP);
+        Invoke("EnemyAttack", 1f);
+    }
+
+    public void Attack()
+    {
+        playerAnimator.SetBool("turn", true);
+        playerAnimator.SetTrigger("Attack");
+    }
 
     void PlayerAttack()
     {
+        attackCount++;
         canAttack = false;
-        playerAnimator.SetBool("turn", true);
-        playerAnimator.SetTrigger("Attack");
-        enemyHP -= 50; // Пример урона
+        Attack();
+        enemyHP -= 2; // Урон
         if (enemyHP <= 0)
         {
             Debug.Log("Вы выиграли");
@@ -61,7 +89,7 @@ public class BattleSystem : MonoBehaviour
         enemyAnimator.transform.position = new Vector3(enemyAnimator.transform.position.x, (float)(enemyAnimator.transform.position.y - 0.3), 0);
     }
 
-    void EnemyAttack()
+    public void EnemyAttack()
     {
         enemyAnimator.SetBool("turn", true);
 
