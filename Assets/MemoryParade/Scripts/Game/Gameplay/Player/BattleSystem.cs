@@ -6,6 +6,7 @@ using UnityEngine;
 public class BattleSystem : MonoBehaviour
 {
     public int attackCount = 0;
+    public int powerAttackCount = 0;
 
     private int playerHP = 100;
     private int enemyHP = 100;
@@ -15,6 +16,7 @@ public class BattleSystem : MonoBehaviour
 
     private BattleTrigger battle;
     private PowerAttack powerAttack;
+    private SuperAttack superAttack;
     public bool BattleIsEnd = false;
 
     private bool canAttack = true;
@@ -26,6 +28,7 @@ public class BattleSystem : MonoBehaviour
 
         battle = FindAnyObjectByType<BattleTrigger>();
         powerAttack = FindAnyObjectByType<PowerAttack>();
+        superAttack = FindAnyObjectByType<SuperAttack>();
     }
 
     void Update()
@@ -34,14 +37,37 @@ public class BattleSystem : MonoBehaviour
         {
             PlayerAttack();
         }
-        else if (!powerAttack.click)
+        else if (!powerAttack.click && !superAttack.click)
         {
             playerAnimator.SetBool("turn", false);
         }
     }
-    
+    public void Attack()
+    {
+        playerAnimator.SetBool("turn", true);
+        playerAnimator.SetTrigger("Attack");
+    }
+
+    public void PlayerSuperAttack()
+    {
+        canAttack = false;
+        Attack();
+        enemyHP -= 50;
+        if (enemyHP <= 0)
+        {
+            Debug.Log("Вы выиграли");
+            EnemyDie();
+            BattleIsEnd = true;
+            playerAnimator.SetTrigger("win");
+            return;
+        }
+        else Debug.Log("Вы атаковали врага! HP врага: " + enemyHP);
+        Invoke("EnemyAttack", 1f);
+    }
+
     public void PlayerPowerAttack()
     {
+        powerAttackCount++;
         canAttack = false;
         Attack();
         enemyHP -= 10;
@@ -55,12 +81,6 @@ public class BattleSystem : MonoBehaviour
         }
         else Debug.Log("Вы атаковали врага! HP врага: " + enemyHP);
         Invoke("EnemyAttack", 1f);
-    }
-
-    public void Attack()
-    {
-        playerAnimator.SetBool("turn", true);
-        playerAnimator.SetTrigger("Attack");
     }
 
     void PlayerAttack()
