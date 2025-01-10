@@ -1,4 +1,5 @@
-﻿using Unity.VisualScripting;
+﻿using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BattleSystem : MonoBehaviour
@@ -43,8 +44,9 @@ public class BattleSystem : MonoBehaviour
         if (enemyHP <= 0)
         {
             Debug.Log("Вы выиграли");
-            BattleIsEnd = true;
             EnemyDie();
+            BattleIsEnd = true;
+            playerAnimator.SetTrigger("win");
             return;
         }
         else Debug.Log("Вы атаковали врага! HP врага: " + enemyHP);

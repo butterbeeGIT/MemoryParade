@@ -511,6 +511,7 @@ GameObject:
   - component: {fileID: 273555600}
   - component: {fileID: 273555606}
   - component: {fileID: 273555607}
+  - component: {fileID: 273555608}
   - component: {fileID: 273555599}
   - component: {fileID: 273555603}
   - component: {fileID: 273555605}
@@ -722,6 +723,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e91ea23bcbcc6454f8aca8079f7602aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &273555608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 273555598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abfd1d120780f124d81903fc2446300c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BattleIsEnd: 0
 --- !u!1 &407820315
 GameObject:
   m_ObjectHideFlags: 3
@@ -1119,6 +1133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   battleCanvas: {fileID: 807567206}
+  BattleIsStart: 0
 --- !u!1 &512791988
 GameObject:
   m_ObjectHideFlags: 0
