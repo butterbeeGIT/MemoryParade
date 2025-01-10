@@ -103,22 +103,30 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
             x1 = AddHorizontalCorridor(room1,  room2, x1, y1, x2, y2);
             AddVerticalCorridor(room1, room2, x1, y1, x2, y2);
         }
-        //private const float СonstZ = -0.1f;
+        
+
+        /// <summary>
+        /// отрисовывает горизонтальный коридор
+        /// </summary>
+        /// <returns>измененную координату x</returns>
         private static int AddHorizontalCorridor(Room room1, Room room2, int x1, int y1, int x2, int y2)
         {
-            while (x1 != x2)
+            bool needAddCorridor = true;
+            while (needAddCorridor)//x1 != x2)
             {
                 Vector3 position = new Vector3(x1 * CellSize.x, -y1 * CellSize.y, 0);
                 if(!(room1.isFloorRoom(x1, y1) || room2.isFloorRoom(x1, y1))) //если не пол комнаты
                 {
                     InstantiatePrefab(HorizontalCorridorPrefab, position, Quaternion.identity);
                     Vector3 positionEmptyWall = position;
+                    //ограничители
                     positionEmptyWall.y = position.y  + CellSize.y;
                     InstantiatePrefab(EmptyWallPrefab, positionEmptyWall, Quaternion.identity);
                     positionEmptyWall.y = position.y -  CellSize.y;
                     InstantiatePrefab(EmptyWallPrefab, positionEmptyWall, Quaternion.identity);
                 }
-                
+                if (x1 == x2)
+                    return x1;                   
                 x1 += x1 < x2 ? 1 : -1; // Двигаемся к целевой точке
             }
             return x1;
@@ -126,7 +134,8 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
 
         private static int AddVerticalCorridor(Room room1, Room room2, int x1, int y1, int x2, int y2)
         {
-            while (y1 != y2)
+            bool needAddCorridor = true;
+            while (needAddCorridor)//y1 != y2)
             {
                 Vector3 position = new Vector3(x1 * CellSize.x, -y1 * CellSize.y, 0);
 
@@ -140,7 +149,8 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
                     positionEmptyWall.x = position.x - CellSize.x;
                     InstantiatePrefab(EmptyWallPrefab, positionEmptyWall, Quaternion.identity);
                 }
-
+                if (y1 == y2)
+                    return y1;
                 y1 += y1 < y2 ? 1 : -1; // Двигаемся к целевой точке
             }
             return y1;
