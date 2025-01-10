@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2553066416964410675}
   - component: {fileID: 9009918852753530195}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: CosmicLilac_TilesBlueGreen_88
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6584966103187281704}
   - component: {fileID: 2789957458661543256}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: OneHorizontalCorridor
   m_TagString: Corridor
   m_Icon: {fileID: 0}

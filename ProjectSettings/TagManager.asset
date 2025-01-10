@@ -9,11 +9,13 @@ TagManager:
   - Wall
   - Corridor
   - Corner
+  - Feet
+  - Background
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Map
   - Water
   - UI
   - 

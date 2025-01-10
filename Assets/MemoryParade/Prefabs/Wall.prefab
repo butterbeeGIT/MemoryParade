@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 419477186283315840}
   - component: {fileID: 4870774978840215701}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Wall
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3679756056334951011}
   - component: {fileID: 7496553636971678365}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: CosmicLilac_TilesBlueGreen_8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
