@@ -31,10 +31,27 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
             MapRenderer.WallAnglePrefab = wallAnglePrefab;
             MapRenderer.EmptyWallPrefab = emptyWallPrefab;
 
-            // Генерируем и отрисовываем карту
-            Room spawnRoom = MapGenerator.GenerateAndRenderMap();
-            HandleCollisions();
+            Room spawnRoom = GeneratingMap();
             SpawnPlayerInRoom(player, spawnRoom);
+        }
+
+        /// <summary>
+        /// генерирует работчую карту
+        /// </summary>
+        /// <returns>комната спавна персонажа</returns>
+        Room GeneratingMap()
+        {
+            Room spawnRoom;
+            spawnRoom = MapGenerator.GenerateAndRenderMap();
+            while (CheckRegeneration())
+            {
+                DestroyMap();
+                spawnRoom = MapGenerator.GenerateAndRenderMap();
+            }
+
+            HandleCollisions();
+            
+            return spawnRoom;
             
         }
 
@@ -53,6 +70,9 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
             }
         }
 
+        /// <summary>
+        /// Отключает Box collider у стен, там где они сопадают с другими объектами карты
+        /// </summary>
         void HandleCollisions()
         {
             foreach (var wall in GameObject.FindGameObjectsWithTag("Wall"))
@@ -92,59 +112,61 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
             }
         }
 
-        ///// <summary>
-        ///// Обеспечивает проходимость коридоров
-        ///// </summary>
-        //void HandleCollisions()
-        //{
-        //    foreach (var wall in GameObject.FindGameObjectsWithTag("Wall"))
-        //    {
-        //        BoxCollider2D wallCollider = wall.GetComponent<BoxCollider2D>();
-        //        if (wallCollider == null) continue;
+        /// <summary>
+        /// Проверяет на сопадения углы комнат и коридоры
+        /// Если они сопадают, то скорее всего карта сгенерировалась так что одна из стен комнаты превратилась в коридор
+        /// </summary>
+        /// <returns>нужна ли перегенерация</returns>
+        bool CheckRegeneration()
+        {
+            //bool needRegeneration = false; // Флаг для перегенерации карты
+            foreach (var corner in GameObject.FindGameObjectsWithTag("Corner"))
+            {
+                BoxCollider2D cornerCollider = corner.GetComponent<BoxCollider2D>();
+                if (cornerCollider == null) continue;
 
-        //        // Центр и размер коллайдера для OverlapBoxAll, игнорируем Z
-        //        Vector2 wallCenter = new Vector2(wallCollider.bounds.center.x, wallCollider.bounds.center.y);
-        //        Vector2 wallSize = wallCollider.bounds.size;
+                Vector2 cornerCenter = new Vector2(cornerCollider.bounds.center.x, cornerCollider.bounds.center.y);
+                Vector2 cornerSize = cornerCollider.bounds.size;
 
-        //        // Получаем все пересечения
-        //        Collider2D[] overlaps = Physics2D.OverlapBoxAll(wallCenter, wallSize, 0);
-        //        foreach (var overlap in overlaps)
-        //        {
-        //            if (overlap.CompareTag("Corridor"))
-        //            {
-        //                BoxCollider2D corridorCollider = overlap.GetComponent<BoxCollider2D>();
-        //                if (corridorCollider != null)
-        //                {
-        //                    // Игнорируем Z при сравнении центров и размеров
-        //                    Vector2 corridorCenter = new Vector2(corridorCollider.bounds.center.x, corridorCollider.bounds.center.y);
-        //                    Vector2 corridorSize = corridorCollider.bounds.size;
+                Collider2D[] overlaps = Physics2D.OverlapBoxAll(cornerCenter, cornerSize, 0);
+                foreach (var overlap in overlaps)
+                {
+                    if (overlap.gameObject == corner) continue; // Пропускаем самого себя
 
-        //                    if (corridorCenter == wallCenter && corridorSize == wallSize)
-        //                    {
-        //                        wallCollider.enabled = false; // Отключаем, если размеры и позиции совпадают
-        //                        break;
-        //                    }
-        //                }
-        //            }
-        //            else if (overlap.CompareTag("Floor"))
-        //            {
-        //                BoxCollider2D floorCollider = overlap.GetComponent<BoxCollider2D>();
-        //                if (floorCollider != null)
-        //                {
-        //                    // Игнорируем Z при сравнении центров и размеров
-        //                    Vector2 floorCenter = new Vector2(floorCollider.bounds.center.x, floorCollider.bounds.center.y);
-        //                    Vector2 floorSize = floorCollider.bounds.size;
+                    if (overlap.CompareTag("Corridor"))
+                    {
+                        BoxCollider2D overlapCollider = overlap.GetComponent<BoxCollider2D>();
+                        if (overlapCollider != null)
+                        {
+                            Vector2 overlapCenter = new Vector2(overlapCollider.bounds.center.x, overlapCollider.bounds.center.y);
+                            Vector2 overlapSize = overlapCollider.bounds.size;
 
-        //                    if (floorCenter == wallCenter)
-        //                    {
-        //                        wallCollider.enabled = false; // Отключаем, если размеры и позиции совпадают
-        //                        break;
-        //                    }
-        //                }
-        //            }
-        //        }
-        //    }
-        //}
+                            float tolerance = 0.01f; // Допустимая погрешность
+                            bool positionsMatch = Vector2.Distance(overlapCenter, cornerCenter) < tolerance;
+                            bool sizesMatch = Mathf.Abs(overlapSize.x - cornerSize.x) < tolerance &&
+                                              Mathf.Abs(overlapSize.y - cornerSize.y) < tolerance;
+
+                            if (positionsMatch && sizesMatch)
+                            {
+                                Debug.LogWarning($"Пересечение коридора с углом комнаты");
+                                return true;   
+                            }
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Удаляет все объекты карты
+        /// </summary>
+        void DestroyMap()
+        {
+            foreach (var obj in GameObject.FindGameObjectsWithTag("Wall")) Destroy(obj);
+            foreach (var obj in GameObject.FindGameObjectsWithTag("Floor")) Destroy(obj);
+            foreach (var obj in GameObject.FindGameObjectsWithTag("Corridor")) Destroy(obj);
+            foreach (var obj in GameObject.FindGameObjectsWithTag("Corner")) Destroy(obj);
+        }
     }
-
 }
