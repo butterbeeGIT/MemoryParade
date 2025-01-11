@@ -67506,7 +67506,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 408147732, guid: e83f749208ee7eb458d73b544237ed7e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -68111,7 +68111,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &807567211
 RectTransform:
@@ -68996,58 +68996,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1865237696
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1865237698}
-  - component: {fileID: 1865237697}
-  m_Layer: 0
-  m_Name: MapController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1865237697
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1865237696}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b9a9d8a84877fa4d81bbe2fafd300c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wallPrefab: {fileID: 742544196367741473, guid: 74e6bfdbd820f0d42aaf78239675ad21, type: 3}
-  horizontalCorridorPrefab: {fileID: 4423457757271157479, guid: dc95dd8f572194c47a89217a8d00f746, type: 3}
-  verticalCorridorPrefab: {fileID: 2591886998481086679, guid: 7e264741a7a1a8e4982689b3da8a9d63, type: 3}
-  floorPrefab: {fileID: 5774332063682212900, guid: 0f1163ce47badc7468c03c973b53cd2a, type: 3}
-  doorPrefab: {fileID: 2061480868884694909, guid: c8349bb99309fdd42ac39a2cc58bb2e0, type: 3}
-  wallAnglePrefab: {fileID: 5739999958119480325, guid: 81f67ca1c5f807c46bc1869289ce7b74, type: 3}
-  emptyWallPrefab: {fileID: 2455634510900548839, guid: 1cb940ee70a5c614bbd943f69ff270c6, type: 3}
-  player: {fileID: 273555598}
---- !u!4 &1865237698
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1865237696}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9, y: -4, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1808532077
 GameObject:
   m_ObjectHideFlags: 0
@@ -69123,6 +69071,59 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1808532077}
   m_CullTransparentMesh: 1
+--- !u!1 &1865237696
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1865237698}
+  - component: {fileID: 1865237697}
+  m_Layer: 0
+  m_Name: MapController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1865237697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865237696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b9a9d8a84877fa4d81bbe2fafd300c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wallPrefab: {fileID: 742544196367741473, guid: 74e6bfdbd820f0d42aaf78239675ad21, type: 3}
+  horizontalCorridorPrefab: {fileID: 4423457757271157479, guid: dc95dd8f572194c47a89217a8d00f746, type: 3}
+  verticalCorridorPrefab: {fileID: 2591886998481086679, guid: 7e264741a7a1a8e4982689b3da8a9d63, type: 3}
+  floorPrefab: {fileID: 5774332063682212900, guid: 0f1163ce47badc7468c03c973b53cd2a, type: 3}
+  doorPrefab: {fileID: 2061480868884694909, guid: c8349bb99309fdd42ac39a2cc58bb2e0, type: 3}
+  wallAnglePrefab: {fileID: 5739999958119480325, guid: 81f67ca1c5f807c46bc1869289ce7b74, type: 3}
+  emptyWallPrefab: {fileID: 2455634510900548839, guid: 1cb940ee70a5c614bbd943f69ff270c6, type: 3}
+  player: {fileID: 273555598}
+  enemy: {fileID: 478005054}
+--- !u!4 &1865237698
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865237696}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -9, y: -4, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1920565108
 GameObject:
   m_ObjectHideFlags: 0

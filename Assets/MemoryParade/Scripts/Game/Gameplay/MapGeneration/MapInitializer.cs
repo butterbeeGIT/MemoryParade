@@ -17,6 +17,7 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
         public GameObject emptyWallPrefab;
         //персонаж
         public GameObject player;
+        public GameObject enemy;
 
         public static Vector2 CellSize = new Vector2(1, 1); // Размер одной клетки карты
 
@@ -33,6 +34,7 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
 
             Room spawnRoom = GeneratingMap();
             SpawnPlayerInRoom(player, spawnRoom);
+            SpawnEnemyInRoom(enemy, spawnRoom);
         }
 
         /// <summary>
@@ -67,6 +69,21 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
                 var (centerX, centerY) = spawnRoom.Center();
 
                 player.transform.position = new Vector3(centerX * CellSize.x, -centerY * CellSize.y, 0);
+            }
+        }
+
+        /// <summary>
+        /// Перемещает врага в комнату
+        /// </summary>
+        /// <param name="enemy"></param>
+        /// <param name="spawnRoom"></param>
+        void SpawnEnemyInRoom(GameObject enemy, Room spawnRoom)
+        {
+            if (spawnRoom != null)
+            {
+                var (centerX, centerY) = spawnRoom.Center();
+
+                enemy.transform.position = new Vector3((centerX+2) * CellSize.x, -(centerY+2) * CellSize.y, 0);
             }
         }
 
