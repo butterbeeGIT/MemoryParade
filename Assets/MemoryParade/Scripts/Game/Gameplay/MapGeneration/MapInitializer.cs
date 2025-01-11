@@ -107,6 +107,7 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
 
                     if (overlap.CompareTag("Corridor") || overlap.CompareTag("Floor"))
                     {
+                        
                         BoxCollider2D overlapCollider = overlap.GetComponent<BoxCollider2D>();
                         if (overlapCollider != null)
                         {
@@ -120,7 +121,8 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
 
                             if (positionsMatch && sizesMatch)
                             {
-                                wallCollider.enabled = false;
+                                Destroy(wall);
+                                //wallCollider.enabled = false;
                                 break;
                             }
                         }
