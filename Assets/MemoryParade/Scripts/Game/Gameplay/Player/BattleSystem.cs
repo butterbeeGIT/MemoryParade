@@ -1,15 +1,22 @@
 ﻿using Assets.MemoryParade.Scripts.Game.Gameplay.Player;
 using System.Collections;
+using TMPro;
+using TMPro.EditorUtilities;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BattleSystem : MonoBehaviour
 {
+    private TextMeshProUGUI playerHPText;
+    private TextMeshProUGUI enemyHPText;
+
     public int attackCount = 0;
     public int powerAttackCount = 0;
 
     private int playerHP = 100;
     private int enemyHP = 100;
+    private int playerDamage;
 
     private Animator playerAnimator;
     private Animator enemyAnimator;
@@ -29,10 +36,18 @@ public class BattleSystem : MonoBehaviour
         battle = FindAnyObjectByType<BattleTrigger>();
         powerAttack = FindAnyObjectByType<PowerAttack>();
         superAttack = FindAnyObjectByType<SuperAttack>();
+
+        playerHPText = GameObject.Find("PlayerHP").GetComponent<TextMeshProUGUI>();
+        enemyHPText = GameObject.Find("EnemyHP").GetComponent<TextMeshProUGUI>();
     }
 
     void Update()
     {
+        if (playerHPText != null && enemyHPText != null)
+        {
+            playerHPText.text = playerHP.ToString();
+            enemyHPText.text = enemyHP.ToString();
+        }
         if (Input.GetKeyDown(KeyCode.Space) && canAttack && battle.BattleIsStart)
         {
             PlayerAttack();
@@ -52,7 +67,8 @@ public class BattleSystem : MonoBehaviour
     {
         canAttack = false;
         Attack();
-        enemyHP -= 50;
+        playerDamage = 50;
+        //enemyHP -= 50;
         if (enemyHP <= 0)
         {
             Debug.Log("Вы выиграли");
@@ -70,7 +86,8 @@ public class BattleSystem : MonoBehaviour
         powerAttackCount++;
         canAttack = false;
         Attack();
-        enemyHP -= 10;
+        playerDamage = 10;
+        //enemyHP -= 10;
         if (enemyHP <= 0)
         {
             Debug.Log("Вы выиграли");
@@ -88,7 +105,8 @@ public class BattleSystem : MonoBehaviour
         attackCount++;
         canAttack = false;
         Attack();
-        enemyHP -= 2; // Урон
+        //enemyHP -= 2; // Урон
+        playerDamage = 2;
         if (enemyHP <= 0)
         {
             Debug.Log("Вы выиграли");
@@ -111,13 +129,14 @@ public class BattleSystem : MonoBehaviour
 
     public void EnemyAttack()
     {
+        enemyHP -= playerDamage;
         enemyAnimator.SetBool("turn", true);
 
         // Враг атакует
-        int damage = Random.Range(1, 9); // Урон от врага
-        playerHP -= damage;
+        //int damage = Random.Range(1, 9); // Урон от врага
+        //playerHP -= damage;
         canAttack = true;
-        Debug.Log("Враг атаковал! Вы потеряли " + damage + " HP. Ваше HP: " + playerHP);
+        //Debug.Log("Враг атаковал! Вы потеряли " + damage + " HP. Ваше HP: " + playerHP);
 
         // Возврат врага в базовую анимацию
         Invoke("ResetEnemyAnimation", 1f); // Время ожидания для завершения анимации атаки врага
@@ -126,5 +145,7 @@ public class BattleSystem : MonoBehaviour
     void ResetEnemyAnimation()
     {
         enemyAnimator.SetBool("turn", false);
+        int damage = Random.Range(1, 9); // Урон от врага
+        playerHP -= damage;
     }
 }
