@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1536
     height: 780.8
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Hierarchy
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -235,7 +235,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: GameView
+  m_Name: SceneView
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -246,13 +246,13 @@ MonoBehaviour:
     height: 370.4
   m_MinSize: {x: 202, y: 221}
   m_MaxSize: {x: 4002, y: 4021}
-  m_ActualView: {fileID: 14}
+  m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
   - {fileID: 14}
   - {fileID: 17}
-  m_Selected: 1
-  m_LastSelected: 2
+  m_Selected: 0
+  m_LastSelected: 1
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -289,7 +289,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ConsoleWindow
+  m_Name: ProjectBrowser
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -305,8 +305,8 @@ MonoBehaviour:
   - {fileID: 19}
   - {fileID: 20}
   - {fileID: 21}
-  m_Selected: 0
-  m_LastSelected: 1
+  m_Selected: 1
+  m_LastSelected: 0
 --- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -547,9 +547,9 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 1
-      snapOffset: {x: -141, y: 149}
+      snapOffset: {x: -141, y: -192.59998}
       snapOffsetDelta: {x: 0, y: 0}
-      snapCorner: 1
+      snapCorner: 3
       id: unity-grid-and-snap-toolbar
       index: 1
       layout: 1
@@ -996,6 +996,7 @@ MonoBehaviour:
     - {fileID: -6873324761788030420, guid: f56c4c66f911ca941bc2412e2dadd1cb, type: 2}
     - {fileID: -8060698691983179513, guid: 81c864a917480504d9e5575335c3a0bb, type: 2}
     - {fileID: -8106701241973783984, guid: ab900496f02989b4eb96f616043c9c6a, type: 2}
+    - {fileID: 3515728771729170332, guid: ec6005db922c58b45bb748ea9bcceac5, type: 2}
     m_ValueSerializationHelper:
     - e00: 0.51913327
       e01: 0
@@ -1046,9 +1047,9 @@ MonoBehaviour:
       e32: 0
       e33: 1
   m_PreviewAnimator: {fileID: 0}
-  m_AnimatorController: {fileID: 9100000, guid: f56c4c66f911ca941bc2412e2dadd1cb, type: 2}
+  m_AnimatorController: {fileID: 9100000, guid: ec6005db922c58b45bb748ea9bcceac5, type: 2}
   m_BreadCrumbs:
-  - m_Target: {fileID: -6873324761788030420, guid: f56c4c66f911ca941bc2412e2dadd1cb, type: 2}
+  - m_Target: {fileID: 3515728771729170332, guid: ec6005db922c58b45bb748ea9bcceac5, type: 2}
     m_ScrollPosition: {x: 0, y: 0}
   stateMachineGraph: {fileID: 0}
   stateMachineGraphGUI: {fileID: 0}
@@ -1183,12 +1184,15 @@ MonoBehaviour:
     m_ImportLogFlags: 0
     m_FilterByTypeIntersection: 0
   m_ViewMode: 1
-  m_StartGridSize: 48
+  m_StartGridSize: 68
   m_LastFolders:
   - Assets/MemoryParade/Art/testArts
   m_LastFoldersGridSize: 48
   m_LastProjectPath: "C:\\Users\\User\\Desktop\\\u0423\u0447\u0435\u0431\u0430\\3
     \u043A\u0443\u0440\u0441\\\u041F\u0440\u043E\u0435\u043A\u0442\\game\\MemoryParade"
+  - Assets/MemoryParade/Art/testArts/Enemy/flame
+  m_LastFoldersGridSize: 68
+  m_LastProjectPath: E:\study\MemoryParade
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
@@ -1276,7 +1280,7 @@ MonoBehaviour:
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
     m_ScrollPosition: {x: 0, y: 0}
-    m_GridSize: 48
+    m_GridSize: 68
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 216.20006
 --- !u!114 &21

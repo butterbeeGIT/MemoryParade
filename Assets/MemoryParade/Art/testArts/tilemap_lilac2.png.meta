@@ -1,0 +1,1698 @@
+fileFormatVersion: 2
+guid: 7cbec95ca297aa5498008253d76450bb
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: tilemap_lilac2_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 631
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f082b624ecf431409ceefbd3ec1f011
+      internalID: 1041128692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_1
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 631
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7b53423cb7e6e64b8b347f936577ad4
+      internalID: 336031866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_2
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 631
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93f4d79d5a6d03f468fc4b3190763af0
+      internalID: 660112007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_3
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 631
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c7559b73f0115443938e47e5624d4da
+      internalID: 908988455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_4
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 631
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67d5a7614747d4543bf6473907e70a0c
+      internalID: 1978456589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_5
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 631
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ce615e0da49f7640aa6c49a33798ba8
+      internalID: -510654682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_6
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 631
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2cb8d06a9f4f95e42ab107cc4b700bf3
+      internalID: -601449835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_7
+      rect:
+        serializedVersion: 2
+        x: 553
+        y: 631
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d21bb4b4350f0b2468992eb586772759
+      internalID: -1616898004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_8
+      rect:
+        serializedVersion: 2
+        x: 632
+        y: 631
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea30b2d18cb12554cb31576f1dc49447
+      internalID: -1145520349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 552
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5b83a24ac0e8c64c8fa8378c8fd229e
+      internalID: -2041715659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_10
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 552
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23ae56c5c68b73a46b6b53c98d31d5b9
+      internalID: -923362848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_11
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 552
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f4e52a1ea355324ba3df04eb2a03516
+      internalID: -975221505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_12
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 552
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23692f8ad166f6a4f819a24b54143a91
+      internalID: -2104927983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_13
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 552
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 873a13459375d1a47950c475c24b183d
+      internalID: 1131319390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_14
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 552
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3cff716fdf0cb704485b824d5ed10df0
+      internalID: -1405057349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_15
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 552
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eae0a00691bf8d446a258bdf5297e53b
+      internalID: -431278140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_16
+      rect:
+        serializedVersion: 2
+        x: 553
+        y: 552
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4920b7f6c6c68e478e0bde95ce782ff
+      internalID: 1286811730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_17
+      rect:
+        serializedVersion: 2
+        x: 632
+        y: 552
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a124ee9261f9ac8459f4c35a04886dda
+      internalID: -1780175443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 473
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3841b45b084d25246904ac5f3467d37b
+      internalID: -1476714422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_19
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 473
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d647fb9595b154b4dbac0156f9f9a09d
+      internalID: 173016022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_20
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 473
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f15149d4bca565b40a1ffda7556e2668
+      internalID: -817769939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_21
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 473
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1a72c561439c16498f10699280f05eb
+      internalID: -1397818977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_22
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 473
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f81b912db0004c8418a3924c894d8402
+      internalID: 1239254157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_23
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 473
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c8d2844e1cadff41a42c8b75b28ecd9
+      internalID: 1381320255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_24
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 473
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1919e81ea40b3a9448f6eae09a8f0e3a
+      internalID: -116612150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_25
+      rect:
+        serializedVersion: 2
+        x: 553
+        y: 473
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db132212933fd594b9dedad24cde9e26
+      internalID: -1084895301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_26
+      rect:
+        serializedVersion: 2
+        x: 632
+        y: 473
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10e0bae9a1515994195062e272cc3863
+      internalID: -1939570347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_27
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 394
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60c2617c0db702b46aa5c39abfeaffdc
+      internalID: -146838565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_28
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 394
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f2b3e2d255ada44e9d7651445a24a82
+      internalID: -1915688840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_29
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 394
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a2fc55d41c637040a409de1ab8110ad
+      internalID: 2080598746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_30
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 394
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53ec8a01c28ab4e4a86462ee7445f299
+      internalID: 1370562576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_31
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 394
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 269859c20e0d96146a2f2a56bf8ae151
+      internalID: -1200996193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_32
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 394
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2f65604ce697bb419dbb03bfc6bea0b
+      internalID: 851798833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_33
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 394
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4dd46e443fb34f42855beac6a74e8ac
+      internalID: 1344899172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_34
+      rect:
+        serializedVersion: 2
+        x: 553
+        y: 394
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06c45abcab96534408e0d9d2539ed3a1
+      internalID: -1138751265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_35
+      rect:
+        serializedVersion: 2
+        x: 632
+        y: 394
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f49cb80b9ac5600449dc4eca043c2513
+      internalID: 1815160958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_36
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 315
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f73fefeebfffe644ea5d42df0b201f61
+      internalID: 1677207230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_37
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 315
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce8b4aab26e41dc4d85624d07f51528d
+      internalID: 1865666936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_38
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 315
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25979691dff652f4fad15dce879b6cd6
+      internalID: -1318877812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_39
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 315
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: daa0c4419a1b9cd49a7b92983f1e80aa
+      internalID: 513932614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_40
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 315
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1f91b17a7a680749b4e8c8a9f34980a
+      internalID: 1310924165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_41
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 315
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e313c7f4bb6eda74081058dfb2779d0a
+      internalID: -545182194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_42
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 315
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a877cdeebfbbc245a3605400df94cfd
+      internalID: -504097139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_43
+      rect:
+        serializedVersion: 2
+        x: 553
+        y: 315
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac3fc7f7d2f5ea54a9b8fa4a6eef5699
+      internalID: -1021408253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_44
+      rect:
+        serializedVersion: 2
+        x: 632
+        y: 315
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ef53c0ad38f4cb45925939d444a0515
+      internalID: -460431739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_45
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 236
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17a0b9f6a056d5442bafd2a3bf27e537
+      internalID: -1449755682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_46
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 236
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62f47733100821044a22dd10cb3a1e9c
+      internalID: 1962687591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_47
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 236
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb6a738c50c5f5740aae50d521e6091e
+      internalID: -121545917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_48
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 236
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9717c0d822f9f2e42ad4cbadf560d7b1
+      internalID: -605435526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_49
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 236
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0e00c3975b9c9a489d51e7416fea5d2
+      internalID: -1822433535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_50
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 236
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d95a86b4d9a6194fae64a848d575373
+      internalID: 334233197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_51
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 236
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 961a9882aa654564faf64294b8590d71
+      internalID: -1238390489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_52
+      rect:
+        serializedVersion: 2
+        x: 553
+        y: 236
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5896ba5bc0f6b27499103aab8d1814a0
+      internalID: 1449172968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_53
+      rect:
+        serializedVersion: 2
+        x: 632
+        y: 236
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b05be23700275b447b0d1c308717e302
+      internalID: -1061841892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_54
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 157
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f542146f41e2a494c806a0e6b79254c1
+      internalID: 1230010448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_55
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 157
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49d28c457d79a364f9be0fe62707ba04
+      internalID: 1195017338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_56
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 157
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e2dda65bcb3d2e4c9e4c04a7958fdf9
+      internalID: -1483172309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_57
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 157
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a4067e96801a474ca7d057df61c7779
+      internalID: -1060798513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_58
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 157
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75fbc4bdca6c1dc4e8e1136c4ebd94bd
+      internalID: -955710987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_59
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 157
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 830f1f0d42c3fb84187140ad2c0b10f2
+      internalID: -617895253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_60
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 157
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52daabef176a425418ca0a66d56ec7cf
+      internalID: 910449600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_61
+      rect:
+        serializedVersion: 2
+        x: 553
+        y: 157
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa9a15494069a3843b0be6e6a4ebda89
+      internalID: 178745122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_62
+      rect:
+        serializedVersion: 2
+        x: 632
+        y: 157
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a1b00f36e8c92348985a9eab283498c
+      internalID: -636523109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_63
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 78
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb7574a67f59f224ca3cb1b803ada7e4
+      internalID: 1370964932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_64
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 78
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f99903bdb09225c4bb92854b32546896
+      internalID: 1767937412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_65
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 78
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b376bb445be67f34fabe251c2b6f04ca
+      internalID: -1526851781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_66
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 78
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0da6d88302ab9fb40b14a469c3dcc5b2
+      internalID: 1482752892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_67
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 78
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a56739550785e5440abf1c0790c0dfc8
+      internalID: -48832997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_68
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 78
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0bac440a070efd419b2f5d664ffa63a
+      internalID: 682927807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_69
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 78
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 674ead89d1528e443baa5db33ad27d3d
+      internalID: -1077182073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_70
+      rect:
+        serializedVersion: 2
+        x: 553
+        y: 78
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 827968f4e6b34d946bc5e427431dfb19
+      internalID: 958971532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_lilac2_71
+      rect:
+        serializedVersion: 2
+        x: 632
+        y: 78
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a03e1d38a7f6934d8a47171a9dbb17b
+      internalID: 297964115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      tilemap_lilac2_0: 1041128692
+      tilemap_lilac2_1: 336031866
+      tilemap_lilac2_10: -923362848
+      tilemap_lilac2_11: -975221505
+      tilemap_lilac2_12: -2104927983
+      tilemap_lilac2_13: 1131319390
+      tilemap_lilac2_14: -1405057349
+      tilemap_lilac2_15: -431278140
+      tilemap_lilac2_16: 1286811730
+      tilemap_lilac2_17: -1780175443
+      tilemap_lilac2_18: -1476714422
+      tilemap_lilac2_19: 173016022
+      tilemap_lilac2_2: 660112007
+      tilemap_lilac2_20: -817769939
+      tilemap_lilac2_21: -1397818977
+      tilemap_lilac2_22: 1239254157
+      tilemap_lilac2_23: 1381320255
+      tilemap_lilac2_24: -116612150
+      tilemap_lilac2_25: -1084895301
+      tilemap_lilac2_26: -1939570347
+      tilemap_lilac2_27: -146838565
+      tilemap_lilac2_28: -1915688840
+      tilemap_lilac2_29: 2080598746
+      tilemap_lilac2_3: 908988455
+      tilemap_lilac2_30: 1370562576
+      tilemap_lilac2_31: -1200996193
+      tilemap_lilac2_32: 851798833
+      tilemap_lilac2_33: 1344899172
+      tilemap_lilac2_34: -1138751265
+      tilemap_lilac2_35: 1815160958
+      tilemap_lilac2_36: 1677207230
+      tilemap_lilac2_37: 1865666936
+      tilemap_lilac2_38: -1318877812
+      tilemap_lilac2_39: 513932614
+      tilemap_lilac2_4: 1978456589
+      tilemap_lilac2_40: 1310924165
+      tilemap_lilac2_41: -545182194
+      tilemap_lilac2_42: -504097139
+      tilemap_lilac2_43: -1021408253
+      tilemap_lilac2_44: -460431739
+      tilemap_lilac2_45: -1449755682
+      tilemap_lilac2_46: 1962687591
+      tilemap_lilac2_47: -121545917
+      tilemap_lilac2_48: -605435526
+      tilemap_lilac2_49: -1822433535
+      tilemap_lilac2_5: -510654682
+      tilemap_lilac2_50: 334233197
+      tilemap_lilac2_51: -1238390489
+      tilemap_lilac2_52: 1449172968
+      tilemap_lilac2_53: -1061841892
+      tilemap_lilac2_54: 1230010448
+      tilemap_lilac2_55: 1195017338
+      tilemap_lilac2_56: -1483172309
+      tilemap_lilac2_57: -1060798513
+      tilemap_lilac2_58: -955710987
+      tilemap_lilac2_59: -617895253
+      tilemap_lilac2_6: -601449835
+      tilemap_lilac2_60: 910449600
+      tilemap_lilac2_61: 178745122
+      tilemap_lilac2_62: -636523109
+      tilemap_lilac2_63: 1370964932
+      tilemap_lilac2_64: 1767937412
+      tilemap_lilac2_65: -1526851781
+      tilemap_lilac2_66: 1482752892
+      tilemap_lilac2_67: -48832997
+      tilemap_lilac2_68: 682927807
+      tilemap_lilac2_69: -1077182073
+      tilemap_lilac2_7: -1616898004
+      tilemap_lilac2_70: 958971532
+      tilemap_lilac2_71: 297964115
+      tilemap_lilac2_8: -1145520349
+      tilemap_lilac2_9: -2041715659
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

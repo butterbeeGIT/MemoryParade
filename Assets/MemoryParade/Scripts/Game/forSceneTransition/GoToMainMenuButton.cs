@@ -8,7 +8,7 @@ namespace Assets.MemoryParade.Scripts.Game.forSceneTransition
         public void OnClick()
         {
             Debug.Log("Нажата кнопка меню");
-            SceneTransitionManager.Instance.GoToMenu();
+            SceneTransitionManager.Instance.GoToScene(Scenes.MAIN_MENU);
         }
     }
 }
