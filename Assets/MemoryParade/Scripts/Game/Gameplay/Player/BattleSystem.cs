@@ -68,7 +68,6 @@ public class BattleSystem : MonoBehaviour
         canAttack = false;
         Attack();
         playerDamage = 50;
-        //enemyHP -= 50;
         if (enemyHP <= 0)
         {
             Debug.Log("Вы выиграли");
@@ -87,7 +86,6 @@ public class BattleSystem : MonoBehaviour
         canAttack = false;
         Attack();
         playerDamage = 10;
-        //enemyHP -= 10;
         if (enemyHP <= 0)
         {
             Debug.Log("Вы выиграли");
@@ -105,7 +103,6 @@ public class BattleSystem : MonoBehaviour
         attackCount++;
         canAttack = false;
         Attack();
-        //enemyHP -= 2; // Урон
         playerDamage = 2;
         if (enemyHP <= 0)
         {
@@ -131,13 +128,7 @@ public class BattleSystem : MonoBehaviour
     {
         enemyHP -= playerDamage;
         enemyAnimator.SetBool("turn", true);
-
-        // Враг атакует
-        //int damage = Random.Range(1, 9); // Урон от врага
-        //playerHP -= damage;
         canAttack = true;
-        //Debug.Log("Враг атаковал! Вы потеряли " + damage + " HP. Ваше HP: " + playerHP);
-
         // Возврат врага в базовую анимацию
         Invoke("ResetEnemyAnimation", 1f); // Время ожидания для завершения анимации атаки врага
     }
