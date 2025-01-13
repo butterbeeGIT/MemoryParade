@@ -13,7 +13,7 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
         /// Генерирует карту
         /// </summary>
         /// <returns>первая комната карты</returns>
-        public static Room GenerateAndRenderMap()
+        public static List<Room> GenerateAndRenderMap()
         {
             // Убедиться, что существует родительский объект для карты
             EnsureMapParentExists();
@@ -34,7 +34,7 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
             }
 
             //комната спавна героя
-            return rooms[0];
+            return rooms;
         }
 
 

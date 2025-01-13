@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using System;
+using System.Collections.Generic;
 
 namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
 {
@@ -19,8 +21,8 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
         public GameObject player;
         //враги
         public GameObject SlimePrefab;
-        public GameObject MummyPrefab;
-        public GameObject FlamePrefab;
+        //public GameObject MummyPrefab;
+        //public GameObject FlamePrefab;
 
         public static Vector2 CellSize = new Vector2(1, 1); // Размер одной клетки карты
 
@@ -35,28 +37,29 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
             MapRenderer.WallAnglePrefab = wallAnglePrefab;
             MapRenderer.EmptyWallPrefab = emptyWallPrefab;
 
-            Room spawnRoom = GeneratingMap();
-            SpawnPlayerInRoom(player, spawnRoom);
+            List<Room> rooms = GeneratingMap();
+            SpawnPlayerInRoom(player, rooms[0]);
             //SpawnEnemyInRoom(enemy, spawnRoom);
+            EnemyPositionGenerator.SpawnEnemies(SlimePrefab, 20, rooms, CellSize);
         }
 
         /// <summary>
         /// генерирует работчую карту
         /// </summary>
         /// <returns>комната спавна персонажа</returns>
-        Room GeneratingMap()
+        List<Room> GeneratingMap()
         {
-            Room spawnRoom;
-            spawnRoom = MapGenerator.GenerateAndRenderMap();
+            List<Room> spawnRooms;
+            spawnRooms = MapGenerator.GenerateAndRenderMap();
             while (CheckRegeneration())
             {
                 DestroyMap();
-                spawnRoom = MapGenerator.GenerateAndRenderMap();
+                spawnRooms = MapGenerator.GenerateAndRenderMap();
             }
 
             HandleCollisions();
             
-            return spawnRoom;
+            return spawnRooms;
             
         }
 
@@ -189,6 +192,14 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
             foreach (var obj in GameObject.FindGameObjectsWithTag("Floor")) Destroy(obj);
             foreach (var obj in GameObject.FindGameObjectsWithTag("Corridor")) Destroy(obj);
             foreach (var obj in GameObject.FindGameObjectsWithTag("Corner")) Destroy(obj);
+        }
+
+        /// <summary>
+        /// Удаляет всех врагов
+        /// </summary>
+        void DestroyEnemy()
+        {
+            foreach (var obj in GameObject.FindGameObjectsWithTag("Enemy")) Destroy(obj);
         }
     }
 }

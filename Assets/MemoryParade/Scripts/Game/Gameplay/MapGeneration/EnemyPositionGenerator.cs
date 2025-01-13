@@ -17,20 +17,30 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
         /// </summary>
         /// <param name="enemyPrefab">Префаб врага</param>
         /// <param name="count">количество на карте</param>
-        public static void SpawnEnemies(GameObject enemyPrefab, int count)
+        public static void SpawnEnemies(GameObject enemyPrefab, int count, List<Room> rooms, Vector2 CellSize)
         {
-
+            Vector2 positionEnemy;
+            for (int i = 0; i < count; i++)
+            {
+                positionEnemy = RandomPositionEnemyInRoom(rooms, CellSize);
+                while (HasCollisionsWithOthers(positionEnemy))
+                {
+                    positionEnemy = RandomPositionEnemyInRoom(rooms, CellSize);
+                }
+                InstantiatePrefab(enemyPrefab, positionEnemy, Quaternion.identity);
+            }
         }
 
 
         /// <summary>
-        /// Генерирует рандомную позицию для врага в комнате
+        /// Генерирует рандомную позицию для врага в рандомной комнате
         /// </summary>
         /// <param name="spawnRoom">комната где нужен враг</param>
         /// <param name="CellSize">размер поля на сцене</param>
         /// <returns>рандомная позиция</returns>
-        public static Vector2 RandomPositionEnemyInRoom(Room spawnRoom, Vector2 CellSize)
+        public static Vector2 RandomPositionEnemyInRoom(List<Room> rooms, Vector2 CellSize)
         {
+            Room spawnRoom = rooms[Random.Next(0, rooms.Count-1)];
             if (spawnRoom != null)
             {
                 int x, y;
@@ -38,7 +48,6 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
                 y = Random.Next(spawnRoom.Y + 1, spawnRoom.Y + spawnRoom.Height - 1);
                 Vector2 position = new Vector2(x * CellSize.x, -y * CellSize.y);
                 return position;
-                //InstantiatePrefab(enemyPrefab, position, Quaternion.Euler(0, 0, 0));
             }
             return Vector2.zero;
         }
@@ -48,7 +57,6 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
         /// </summary>
         private static void InstantiatePrefab(GameObject prefab, Vector2 position, Quaternion rotation)
         {
-
             if (prefab == null)
             {
                 Debug.LogWarning("Prefab is not assigned!");
@@ -59,17 +67,28 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
             instance.name = prefab.name; 
         }
 
-        //private static bool HasCollisionsWithOthers()
-        //{
-
-        //}
-
         /// <summary>
-        /// Удаляет всех врагов
+        /// Возвращает true если есть пересечения с другими объектами
         /// </summary>
-        //void DestroyEnemy()
-        //{
-        //    foreach (var obj in GameObject.FindGameObjectsWithTag("Enemy")) Destroy(obj);
-        //}
+        /// <returns></returns>
+        private static bool HasCollisionsWithOthers(Vector2 position)
+        {
+
+            float radius = 0.5f;  // Радиус проверки (можно настроить)
+
+            // Получаем все объекты в радиусе проверки
+            Collider2D[] hits = Physics2D.OverlapCircleAll(position, radius);
+
+            foreach (Collider2D hit in hits)
+            {
+                // Проверяем, является ли объект стеной (по тегу)
+                if (hit.CompareTag("Enemy") || hit.CompareTag("Wall") || hit.CompareTag("Corridor") || hit.CompareTag("Player"))
+                {
+                    return true; // Пересечение со стеной
+                }
+            }
+
+            return false; // Нет запрещённых пересечений
+        }
     }
 }
