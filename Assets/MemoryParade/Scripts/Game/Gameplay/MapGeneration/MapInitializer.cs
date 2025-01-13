@@ -17,7 +17,10 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
         public GameObject emptyWallPrefab;
         //персонаж
         public GameObject player;
-        public GameObject enemy;
+        //враги
+        public GameObject SlimePrefab;
+        public GameObject MummyPrefab;
+        public GameObject FlamePrefab;
 
         public static Vector2 CellSize = new Vector2(1, 1); // Размер одной клетки карты
 
@@ -34,7 +37,7 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
 
             Room spawnRoom = GeneratingMap();
             SpawnPlayerInRoom(player, spawnRoom);
-            SpawnEnemyInRoom(enemy, spawnRoom);
+            //SpawnEnemyInRoom(enemy, spawnRoom);
         }
 
         /// <summary>
@@ -88,7 +91,7 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
         }
 
         /// <summary>
-        /// Отключает Box collider у стен, там где они сопадают с другими объектами карты
+        /// Удаляет стены, там где они сопадают с другими объектами карты
         /// </summary>
         void HandleCollisions()
         {
