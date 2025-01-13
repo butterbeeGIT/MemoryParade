@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/MemoryParade/Scenes/Lobby.unity
     guid: 34614c4d48937fd42badede40f34b600
+  - enabled: 1
+    path: Assets/MemoryParade/Scenes/Fight.unity
+    guid: 3b9f71d83fc3d4f4f8c319a9a48660e4
   m_configObjects: {}

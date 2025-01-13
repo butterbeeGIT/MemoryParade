@@ -1,0 +1,57 @@
+[33m5b346f5[m[33m ([m[1;36mHEAD -> [m[1;32mdevelop[m[33m, [m[1;31morigin/develop[m[33m)[m Merge branch 'map_generation' into develop
+[33m954e02e[m[33m ([m[1;31morigin/map_generation[m[33m, [m[1;31morigin/enemy_location[m[33m, [m[1;32mmap_generation[m[33m, [m[1;32menemy_location[m[33m)[m скрытие врагов на сцене
+[33m68d1620[m[33m ([m[1;31morigin/fightLogic[m[33m)[m Add EnemyHP and PlayerHP
+[33m943d37a[m свойства врагов
+[33m083143a[m Add superAttack Button
+[33m14e4755[m Add Button PowerAttack
+[33m9775eff[m добавление врагов слизь и огонь
+[33m4832cb0[m коллайдеры на поворотах
+[33m612a5ba[m проверяет корректность карты
+[33m51fa84b[m Add exit from fight mode
+[33mb207d30[m передвижение персонажа только внутри карты
+[33m9860a1c[m Add enemy die
+[33m5f02a1d[m исправление отображения
+[33m96366f4[m Add simple fight system
+[33m8da11f1[m обеспечение проходимость коридоров
+[33m78d6d61[m change player and enemy in fight window
+[33m751ece8[m добавлен фон
+[33mdbc7362[m добавлена точка спавна персонажа
+[33me074207[m корректирование отображения комнат
+[33m93a6ed8[m Eneme and player stay in fight window
+[33m45f29a0[m Set up character Set up character Zoom when switching to battle mode
+[33m4f28cb5[m Add fightWindow
+[33m54f7acf[m добавление прифабов, добавление генерации карты
+[33m217173e[m Add player detection
+[33maec7098[m Add dinamically handle being behind or front of objects
+[33md5b4392[m Add attack to left, when you press to "Scace"
+[33m0db3b3a[m Add enemy
+[33m4118de0[m запуск
+[33m7df1152[m сырая генерация карты. Проверка через Editor Script
+[33m96bfc9d[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m Merge pull request #6 from butterbeeGIT/sceneManager
+[33m09e3728[m[33m ([m[1;31morigin/sceneManager[m[33m, [m[1;32msceneManager[m[33m)[m работающая версия 1
+[33m0578a71[m Resolved
+[33me12a354[m добавлены порталы
+[33m9a93a64[m сцена лобби с возможностью перехода в меню и фоном
+[33m72192a7[m добавленая сцена лобби и справйты для нее
+[33mf39ddbd[m работает кнопка для возврата к предыдущей сцене
+[33m315ae1c[m изменение внешнего вида сцены меню
+[33m373d875[m[33m ([m[1;31morigin/playerMovement[m[33m, [m[1;32mplayerMovement[m[33m)[m Add person movement, camera and border
+[33m01386bd[m переход в сцену меню
+[33m54c82c3[m фон и новая кнопка меню
+[33m6fc47c0[m Merge pull request #4 from butterbeeGIT/architecture
+[33m16a71f4[m[33m ([m[1;31morigin/architecture[m[33m, [m[1;32marchitecture[m[33m)[m Merge branch 'main' into architecture
+[33m2702a9d[m добавление персонажа на сцену
+[33me37535a[m добавление тестовых спрайтов
+[33m9d5d0ab[m кнопка работает
+[33m155da69[m добавление реактивности (кнопка в меню не работает)
+[33m08e5259[m добавлена сцена меню и переход между сценами
+[33mf8d3062[m Merge pull request #3 from butterbeeGIT/architecture
+[33mdc6cd7d[m Добавлена точка входа и экран загрузки
+[33m5ee8856[m добавила DI контейнеры
+[33m393ae9e[m initialize commit
+[33m219e73a[m gitignore
+[33m670486b[m Merge pull request #2 from butterbeeGIT/VladaAlmazova-testUpdate
+[33m3e30490[m Update README.md
+[33me3c4dfd[m Merge pull request #1 from butterbeeGIT/VladaAlmazova-readme-update
+[33m0390f7d[m Update README.md
+[33md6d9288[m Initial commit
