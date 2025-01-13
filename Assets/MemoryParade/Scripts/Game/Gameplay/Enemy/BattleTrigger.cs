@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class BattleTrigger : MonoBehaviour
 {
-    public GameObject battleCanvas;
+    private GameObject battleCanvas;
     private CharacterMove playerMove;
     private Follow enemy;
     private CharacterAttack characterAttack;
@@ -17,14 +17,17 @@ public class BattleTrigger : MonoBehaviour
 
     private CinemachineVirtualCamera camera;
     private Camera main;
+    private PlayerСharacteristics сharacteristics;
 
     void Start()
     {
+        battleCanvas = GameObject.Find("BattleCanvas");
         playerMove = FindObjectOfType<CharacterMove>();
         characterAttack = FindObjectOfType<CharacterAttack>();
         enemy = FindObjectOfType<Follow>();
         camera = FindAnyObjectByType<CinemachineVirtualCamera>();
 
+        сharacteristics = FindAnyObjectByType<PlayerСharacteristics>();
         battleSystem = FindAnyObjectByType<BattleSystem>();
 
         main = FindObjectOfType<Camera>();
@@ -39,10 +42,19 @@ public class BattleTrigger : MonoBehaviour
         {
             StartBattle();
         }
+        if (battleSystem.BattleIsEnd && Vector2.Distance(playerMove.transform.position, enemy.transform.position) < 0.1f)
+        {
+            сharacteristics.numberOfWins++;
+            Destroy(gameObject);
+        }
         if (battleSystem.BattleIsEnd)
         {
             StartCoroutine(Waiter());
             //EndBattle();
+        }
+        if (battleSystem.PlayerLose)
+        {
+            SceneTransitionManager.Instance.GoToScene(Scenes.LOBBY);
         }
     }
 
@@ -78,8 +90,6 @@ public class BattleTrigger : MonoBehaviour
         enemy.enabled = false;
         // Отключаем камеру персонажа
         camera.enabled = true;
-        // Двигаем врага на платформу
-        //enemy.transform.position = new Vector3((float)(startPlayerPosition.x - 0.8), (float)(startPlayerPosition.y + 0.42), 0);
     }
     IEnumerator Waiter()
     {

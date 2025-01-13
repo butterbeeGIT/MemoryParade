@@ -3,7 +3,7 @@ using UnityEngine;
 public class Follow : MonoBehaviour
 {
     public float speed;
-    public Transform player;
+    private Transform player;
     public SpriteRenderer sr;
     private Animator animator;
 
