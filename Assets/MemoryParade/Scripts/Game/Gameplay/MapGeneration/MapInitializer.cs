@@ -37,7 +37,7 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
             MapRenderer.WallAnglePrefab = wallAnglePrefab;
             MapRenderer.EmptyWallPrefab = emptyWallPrefab;
 
-            List<Room> rooms = GeneratingMap();
+            List<Room> rooms = GeneratingMap();           
             SpawnPlayerInRoom(player, rooms[0]);
             //SpawnEnemyInRoom(enemy, spawnRoom);
             EnemyPositionGenerator.SpawnEnemies(SlimePrefab, 20, rooms, CellSize);
@@ -58,7 +58,7 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
             }
 
             HandleCollisions();
-            
+            OffFloorCollider();
             return spawnRooms;
             
         }
@@ -78,20 +78,6 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
             }
         }
 
-        /// <summary>
-        /// Перемещает врага в комнату
-        /// </summary>
-        /// <param name="enemy"></param>
-        /// <param name="spawnRoom"></param>
-        void SpawnEnemyInRoom(GameObject enemy, Room spawnRoom)
-        {
-            if (spawnRoom != null)
-            {
-                var (centerX, centerY) = spawnRoom.Center();
-
-                enemy.transform.position = new Vector3((centerX+2) * CellSize.x, -(centerY+2) * CellSize.y, 0);
-            }
-        }
 
         /// <summary>
         /// Удаляет стены, там где они сопадают с другими объектами карты
@@ -134,6 +120,15 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
                         }
                     }
                 }
+            }
+        }
+
+        private void OffFloorCollider()
+        {
+            foreach (var floor in GameObject.FindGameObjectsWithTag("Floor"))
+            {
+                floor.GetComponent<BoxCollider2D>().enabled = false;
+                Debug.LogWarning($"отключение");
             }
         }
 
