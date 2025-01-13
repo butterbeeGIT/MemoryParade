@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7579912073950576256}
   - component: {fileID: -5048421423856379436}
   - component: {fileID: 3693123932863693064}
+  - component: {fileID: -8792661868270221947}
   m_Layer: 0
   m_Name: Slime
   m_TagString: Untagged
@@ -124,6 +125,10 @@ MonoBehaviour:
   speed: 0.01
   player: {fileID: 6694272866375117312, guid: 234ea3acc8b7ebb4ca8b52e488e6d3ae, type: 3}
   sr: {fileID: 8919109723712855178}
+  raycastDistance: 0.5
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!114 &-5048421423856379436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,3 +186,30 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.5182679, y: 1.782795}
   m_EdgeRadius: 0
+--- !u!50 &-8792661868270221947
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1709534823573126454}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
