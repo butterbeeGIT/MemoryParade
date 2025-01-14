@@ -18,7 +18,6 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.Enemy
             if (Instance == null)
             {
                 Instance = gameObject;
-                DontDestroyOnLoad(gameObject); // Если нужно сохранить при смене сцен
             }
             else
             {

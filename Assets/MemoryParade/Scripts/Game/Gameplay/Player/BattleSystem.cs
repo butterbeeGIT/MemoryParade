@@ -33,7 +33,7 @@ public class BattleSystem : MonoBehaviour
         playerAnimator = GetComponent<Animator>(); // Предполагаем, что скрипт прикреплен к объекту игрока
         //enemyAnimator = GameObject.Find("Mummy_0").GetComponent<Animator>(); // Найдите объект врага по имени
 
-        battle = FindAnyObjectByType<BattleTrigger>();
+        
         powerAttack = FindAnyObjectByType<PowerAttack>();
         superAttack = FindAnyObjectByType<SuperAttack>();
 
@@ -41,10 +41,10 @@ public class BattleSystem : MonoBehaviour
         enemyHPText = GameObject.Find("EnemyHP").GetComponent<TextMeshProUGUI>();
     }
 
-    public void SetCurrentEnemyAnimator(Animator animator)
+    public void SetCurrentEnemyAnimator(BattleTrigger enemy)
     {
-        enemyAnimator = animator;
-        Debug.Log("Animator установлен для: " + animator.gameObject.name);
+        enemyAnimator = enemy.GetComponent<Animator>();
+        battle = enemy;
     }
 
     void Update()

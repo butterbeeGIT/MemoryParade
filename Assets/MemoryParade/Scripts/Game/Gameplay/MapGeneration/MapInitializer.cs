@@ -40,7 +40,7 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
             List<Room> rooms = GeneratingMap();           
             SpawnPlayerInRoom(player, rooms[0]);
             //SpawnEnemyInRoom(enemy, spawnRoom);
-            EnemyPositionGenerator.SpawnEnemies(SlimePrefab, 20, rooms, CellSize);
+            EnemyPositionGenerator.SpawnEnemies(SlimePrefab, 5, rooms, CellSize);
         }
 
         /// <summary>
@@ -128,7 +128,6 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
             foreach (var floor in GameObject.FindGameObjectsWithTag("Floor"))
             {
                 floor.GetComponent<BoxCollider2D>().enabled = false;
-                Debug.LogWarning($"отключение");
             }
         }
 

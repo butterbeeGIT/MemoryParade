@@ -40,7 +40,7 @@ public class BattleTrigger : MonoBehaviour
         //enemy = FindObjectOfType<Follow>();
         cinemachineVirtualCamera = FindAnyObjectByType<CinemachineVirtualCamera>();
 
-        battleSystem = FindAnyObjectByType<BattleSystem>();
+        battleSystem = player.GetComponent<BattleSystem>();
 
         main = FindObjectOfType<Camera>();
         startPlayerPosition = playerMove.transform.position;
@@ -52,8 +52,7 @@ public class BattleTrigger : MonoBehaviour
         startPlayerPosition = playerMove.transform.position;
         if (!battleSystem.BattleIsEnd && follow.canBattle)// && Vector2.Distance(playerMove.transform.position, enemy.transform.position) < 0.1f)
         {
-            BattleSystem battleSystem = player.GetComponent<BattleSystem>();
-            battleSystem.SetCurrentEnemyAnimator(GetComponent<Animator>());
+            battleSystem.SetCurrentEnemyAnimator(this);
             StartBattle();
         }
         if (battleSystem.BattleIsEnd)
