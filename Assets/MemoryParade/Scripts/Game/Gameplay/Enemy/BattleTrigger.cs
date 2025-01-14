@@ -49,12 +49,13 @@ public class BattleTrigger : MonoBehaviour
         }
         if (battleSystem.BattleIsEnd)
         {
-            StartCoroutine(Waiter());
+            StartCoroutine(WaiterEnemyDie());
             //EndBattle();
         }
         if (battleSystem.PlayerLose)
         {
-            SceneTransitionManager.Instance.GoToScene(Scenes.LOBBY);
+            StartCoroutine(WaiterPlayerDie());
+            //SceneTransitionManager.Instance.GoToScene(Scenes.LOBBY);
         }
     }
 
@@ -91,9 +92,15 @@ public class BattleTrigger : MonoBehaviour
         // Отключаем камеру персонажа
         camera.enabled = true;
     }
-    IEnumerator Waiter()
+    IEnumerator WaiterEnemyDie()
     {
         yield return new WaitForSeconds(3f);
         EndBattle();
+    }
+
+    IEnumerator WaiterPlayerDie()
+    {
+        yield return new WaitForSeconds(3f);
+        SceneTransitionManager.Instance.GoToScene(Scenes.LOBBY);
     }
 }

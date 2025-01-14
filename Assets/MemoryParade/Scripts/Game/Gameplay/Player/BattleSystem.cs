@@ -91,7 +91,7 @@ public class BattleSystem : MonoBehaviour
         attackCount++;
         canAttack = false;
         Attack();
-        //playerDamage = 2;
+        //playerDamage = 50;
         playerDamage = сharacteristics.baseAttack;
         // После этого запускаем анимацию врага
         Invoke("EnemyAttack", 1f); // Время ожидания для завершения анимации атаки игрока
@@ -104,7 +104,11 @@ public class BattleSystem : MonoBehaviour
         Invoke("Treasure", 3f);
     }
 
-
+    void PlayerDie()
+    {
+        playerAnimator.SetTrigger("die");
+        playerAnimator.transform.position = new Vector3(playerAnimator.transform.position.x, (float)(playerAnimator.transform.position.y - 0.3), 0);
+    }
     void Treasure()
     {
         enemyAnimator.SetTrigger("treasure");
@@ -131,12 +135,14 @@ public class BattleSystem : MonoBehaviour
     void ResetEnemyAnimation()
     {
         enemyAnimator.SetBool("turn", false);
-        int damage = Random.Range(1, 9); // Урон от врага 1-9
+        int damage = Random.Range(50, 100); // Урон от врага 1-9
         playerHP -= damage;
         if (playerHP <= 0)
         {
+            playerHP = 0;
             Debug.Log("Вы проиграли");
-            playerAnimator.SetTrigger("battleIsEnd");
+            //playerAnimator.SetTrigger("battleIsEnd");
+            PlayerDie();
             PlayerLose = true;
         }
     }

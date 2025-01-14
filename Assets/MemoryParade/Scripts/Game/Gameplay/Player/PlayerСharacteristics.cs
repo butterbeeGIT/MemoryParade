@@ -13,6 +13,7 @@ using Unity.VisualScripting;
 
 public class PlayerСharacteristics: MonoBehaviour
 {
+    public PlayerСharacteristics Instance;
     public int healthPoints = 100;
     public int baseAttack = 2;
     public int numberOfWins = 0;
@@ -21,6 +22,7 @@ public class PlayerСharacteristics: MonoBehaviour
 
     void Start()
     {
+        //DontDestroyOnLoad(this);
         wins = GameObject.Find("WinsCount").GetComponent<TextMeshProUGUI>();
     }
 
