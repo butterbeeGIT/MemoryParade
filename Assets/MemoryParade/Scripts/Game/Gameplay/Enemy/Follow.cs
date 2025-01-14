@@ -5,19 +5,22 @@ using UnityEngine;
 public class Follow : MonoBehaviour
 {
     public float speed;
-    public Transform player;
-    public SpriteRenderer sr;
+    private Transform player;
+    private SpriteRenderer sr;
     private Animator animator;
+    public bool canBattle = false;
 
     // Длина луча для проверки препятствий
     public float raycastDistance = 0.5f;
     // Слой, на котором находятся стены
-    public LayerMask wallLayer;
+    private LayerMask wallLayer;
 
     void Awake()
     {
         animator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        sr = GetComponent<SpriteRenderer>();
+        wallLayer = LayerMask.GetMask("Map");
     }
 
 
@@ -44,6 +47,7 @@ public class Follow : MonoBehaviour
         if (Vector2.Distance(player.position, transform.position) < 0.1f)
         {
             animator.SetBool("stay", true);
+            canBattle = true;
             sr.flipX = true;
         }  
     }

@@ -1,4 +1,4 @@
-﻿using Assets.MemoryParade.Scripts.Game.GameRoot;
+﻿using Assets.MemoryParade.Scripts.Game.Gameplay.Enemy;
 using Cinemachine;
 using System.Collections;
 using UnityEngine;
@@ -6,24 +6,39 @@ using UnityEngine.SceneManagement;
 
 public class BattleTrigger : MonoBehaviour
 {
-    public GameObject battleCanvas;
+    private Follow follow;
+    private GameObject battleCanvas;
     private CharacterMove playerMove;
-    private Follow enemy;
+    private GameObject player;
+    //private Follow enemy;
     private CharacterAttack characterAttack;
     private Vector3 startPlayerPosition;
 
     public bool BattleIsStart = false;
     private BattleSystem battleSystem;
 
-    private CinemachineVirtualCamera camera;
+    private CinemachineVirtualCamera cinemachineVirtualCamera;
     private Camera main;
 
     void Start()
     {
-        playerMove = FindObjectOfType<CharacterMove>();
+        follow = GetComponent<Follow>();
+
+        if (follow == null)
+        {
+            Debug.LogWarning($"Не найден скрипт Follow");
+        }
+        if (battleCanvas == null)
+            battleCanvas = BattleCanvasManager.Instance;
+        if (battleCanvas == null)
+        {
+            Debug.LogWarning($"Не найден BattleCanvas");
+        }
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerMove = player.GetComponent<CharacterMove>();
         characterAttack = FindObjectOfType<CharacterAttack>();
-        enemy = FindObjectOfType<Follow>();
-        camera = FindAnyObjectByType<CinemachineVirtualCamera>();
+        //enemy = FindObjectOfType<Follow>();
+        cinemachineVirtualCamera = FindAnyObjectByType<CinemachineVirtualCamera>();
 
         battleSystem = FindAnyObjectByType<BattleSystem>();
 
@@ -35,8 +50,10 @@ public class BattleTrigger : MonoBehaviour
     void Update()
     {
         startPlayerPosition = playerMove.transform.position;
-        if (!battleSystem.BattleIsEnd && Vector2.Distance(playerMove.transform.position, enemy.transform.position) < 0.1f)
+        if (!battleSystem.BattleIsEnd && follow.canBattle)// && Vector2.Distance(playerMove.transform.position, enemy.transform.position) < 0.1f)
         {
+            BattleSystem battleSystem = player.GetComponent<BattleSystem>();
+            battleSystem.SetCurrentEnemyAnimator(GetComponent<Animator>());
             StartBattle();
         }
         if (battleSystem.BattleIsEnd)
@@ -49,25 +66,25 @@ public class BattleTrigger : MonoBehaviour
     void StartBattle()
     {
         // Увеличиваем обу камеры, для того, чтобы приблизить игрока и врага
-        camera.m_Lens.OrthographicSize = (float)1.533734;
+        cinemachineVirtualCamera.m_Lens.OrthographicSize = (float)1.533734;
         main.orthographicSize = (float)1.533734;
         // Показываем окно боя
-        battleCanvas.SetActive(true); 
+        battleCanvas.SetActive(true);
         // Отключаем скрипт для передвижения персонажа и включаем скрипт дляя атаки
         playerMove.enabled = false;
         characterAttack.enabled = true;
         // Отключаем скрипт для врага. Чтобы он не следовал за персонажем
-        enemy.enabled = false;
+        follow.enabled = false;
         // Отключаем камеру персонажа
-        camera.enabled = false;
+        cinemachineVirtualCamera.enabled = false;
         // Двигаем врага на платформу
-        enemy.transform.position = new Vector3((float)(startPlayerPosition.x - 0.8 ), (float)(startPlayerPosition.y + 0.42), 0);
+        follow.transform.position = new Vector3((float)(startPlayerPosition.x - 0.8), (float)(startPlayerPosition.y + 0.42), 0);
         BattleIsStart = true;
     }
     void EndBattle()
     {
         // Возвращаем все на начальные позиции
-        camera.m_Lens.OrthographicSize = (float)3.5;
+        cinemachineVirtualCamera.m_Lens.OrthographicSize = (float)3.5;
         main.orthographicSize = (float)3.5;
         // Показываем окно боя
         battleCanvas.SetActive(false);
@@ -75,9 +92,9 @@ public class BattleTrigger : MonoBehaviour
         playerMove.enabled = true;
         characterAttack.enabled = false;
         // Отключаем скрипт для врага. Чтобы он не следовал за персонажем
-        enemy.enabled = false;
+        follow.enabled = false;
         // Отключаем камеру персонажа
-        camera.enabled = true;
+        cinemachineVirtualCamera.enabled = true;
         // Двигаем врага на платформу
         //enemy.transform.position = new Vector3((float)(startPlayerPosition.x - 0.8), (float)(startPlayerPosition.y + 0.42), 0);
     }
@@ -87,3 +104,4 @@ public class BattleTrigger : MonoBehaviour
         EndBattle();
     }
 }
+

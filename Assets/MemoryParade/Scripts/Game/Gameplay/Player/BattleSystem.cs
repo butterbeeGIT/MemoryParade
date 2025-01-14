@@ -31,7 +31,7 @@ public class BattleSystem : MonoBehaviour
     void Start()
     {
         playerAnimator = GetComponent<Animator>(); // Предполагаем, что скрипт прикреплен к объекту игрока
-        enemyAnimator = GameObject.Find("Mummy_0").GetComponent<Animator>(); // Найдите объект врага по имени
+        //enemyAnimator = GameObject.Find("Mummy_0").GetComponent<Animator>(); // Найдите объект врага по имени
 
         battle = FindAnyObjectByType<BattleTrigger>();
         powerAttack = FindAnyObjectByType<PowerAttack>();
@@ -39,6 +39,12 @@ public class BattleSystem : MonoBehaviour
 
         playerHPText = GameObject.Find("PlayerHP").GetComponent<TextMeshProUGUI>();
         enemyHPText = GameObject.Find("EnemyHP").GetComponent<TextMeshProUGUI>();
+    }
+
+    public void SetCurrentEnemyAnimator(Animator animator)
+    {
+        enemyAnimator = animator;
+        Debug.Log("Animator установлен для: " + animator.gameObject.name);
     }
 
     void Update()
