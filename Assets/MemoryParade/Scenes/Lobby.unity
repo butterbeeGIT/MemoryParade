@@ -1374,7 +1374,7 @@ GameObject:
   - component: {fileID: 1559367176}
   - component: {fileID: 1559367175}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: BaseCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1706,6 +1706,53 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &1840560785
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1840560787}
+  - component: {fileID: 1840560788}
+  m_Layer: 0
+  m_Name: Stats
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1840560787
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1840560785}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10.86875, y: -1.1818074, z: -0.073588595}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1840560788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1840560785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1fc50dd7cad6594cba4fc88ada83666, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthPoints: 100
+  baseAttack: 2
+  numberOfWins: 0
 --- !u!1 &1850379186
 GameObject:
   m_ObjectHideFlags: 0
@@ -1789,7 +1836,6 @@ GameObject:
   - component: {fileID: 1897841594}
   - component: {fileID: 1897841593}
   - component: {fileID: 1897841592}
-  - component: {fileID: 1897841595}
   - component: {fileID: 1897841591}
   - component: {fileID: 1897841590}
   - component: {fileID: 1897841589}
@@ -1989,22 +2035,6 @@ Transform:
   - {fileID: 1850379187}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1897841595
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1897841587}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1fc50dd7cad6594cba4fc88ada83666, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Instance: {fileID: 0}
-  healthPoints: 100
-  baseAttack: 2
-  numberOfWins: 0
 --- !u!1 &1953549997
 GameObject:
   m_ObjectHideFlags: 0
@@ -2148,10 +2178,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2001781238}
+  - component: {fileID: 2001781241}
   - component: {fileID: 2001781240}
   - component: {fileID: 2001781239}
   m_Layer: 5
-  m_Name: WinsCount
+  m_Name: WinsCount_Lobby
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2273,6 +2304,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2001781237}
   m_CullTransparentMesh: 1
+--- !u!114 &2001781241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2001781237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26e8ec4e1101c134ba50871290390d07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2024881156
 GameObject:
   m_ObjectHideFlags: 0
@@ -2509,3 +2552,4 @@ SceneRoots:
   - {fileID: 185836105}
   - {fileID: 377731735}
   - {fileID: 438926820}
+  - {fileID: 1840560787}

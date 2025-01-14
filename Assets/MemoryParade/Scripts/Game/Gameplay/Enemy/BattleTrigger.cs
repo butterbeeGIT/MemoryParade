@@ -44,7 +44,8 @@ public class BattleTrigger : MonoBehaviour
         }
         if (battleSystem.BattleIsEnd && Vector2.Distance(playerMove.transform.position, enemy.transform.position) < 0.1f)
         {
-            сharacteristics.numberOfWins++;
+            //PlayerСharacteristics.Instance.numberOfWins = PlayerСharacteristics.Instance.numberOfWins + 1;
+            PlayerСharacteristics.Instance.AddScore();
             Destroy(gameObject);
         }
         if (battleSystem.BattleIsEnd)

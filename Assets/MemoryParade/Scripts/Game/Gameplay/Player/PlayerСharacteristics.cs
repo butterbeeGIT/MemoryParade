@@ -10,27 +10,32 @@ using System.Collections;
 using TMPro;
 using TMPro.EditorUtilities;
 using Unity.VisualScripting;
-
+using UnityEngine.SocialPlatforms.Impl;
+using UnityEditor.SearchService;
+using Assets.MemoryParade.Scripts.Game.GameRoot;
 public class PlayerСharacteristics: MonoBehaviour
 {
-    public PlayerСharacteristics Instance;
+    public static PlayerСharacteristics Instance;
     public int healthPoints = 100;
     public int baseAttack = 2;
     public int numberOfWins = 0;
+    private TextMeshProUGUI winsText;
+    //public TextMeshProUGUI winsText;
 
-    private TextMeshProUGUI wins;
-
-    void Start()
+    private void Awake()
     {
-        //DontDestroyOnLoad(this);
-        wins = GameObject.Find("WinsCount").GetComponent<TextMeshProUGUI>();
-    }
-
-    private void Update()
-    {
-        if (wins != null)
+        if (Instance == null)
         {
-            wins.text = numberOfWins.ToString();
+            Instance = this;
+            DontDestroyOnLoad(gameObject); // Не уничтожаем при смене сцен
         }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+    public void AddScore()
+    {
+        numberOfWins++;
     }
 }

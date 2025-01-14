@@ -41,7 +41,7 @@ public class BattleSystem : MonoBehaviour
         superAttack = FindAnyObjectByType<SuperAttack>();
         сharacteristics = FindAnyObjectByType<PlayerСharacteristics>();
 
-        playerHP = сharacteristics.healthPoints;
+        playerHP = PlayerСharacteristics.Instance.healthPoints;//сharacteristics.healthPoints;
         playerHPText = GameObject.Find("PlayerHP").GetComponent<TextMeshProUGUI>();
         enemyHPText = GameObject.Find("EnemyHP").GetComponent<TextMeshProUGUI>();
     }
@@ -135,7 +135,7 @@ public class BattleSystem : MonoBehaviour
     void ResetEnemyAnimation()
     {
         enemyAnimator.SetBool("turn", false);
-        int damage = Random.Range(50, 100); // Урон от врага 1-9
+        int damage = Random.Range(1, 9); // Урон от врага 1-9
         playerHP -= damage;
         if (playerHP <= 0)
         {
