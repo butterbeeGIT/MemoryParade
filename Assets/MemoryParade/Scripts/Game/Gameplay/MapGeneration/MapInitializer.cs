@@ -21,7 +21,7 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
         public GameObject player;
         //враги
         public GameObject SlimePrefab;
-        //public GameObject MummyPrefab;
+        public GameObject MummyPrefab;
         //public GameObject FlamePrefab;
 
         public static Vector2 CellSize = new Vector2(1, 1); // Размер одной клетки карты
@@ -41,6 +41,7 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
             SpawnPlayerInRoom(player, rooms[0]);
             //SpawnEnemyInRoom(enemy, spawnRoom);
             EnemyPositionGenerator.SpawnEnemies(SlimePrefab, 5, rooms, CellSize);
+            EnemyPositionGenerator.SpawnEnemies(MummyPrefab, 5, rooms, CellSize);
         }
 
         /// <summary>

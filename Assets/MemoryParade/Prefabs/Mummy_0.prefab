@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 634080354548208456}
   - component: {fileID: 2943858946956893068}
   - component: {fileID: 2286843511617748130}
-  - component: {fileID: 4883847287514918452}
   - component: {fileID: 1032358374213567996}
   - component: {fileID: 5448770654460071427}
   - component: {fileID: 723110462980189242}
@@ -103,20 +102,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
-  player: {fileID: 0}
-  sr: {fileID: 2943858946956893068}
---- !u!114 &4883847287514918452
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1402060186751624844}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8019cda176e6c5446b880e75aab8b2a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  canBattle: 0
+  raycastDistance: 0.5
 --- !u!114 &1032358374213567996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,7 +116,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cada3773f0f7e114e97c5377ecbaeaab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  battleCanvas: {fileID: 0}
   BattleIsStart: 0
 --- !u!95 &5448770654460071427
 Animator:
@@ -184,7 +170,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.00088477135, y: 0.0006146878}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -195,7 +181,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.5, y: 0.9}
+  m_Size: {x: 0.28496307, y: 0.33525726}
   m_EdgeRadius: 0
 --- !u!50 &2527712798755370322
 Rigidbody2D:

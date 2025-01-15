@@ -68745,6 +68745,7 @@ MonoBehaviour:
   emptyWallPrefab: {fileID: 2455634510900548839, guid: 1cb940ee70a5c614bbd943f69ff270c6, type: 3}
   player: {fileID: 273555598}
   SlimePrefab: {fileID: 1709534823573126454, guid: a9913d2586039f64cbebf423b9cbbaef, type: 3}
+  MummyPrefab: {fileID: 1402060186751624844, guid: b65c5a4cb2e972c4eb946f6a5948d0df, type: 3}
 --- !u!4 &1865237698
 Transform:
   m_ObjectHideFlags: 0
