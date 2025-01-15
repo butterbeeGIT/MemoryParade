@@ -1017,6 +1017,7 @@ GameObject:
   - component: {fileID: 643187798}
   - component: {fileID: 643187801}
   - component: {fileID: 643187800}
+  - component: {fileID: 643187802}
   - component: {fileID: 643187799}
   m_Layer: 5
   m_Name: Health
@@ -1088,7 +1089,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 643187800}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 643187802}
+        m_TargetAssemblyTypeName: Assets.MemoryParade.Scripts.Game.Gameplay.Player.Stats.BoostHealth,
+          Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &643187800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1127,6 +1141,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 643187797}
   m_CullTransparentMesh: 1
+--- !u!114 &643187802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 643187797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02971688327f3f84bbe3854c02c2e9ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &762266056
 GameObject:
   m_ObjectHideFlags: 3
@@ -1226,6 +1252,7 @@ GameObject:
   - component: {fileID: 846215806}
   - component: {fileID: 846215809}
   - component: {fileID: 846215808}
+  - component: {fileID: 846215810}
   - component: {fileID: 846215807}
   m_Layer: 5
   m_Name: Power
@@ -1297,7 +1324,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 846215808}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 846215810}
+        m_TargetAssemblyTypeName: Assets.MemoryParade.Scripts.Game.Gameplay.Player.Stats.BoostPower,
+          Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &846215808
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1336,6 +1376,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 846215805}
   m_CullTransparentMesh: 1
+--- !u!114 &846215810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 846215805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9bb7158433a4b44291f8cd8d8dff6a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &871026015
 GameObject:
   m_ObjectHideFlags: 0

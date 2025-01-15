@@ -39,16 +39,15 @@ public class BattleSystem : MonoBehaviour
         battle = FindAnyObjectByType<BattleTrigger>();
         powerAttack = FindAnyObjectByType<PowerAttack>();
         superAttack = FindAnyObjectByType<SuperAttack>();
-        сharacteristics = FindAnyObjectByType<PlayerСharacteristics>();
+        сharacteristics = PlayerСharacteristics.Instance;//FindAnyObjectByType<PlayerСharacteristics>();
 
-        playerHP = PlayerСharacteristics.Instance.healthPoints;//сharacteristics.healthPoints;
+        playerHP = сharacteristics.healthPoints;
         playerHPText = GameObject.Find("PlayerHP").GetComponent<TextMeshProUGUI>();
         enemyHPText = GameObject.Find("EnemyHP").GetComponent<TextMeshProUGUI>();
     }
 
     void Update()
     {
-        //playerHP = сharacteristics.healthPoints;
         if (playerHPText != null && enemyHPText != null)
         {
             playerHPText.text = playerHP.ToString();

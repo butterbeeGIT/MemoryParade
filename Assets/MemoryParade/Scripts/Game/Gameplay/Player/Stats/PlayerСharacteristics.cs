@@ -38,4 +38,9 @@ public class PlayerСharacteristics: MonoBehaviour
     {
         numberOfWins++;
     }
+
+    public void Boost()
+    {
+        numberOfWins--;
+    }
 }
