@@ -118,6 +118,7 @@ public class BattleSystem : MonoBehaviour
         enemyHP -= playerDamage;
         if (enemyHP <= 0)
         {
+            enemyHP = 0;
             Debug.Log("Вы выиграли");
             EnemyDie();
             BattleIsEnd = true;

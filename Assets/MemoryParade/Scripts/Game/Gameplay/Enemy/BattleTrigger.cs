@@ -102,7 +102,7 @@ public class BattleTrigger : MonoBehaviour
     IEnumerator WaiterPlayerDie()
     {
         yield return new WaitForSeconds(3f);
-        //PlayerСharacteristics.Instance.healthPoints = 100;
+        PlayerСharacteristics.Instance.healthPoints = 100;
         SceneTransitionManager.Instance.GoToScene(Scenes.LOBBY);
     }
 }
