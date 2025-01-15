@@ -31,9 +31,7 @@ public class BattleSystem : MonoBehaviour
     void Start()
     {
         playerAnimator = GetComponent<Animator>(); // Предполагаем, что скрипт прикреплен к объекту игрока
-        //enemyAnimator = GameObject.Find("Mummy_0").GetComponent<Animator>(); // Найдите объект врага по имени
 
-        
         powerAttack = FindAnyObjectByType<PowerAttack>();
         superAttack = FindAnyObjectByType<SuperAttack>();
 

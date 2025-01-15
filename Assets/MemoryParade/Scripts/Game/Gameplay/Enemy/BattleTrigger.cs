@@ -6,11 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class BattleTrigger : MonoBehaviour
 {
-    private Follow follow;
+    private Follow enemyFollow;
     private GameObject battleCanvas;
     private CharacterMove playerMove;
     private GameObject player;
-    //private Follow enemy;
     private CharacterAttack characterAttack;
     private Vector3 startPlayerPosition;
 
@@ -22,22 +21,24 @@ public class BattleTrigger : MonoBehaviour
 
     void Start()
     {
-        follow = GetComponent<Follow>();
+        enemyFollow = GetComponent<Follow>();
 
-        if (follow == null)
+        if (enemyFollow == null)
         {
             Debug.LogWarning($"Не найден скрипт Follow");
         }
         if (battleCanvas == null)
-            battleCanvas = BattleCanvasManager.Instance;
-        if (battleCanvas == null)
         {
-            Debug.LogWarning($"Не найден BattleCanvas");
-        }
+            battleCanvas = BattleCanvasManager.Instance;
+            if (battleCanvas == null)
+            {
+                Debug.LogWarning($"Не найден BattleCanvas");
+            }
+        }    
         player = GameObject.FindGameObjectWithTag("Player");
         playerMove = player.GetComponent<CharacterMove>();
         characterAttack = FindObjectOfType<CharacterAttack>();
-        //enemy = FindObjectOfType<Follow>();
+
         cinemachineVirtualCamera = FindAnyObjectByType<CinemachineVirtualCamera>();
 
         battleSystem = player.GetComponent<BattleSystem>();
@@ -50,7 +51,7 @@ public class BattleTrigger : MonoBehaviour
     void Update()
     {
         startPlayerPosition = playerMove.transform.position;
-        if (!battleSystem.BattleIsEnd && follow.canBattle)// && Vector2.Distance(playerMove.transform.position, enemy.transform.position) < 0.1f)
+        if (!battleSystem.BattleIsEnd && enemyFollow.canBattle && !battleCanvas.activeSelf)
         {
             battleSystem.SetCurrentEnemyAnimator(this);
             StartBattle();
@@ -58,26 +59,31 @@ public class BattleTrigger : MonoBehaviour
         if (battleSystem.BattleIsEnd)
         {
             StartCoroutine(Waiter());
-            //EndBattle();
         }
     }
 
     void StartBattle()
     {
         // Увеличиваем обу камеры, для того, чтобы приблизить игрока и врага
-        cinemachineVirtualCamera.m_Lens.OrthographicSize = (float)1.533734;
-        main.orthographicSize = (float)1.533734;
+        cinemachineVirtualCamera.m_Lens.OrthographicSize = BattleCanvasManager.orthographicSize;
+        main.orthographicSize = BattleCanvasManager.orthographicSize;
         // Показываем окно боя
         battleCanvas.SetActive(true);
         // Отключаем скрипт для передвижения персонажа и включаем скрипт дляя атаки
         playerMove.enabled = false;
+        //двигаем персонажа на платформу
+        ///player.transform.position = battleCanvas.transform.position + BattleCanvasManager.shiftPositionPlayer;
+        BattleCanvasManager.ChangePositionGameObject(player);
         characterAttack.enabled = true;
         // Отключаем скрипт для врага. Чтобы он не следовал за персонажем
-        follow.enabled = false;
+        enemyFollow.enabled = false;
         // Отключаем камеру персонажа
         cinemachineVirtualCamera.enabled = false;
-        // Двигаем врага на платформу
-        follow.transform.position = new Vector3((float)(startPlayerPosition.x - 0.8), (float)(startPlayerPosition.y + 0.42), 0);
+        // Двигаем врага на платформу 
+        BattleCanvasManager.ChangePositionGameObject(gameObject);
+        ///enemyFollow.transform.position = battleCanvas.transform.position + BattleCanvasManager.shiftPositionEnemy;
+
+        //enemyFollow.transform.position = new Vector3((float)(startPlayerPosition.x - 0.8), (float)(startPlayerPosition.y + 0.42), 0);
         BattleIsStart = true;
     }
     void EndBattle()
@@ -87,15 +93,12 @@ public class BattleTrigger : MonoBehaviour
         main.orthographicSize = (float)3.5;
         // Показываем окно боя
         battleCanvas.SetActive(false);
-        // Отключаем скрипт для передвижения персонажа и включаем скрипт дляя атаки
+        // Включаем скрипт для передвижения персонажа и выключаем скрипт дляя атаки
         playerMove.enabled = true;
         characterAttack.enabled = false;
-        // Отключаем скрипт для врага. Чтобы он не следовал за персонажем
-        follow.enabled = false;
-        // Отключаем камеру персонажа
+
+        // Включаем камеру персонажа
         cinemachineVirtualCamera.enabled = true;
-        // Двигаем врага на платформу
-        //enemy.transform.position = new Vector3((float)(startPlayerPosition.x - 0.8), (float)(startPlayerPosition.y + 0.42), 0);
     }
     IEnumerator Waiter()
     {
