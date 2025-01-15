@@ -18,6 +18,8 @@ public class BattleTrigger : MonoBehaviour
     private CinemachineVirtualCamera cinemachineVirtualCamera;
     private Camera main;
 
+    private bool isWaiting = false;
+
     void Start()
     {
         enemyFollow = GetComponent<Follow>();
@@ -54,7 +56,7 @@ public class BattleTrigger : MonoBehaviour
             battleSystem.SetCurrentEnemyAnimator(this);
             StartBattle();
         }
-        if (battleSystem.BattleIsEnd)
+        if (battleSystem.BattleIsEnd && battleCanvas.activeSelf)
         {
             StartCoroutine(Waiter());
         }
@@ -62,11 +64,13 @@ public class BattleTrigger : MonoBehaviour
 
     void StartBattle()
     {
+        Debug.Log($"StartBattle");
         // Увеличиваем обу камеры, для того, чтобы приблизить игрока и врага
         cinemachineVirtualCamera.m_Lens.OrthographicSize = BattleCanvasManager.orthographicSize;
         main.orthographicSize = BattleCanvasManager.orthographicSize;
         // Показываем окно боя
-        battleCanvas.SetActive(true);
+        //battleCanvas.SetActive(true);
+        BattleCanvasManager.SetActive(true);
         // Отключаем скрипт для передвижения персонажа и включаем скрипт дляя атаки
         playerMove.enabled = false;
         //двигаем персонажа на платформу
@@ -83,11 +87,13 @@ public class BattleTrigger : MonoBehaviour
     }
     void EndBattle()
     {
+        Debug.Log($"EndBattle");
         // Возвращаем все на начальные позиции
         cinemachineVirtualCamera.m_Lens.OrthographicSize = (float)3.5;
         main.orthographicSize = (float)3.5;
-        // Показываем окно боя
-        battleCanvas.SetActive(false);
+        // выключаем окно боя
+        //battleCanvas.SetActive(false);
+        BattleCanvasManager.SetActive(false);
         // Включаем скрипт для передвижения персонажа и выключаем скрипт дляя атаки
         playerMove.enabled = true;
         characterAttack.enabled = false;
@@ -97,8 +103,15 @@ public class BattleTrigger : MonoBehaviour
     }
     IEnumerator Waiter()
     {
+        //Чтобы не запускать корутину во время ее выполнения
+        if (isWaiting) yield break; 
+        isWaiting = true;
+
+        Debug.Log($"Waiter");
         yield return new WaitForSeconds(3f);
         EndBattle();
+
+        isWaiting = false;
     }
 }
 

@@ -15,8 +15,6 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.Enemy
         /// </summary>
         public const float orthographicSize = 1.533734f;
 
-        public
-
         void Awake()
         {
             if (Instance == null)
@@ -50,6 +48,23 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.Enemy
                 obj.transform.position = Instance.transform.position + shiftPositionPlayer;
             else if(obj.CompareTag("Enemy"))
                 obj.transform.position = Instance.transform.position + shiftPositionEnemy;
+        }
+
+        /// <summary>
+        /// Включает и выключает Canvas
+        /// </summary>
+        /// <param name="setActive"></param>
+        public static void SetActive(bool setActive)
+        {
+            if (Instance != null)
+            {
+                Instance.SetActive(setActive);
+                Debug.Log($"Canvas {Instance.name} set to {(setActive ? "active" : "inactive")}");
+            }
+            else
+            {
+                Debug.LogWarning("BattleCanvasManager Instance is null!");
+            }
         }
 
     }

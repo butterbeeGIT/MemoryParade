@@ -54,10 +54,10 @@ public class Follow : MonoBehaviour
                 sr.flipX = true;
             }
         }
-        else
-        {
-            Debug.Log("Персонаж покинул область!");
-            //speed = 0f;
-        }    
+        //else
+        //{
+        //    Debug.Log("Персонаж покинул область!");
+        //    //speed = 0f;
+        //}    
     }
 }

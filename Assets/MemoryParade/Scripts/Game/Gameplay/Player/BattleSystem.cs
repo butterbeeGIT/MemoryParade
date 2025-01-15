@@ -107,7 +107,7 @@ public class BattleSystem : MonoBehaviour
         attackCount++;
         canAttack = false;
         Attack();
-        playerDamage = 2;
+        playerDamage = 50;//2;
         if (enemyHP <= 0)
         {
             Debug.Log("Вы выиграли");
