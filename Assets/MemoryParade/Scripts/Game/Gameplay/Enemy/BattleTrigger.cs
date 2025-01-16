@@ -128,12 +128,19 @@ public class BattleTrigger : MonoBehaviour
         main.Render();
         init = false;
     }
-    IEnumerator Waiter()
+    IEnumerator WaiterEnemyDie()
     {
         Debug.Log($"Waiter");
         enemyFollow.canBattle = false;
         yield return new WaitForSeconds(3f);
         EndBattle();
+    }
+
+    IEnumerator WaiterPlayerDie()
+    {
+        yield return new WaitForSeconds(3f);
+        PlayerСharacteristics.Instance.healthPoints = 100;
+        SceneTransitionManager.Instance.GoToScene(Scenes.LOBBY);
     }
 }
 

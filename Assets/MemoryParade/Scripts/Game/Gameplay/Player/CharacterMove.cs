@@ -35,8 +35,6 @@ public class CharacterMove : MonoBehaviour
         {
             _animator.SetFloat("X", move.x);
             _animator.SetFloat("Y", move.y);
-            //_animator.SetFloat("attackX", move.x);
-            //_animator.SetFloat("attackY", move.y);
 
             transform.Translate(move * 0.02f); // скорость
         }
@@ -46,17 +44,7 @@ public class CharacterMove : MonoBehaviour
             _animator.SetFloat("X", 0);
             _animator.SetFloat("Y", 0);
         }
-
-        /*if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Attack();
-        }*/
     }
-
-    /*void Attack()
-    {
-        _animator.SetTrigger("Attack");
-    }*/
 
     private Vector2 GetMove()
     {

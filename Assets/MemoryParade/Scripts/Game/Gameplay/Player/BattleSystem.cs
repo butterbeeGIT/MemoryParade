@@ -14,7 +14,7 @@ public class BattleSystem : MonoBehaviour
     public int attackCount = 0;
     public int powerAttackCount = 0;
 
-    private int playerHP = 100;
+    private int playerHP;// = 100;
     private int enemyHP = 100;
     private int playerDamage;
 
@@ -24,7 +24,7 @@ public class BattleSystem : MonoBehaviour
     private BattleTrigger battle;
     private PowerAttack powerAttack;
     private SuperAttack superAttack;
-    //private PlayerСharacteristics сharacteristics;
+    private PlayerСharacteristics сharacteristics;
 
     public bool BattleIsEnd = false;
     public bool PlayerLose = false;
@@ -39,9 +39,9 @@ public class BattleSystem : MonoBehaviour
         battle = FindAnyObjectByType<BattleTrigger>();
         powerAttack = FindAnyObjectByType<PowerAttack>();
         superAttack = FindAnyObjectByType<SuperAttack>();
-        //сharacteristics = PlayerСharacteristics.Instance;//FindAnyObjectByType<PlayerСharacteristics>();
+        сharacteristics = PlayerСharacteristics.Instance;//FindAnyObjectByType<PlayerСharacteristics>();
 
-        //playerHP = сharacteristics.healthPoints;
+        playerHP = сharacteristics.healthPoints;
         playerHPText = GameObject.Find("PlayerHP").GetComponent<TextMeshProUGUI>();
         enemyHPText = GameObject.Find("EnemyHP").GetComponent<TextMeshProUGUI>();
     }
@@ -95,8 +95,8 @@ public class BattleSystem : MonoBehaviour
         attackCount++;
         canAttack = false;
         Attack();
-        playerDamage = 50;
-        //playerDamage = сharacteristics.baseAttack;
+        //playerDamage = 50;
+        playerDamage = сharacteristics.baseAttack;
         // После этого запускаем анимацию врага
         Invoke("EnemyAttack", 1f); // Время ожидания для завершения анимации атаки игрока
     }
@@ -123,7 +123,7 @@ public class BattleSystem : MonoBehaviour
     void Treasure()
     {
         enemyAnimator.SetTrigger("treasure");
-        //enemyAnimator.transform.localScale = new Vector3(1.5f, 1.5f, 0);
+        enemyAnimator.transform.localScale = new Vector3(1.5f, 1.5f, 0);
     }
     public void EnemyAttack()
     {
@@ -133,12 +133,9 @@ public class BattleSystem : MonoBehaviour
             enemyHP = 0;
             Debug.Log("Вы выиграли");
             EnemyDie();
-            
             BattleIsEnd = true;
-            BattleEnd();
-            //сharacteristics.healthPoints = playerHP;
-            //playerAnimator.SetTrigger("battleIsEnd");
-            playerAnimator.SetTrigger("win");
+            сharacteristics.healthPoints = playerHP;
+            playerAnimator.SetTrigger("battleIsEnd");
             return;
         }
         enemyAnimator.SetBool("turn", true);
@@ -157,7 +154,6 @@ public class BattleSystem : MonoBehaviour
             playerHP = 0;
             Debug.Log("Вы проиграли");
             //playerAnimator.SetTrigger("battleIsEnd");
-            BattleEnd();
             PlayerDie();
             PlayerLose = true;
         }

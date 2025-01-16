@@ -7,7 +7,7 @@ public class Follow : MonoBehaviour
 {
     public float speed;
     private Transform player;
-    private SpriteRenderer sr;
+    public SpriteRenderer sr;
     private Animator animator;
     public bool canBattle = false;
     //зона видимости

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Assets.MemoryParade.Scripts.Game.GameRoot;
+using System.Collections;
 
 namespace Assets.MemoryParade.Scripts.Game.forSceneTransition
 {
