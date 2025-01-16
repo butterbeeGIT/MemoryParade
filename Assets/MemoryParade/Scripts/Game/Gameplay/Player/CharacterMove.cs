@@ -6,7 +6,7 @@ public class CharacterMove : MonoBehaviour
 {
     private Animator _animator;
     private GameObject _gameObject;
-    
+
     void Start()
     {
         _animator = GetComponent<Animator>();
@@ -22,7 +22,8 @@ public class CharacterMove : MonoBehaviour
 
     void FixedUpdate()
     {
-        _gameObject.SetActive(false);
+        if (_gameObject != null)
+            _gameObject.SetActive(false);
         if (_animator == null)
         {
             Debug.LogWarning("Animator равен null на объекте " + gameObject.name);

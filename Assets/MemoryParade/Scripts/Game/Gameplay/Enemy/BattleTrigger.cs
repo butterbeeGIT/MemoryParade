@@ -1,4 +1,5 @@
 ﻿using Assets.MemoryParade.Scripts.Game.Gameplay.Enemy;
+using Assets.MemoryParade.Scripts.Game.GameRoot;
 using Cinemachine;
 using System;
 using System.Collections;
@@ -20,6 +21,7 @@ public class BattleTrigger : MonoBehaviour
     private CinemachineVirtualCamera cinemachineVirtualCamera;
     private Camera main;
     private Vector3 startPos;
+    private PlayerСharacteristics сharacteristics;
 
     private bool init = false;
 
@@ -44,6 +46,9 @@ public class BattleTrigger : MonoBehaviour
         playerMove = player.GetComponent<CharacterMove>();
         characterAttack = FindObjectOfType<CharacterAttack>();
 
+        сharacteristics = FindAnyObjectByType<PlayerСharacteristics>();
+        //battleSystem = FindAnyObjectByType<BattleSystem>();
+        battleSystem = player.GetComponent<BattleSystem>();
         cinemachineVirtualCamera = FindAnyObjectByType<CinemachineVirtualCamera>();
 
         battleSystem = player.GetComponent<BattleSystem>();
@@ -57,15 +62,26 @@ public class BattleTrigger : MonoBehaviour
         if (!init) Init();
         enemyFollow.SetCurrentFollowEnemy(this);
         battleCanvas = enemyFollow.battleCanvas;
-        startPos = playerMove.transform.position;
+        //startPos = playerMove.transform.position;
         if (!battleSystem.BattleIsEnd && enemyFollow.canBattle && !battleCanvas.activeSelf)
         {
             battleSystem.SetCurrentEnemyAnimator(this);
             StartBattle();
         }
+
+        if (battleSystem.BattleIsEnd && Vector2.Distance(playerMove.transform.position, enemyFollow.transform.position) < 0.1f)
+        {
+            //PlayerСharacteristics.Instance.numberOfWins = PlayerСharacteristics.Instance.numberOfWins + 1;
+            PlayerСharacteristics.Instance.AddScore();
+            Destroy(gameObject);
+        }
         if (battleSystem.BattleIsEnd && enemyFollow.battleCanvas.activeSelf && enemyFollow.canBattle)
         {
-            StartCoroutine(Waiter());
+            StartCoroutine(WaiterEnemyDie());
+        }
+        if (battleSystem.PlayerLose && enemyFollow.battleCanvas.activeSelf && enemyFollow.canBattle)
+        {
+            StartCoroutine(WaiterPlayerDie());
         }
     }
     public void ChangePositionGameObject(GameObject obj)
@@ -81,9 +97,9 @@ public class BattleTrigger : MonoBehaviour
         Vector3 shiftPositionEnemy = new Vector3(-2.13f * cameraApp, -0.08f * cameraApp + halfHeight, 0);
 
         if (obj.CompareTag("Player"))
-            obj.transform.position = startPos + shiftPositionPlayer;
+            obj.transform.position = battleCanvas.transform.position + shiftPositionPlayer;
         else if (obj.CompareTag("Enemy"))
-            obj.transform.position = startPos + shiftPositionEnemy;
+            obj.transform.position = battleCanvas.transform.position + shiftPositionEnemy;
     }
     void StartBattle()
     {
@@ -105,7 +121,7 @@ public class BattleTrigger : MonoBehaviour
         // Отключаем камеру персонажа
         cinemachineVirtualCamera.enabled = false;
         // Двигаем врага на платформу
-        
+
         //enemyFollow.transform.position = new Vector3((float)(characterAttack.transform.position.x -0.8), (float)(characterAttack.transform.position.y + 0.4), 0);
         spriteRendererEnemy.sortingOrder = 5;
         BattleIsStart = true;
@@ -125,7 +141,7 @@ public class BattleTrigger : MonoBehaviour
         // Включаем камеру персонажа
         cinemachineVirtualCamera.enabled = true;
         battleSystem.BattleIsEnd = false;
-        main.Render();
+        //main.Render();
         init = false;
     }
     IEnumerator WaiterEnemyDie()
@@ -143,4 +159,3 @@ public class BattleTrigger : MonoBehaviour
         SceneTransitionManager.Instance.GoToScene(Scenes.LOBBY);
     }
 }
-
