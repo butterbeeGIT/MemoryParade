@@ -111,7 +111,7 @@ public class BattleSystem : MonoBehaviour
     void EnemyDie()
     {
         enemyAnimator.SetBool("die", true);
-        enemyAnimator.transform.position = new Vector3(enemyAnimator.transform.position.x, (float)(enemyAnimator.transform.position.y - 0.3), 0);
+        //enemyAnimator.transform.position = new Vector3(enemyAnimator.transform.position.x, (float)(enemyAnimator.transform.position.y - 0.3), 0);
         Invoke("Treasure", 3f);
     }
 

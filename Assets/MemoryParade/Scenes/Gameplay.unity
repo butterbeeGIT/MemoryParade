@@ -66962,6 +66962,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6124153424241838913, guid: 234ea3acc8b7ebb4ca8b52e488e6d3ae, type: 3}
   m_PrefabInstance: {fileID: 8184899848163510368}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &273555607 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6694272866375117312, guid: 234ea3acc8b7ebb4ca8b52e488e6d3ae, type: 3}
+  m_PrefabInstance: {fileID: 8184899848163510368}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &331523679
 GameObject:
   m_ObjectHideFlags: 0
@@ -67221,6 +67226,8 @@ MonoBehaviour:
   speed: 0
   canBattle: 0
   raycastDistance: 0.5
+  battleCanvas: {fileID: 0}
+  allAwake: 0
 --- !u!50 &478005060
 Rigidbody2D:
   serializedVersion: 4
@@ -67918,7 +67925,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 807567206}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 70c488c1cd8ca284b84f95e21a0258e7, type: 3}
   m_Name: 
@@ -69189,7 +69196,7 @@ PrefabInstance:
     - target: {fileID: 5600939005895263402, guid: 234ea3acc8b7ebb4ca8b52e488e6d3ae, type: 3}
       propertyPath: m_Follow
       value: 
-      objectReference: {fileID: 478005056}
+      objectReference: {fileID: 273555607}
     - target: {fileID: 6124153424241838913, guid: 234ea3acc8b7ebb4ca8b52e488e6d3ae, type: 3}
       propertyPath: m_Name
       value: testPerson_0
