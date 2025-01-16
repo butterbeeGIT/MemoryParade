@@ -1,7 +1,9 @@
 ﻿using Assets.MemoryParade.Scripts.Game.Gameplay.Enemy;
 using Cinemachine;
+using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BattleTrigger : MonoBehaviour
 {
@@ -17,25 +19,27 @@ public class BattleTrigger : MonoBehaviour
 
     private CinemachineVirtualCamera cinemachineVirtualCamera;
     private Camera main;
+    private Vector3 startPos;
 
-    private bool isWaiting = false;
+    private bool init = false;
 
-    void Start()
+    void Init()
     {
+        init = true;
         enemyFollow = GetComponent<Follow>();
 
         if (enemyFollow == null)
         {
             Debug.LogWarning($"Не найден скрипт Follow");
         }
+
         if (battleCanvas == null)
         {
-            battleCanvas = BattleCanvasManager.Instance;
             if (battleCanvas == null)
             {
                 Debug.LogWarning($"Не найден BattleCanvas");
             }
-        }    
+        }
         player = GameObject.FindGameObjectWithTag("Player");
         playerMove = player.GetComponent<CharacterMove>();
         characterAttack = FindObjectOfType<CharacterAttack>();
@@ -44,24 +48,43 @@ public class BattleTrigger : MonoBehaviour
 
         battleSystem = player.GetComponent<BattleSystem>();
         spriteRendererEnemy = gameObject.GetComponent<SpriteRenderer>();
-
+        startPos = playerMove.transform.position;
         main = FindObjectOfType<Camera>();
-        battleCanvas.SetActive(false); // Скрываем окно боя
     }
 
     void Update()
     {
+        if (!init) Init();
+        enemyFollow.SetCurrentFollowEnemy(this);
+        battleCanvas = enemyFollow.battleCanvas;
+        startPos = playerMove.transform.position;
         if (!battleSystem.BattleIsEnd && enemyFollow.canBattle && !battleCanvas.activeSelf)
         {
             battleSystem.SetCurrentEnemyAnimator(this);
             StartBattle();
         }
-        if (battleSystem.BattleIsEnd && battleCanvas.activeSelf)
+        if (battleSystem.BattleIsEnd && enemyFollow.battleCanvas.activeSelf && enemyFollow.canBattle)
         {
             StartCoroutine(Waiter());
         }
     }
+    public void ChangePositionGameObject(GameObject obj)
+    {
+        //учет приближения камеры
+        float cameraApp = 1.533734f / 3.5f;
 
+        BoxCollider2D boxCollider = obj.GetComponent<BoxCollider2D>();
+        float halfHeight = boxCollider.size.y / 2 * obj.transform.localScale.y;
+
+        //выравнивает
+        Vector3 shiftPositionPlayer = new Vector3(2.26f * cameraApp, -0.08f * cameraApp + halfHeight, 0);
+        Vector3 shiftPositionEnemy = new Vector3(-2.13f * cameraApp, -0.08f * cameraApp + halfHeight, 0);
+
+        if (obj.CompareTag("Player"))
+            obj.transform.position = startPos + shiftPositionPlayer;
+        else if (obj.CompareTag("Enemy"))
+            obj.transform.position = startPos + shiftPositionEnemy;
+    }
     void StartBattle()
     {
         Debug.Log($"StartBattle");
@@ -69,19 +92,21 @@ public class BattleTrigger : MonoBehaviour
         cinemachineVirtualCamera.m_Lens.OrthographicSize = BattleCanvasManager.orthographicSize;
         main.orthographicSize = BattleCanvasManager.orthographicSize;
         // Показываем окно боя
-        //battleCanvas.SetActive(true);
-        BattleCanvasManager.SetActive(true);
+        battleCanvas.SetActive(true);
         // Отключаем скрипт для передвижения персонажа и включаем скрипт дляя атаки
+        ChangePositionGameObject(player);
         playerMove.enabled = false;
         //двигаем персонажа на платформу
-        BattleCanvasManager.ChangePositionGameObject(player);
         characterAttack.enabled = true;
+        ChangePositionGameObject(gameObject);
+        //characterAttack.transform.position = new Vector3(startPos.x + 1, (float)(startPos.y + 0.37), 0);
         // Отключаем скрипт для врага. Чтобы он не следовал за персонажем
         enemyFollow.enabled = false;
         // Отключаем камеру персонажа
         cinemachineVirtualCamera.enabled = false;
-        // Двигаем врага на платформу 
-        BattleCanvasManager.ChangePositionGameObject(gameObject);
+        // Двигаем врага на платформу
+        
+        //enemyFollow.transform.position = new Vector3((float)(characterAttack.transform.position.x -0.8), (float)(characterAttack.transform.position.y + 0.4), 0);
         spriteRendererEnemy.sortingOrder = 5;
         BattleIsStart = true;
     }
@@ -92,26 +117,23 @@ public class BattleTrigger : MonoBehaviour
         cinemachineVirtualCamera.m_Lens.OrthographicSize = (float)3.5;
         main.orthographicSize = (float)3.5;
         // выключаем окно боя
-        //battleCanvas.SetActive(false);
-        BattleCanvasManager.SetActive(false);
+        battleCanvas.SetActive(false);
         // Включаем скрипт для передвижения персонажа и выключаем скрипт дляя атаки
         playerMove.enabled = true;
         characterAttack.enabled = false;
         spriteRendererEnemy.sortingOrder = 1;
         // Включаем камеру персонажа
         cinemachineVirtualCamera.enabled = true;
+        battleSystem.BattleIsEnd = false;
+        main.Render();
+        init = false;
     }
     IEnumerator Waiter()
     {
-        //Чтобы не запускать корутину во время ее выполнения
-        if (isWaiting) yield break; 
-        isWaiting = true;
-
         Debug.Log($"Waiter");
+        enemyFollow.canBattle = false;
         yield return new WaitForSeconds(3f);
         EndBattle();
-
-        isWaiting = false;
     }
 }
 

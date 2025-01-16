@@ -5,11 +5,12 @@ using UnityEngine.InputSystem;
 public class CharacterMove : MonoBehaviour
 {
     private Animator _animator;
+    private GameObject _gameObject;
     
     void Start()
     {
         _animator = GetComponent<Animator>();
-
+        _gameObject = GameObject.Find("BattleCanvas");
         if (_animator == null)
         {
             Debug.LogError("Animator не найден на объекте " + gameObject.name);
@@ -21,7 +22,7 @@ public class CharacterMove : MonoBehaviour
 
     void FixedUpdate()
     {
-
+        _gameObject.SetActive(false);
         if (_animator == null)
         {
             Debug.LogWarning("Animator равен null на объекте " + gameObject.name);

@@ -54,7 +54,7 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.Enemy
         /// Включает и выключает Canvas
         /// </summary>
         /// <param name="setActive"></param>
-        public static void SetActive(bool setActive)
+        /*public static void SetActive(bool setActive)
         {
             if (Instance != null)
             {
@@ -65,7 +65,7 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.Enemy
             {
                 Debug.LogWarning("BattleCanvasManager Instance is null!");
             }
-        }
+        }*/
 
     }
 }

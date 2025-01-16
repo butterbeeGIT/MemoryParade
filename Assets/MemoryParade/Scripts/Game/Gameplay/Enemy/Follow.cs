@@ -1,3 +1,4 @@
+using Assets.MemoryParade.Scripts.Game.Gameplay.Enemy;
 using UnityEngine;
 /// <summary>
 /// Движение врага по направлению к игроку
@@ -16,23 +17,42 @@ public class Follow : MonoBehaviour
     public float raycastDistance = 0.5f;
     // Слой, на котором находятся стены
     private LayerMask wallLayer;
+    private BattleTrigger trigger;
+    public GameObject battleCanvas;
+
+    public bool allAwake = false;
 
     void Awake()
     {
+        /*if (Instance == null)
+            Instance = gameObject;
+        else
+            Destroy(gameObject);*/
         speed = 0.01f;
         visibilityArea = 2f;
         animator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         sr = GetComponent<SpriteRenderer>();
         wallLayer = LayerMask.GetMask("Map");
+
+        trigger = this.GetComponent<BattleTrigger>();
+        battleCanvas = GameObject.Find("BattleCanvas");
+        //battleCanvas.SetActive(false);
+        //Canvas = BattleCanvasManager.Instance.GetComponent<Canvas>();
     }
 
+    public void SetCurrentFollowEnemy(BattleTrigger enemy)
+    {
+        trigger = enemy;
+    }
 
     void FixedUpdate()
     {
+        allAwake = true;
         if (Vector2.Distance(player.position, transform.position) < visibilityArea)
         {
             Debug.Log("Персонаж обнаружен!");
+            trigger.enabled = true;
             // Направление движения врага к игроку
             Vector2 direction = (player.position - transform.position).normalized;
 
@@ -53,6 +73,10 @@ public class Follow : MonoBehaviour
                 canBattle = true;
                 sr.flipX = true;
             }
+        }
+        else
+        {
+            trigger.enabled = false;
         }
         //else
         //{
