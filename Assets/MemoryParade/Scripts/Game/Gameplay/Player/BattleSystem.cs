@@ -40,11 +40,10 @@ public class BattleSystem : MonoBehaviour
         //enemyAnimator = GameObject.Find("Mummy_0").GetComponent<Animator>(); // Найдите объект врага по имени
 
         battle = FindAnyObjectByType<BattleTrigger>();
-        powerAttack = FindAnyObjectByType<PowerAttack>();
-        superAttack = FindAnyObjectByType<SuperAttack>();
+
         сharacteristics = PlayerСharacteristics.Instance;//FindAnyObjectByType<PlayerСharacteristics>();
 
-        battleCanvas = battleCanvas = GameObject.Find("BattleCanvas");
+        //battleCanvas = GameObject.Find("BattleCanvas");
         if (battleCanvas == null)
         {
             Debug.LogWarning($"Не найден BattleCanvas");
@@ -53,8 +52,13 @@ public class BattleSystem : MonoBehaviour
 
         playerHPText = GameObject.Find("PlayerHP").GetComponent<TextMeshProUGUI>();
         enemyHPText = GameObject.Find("EnemyHP").GetComponent<TextMeshProUGUI>();
+
+        powerAttack = FindAnyObjectByType<PowerAttack>();
+        superAttack = FindAnyObjectByType<SuperAttack>();
+        
         if (SceneManager.GetActiveScene().name == Scenes.GAMEPLAY)
             battleCanvas.SetActive(false);
+
     }
 
     void Update()

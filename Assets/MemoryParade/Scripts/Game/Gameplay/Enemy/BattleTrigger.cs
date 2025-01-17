@@ -39,6 +39,8 @@ public class BattleTrigger : MonoBehaviour
         //    Debug.LogWarning($"Не найден BattleCanvas");
         //}
         player = GameObject.FindGameObjectWithTag("Player");
+        if(player == null)
+            Debug.LogWarning($"player Не найден");
         playerMove = player.GetComponent<CharacterMove>();
         characterAttack = FindObjectOfType<CharacterAttack>();
 
@@ -53,18 +55,20 @@ public class BattleTrigger : MonoBehaviour
     void Update()
     {
         if (!init) Init();
+        Debug.LogWarning($"init {init}");
         enemyFollow.SetCurrentFollowEnemy(this);
         //battleCanvas = enemyFollow.battleCanvas;
         startPos = playerMove.transform.position;
+       
         if (!battleSystem.BattleIsEnd && enemyFollow.canBattle && !battleSystem.battleCanvas.activeSelf)
         {
             battleSystem.SetCurrentEnemyAnimator(this);
             StartBattle();
         }
-
         if (battleSystem.BattleIsEnd && Vector2.Distance(playerMove.transform.position, enemyFollow.transform.position) < 0.1f)
         {
             //PlayerСharacteristics.Instance.numberOfWins = PlayerСharacteristics.Instance.numberOfWins + 1;
+
             PlayerСharacteristics.Instance.AddScore();
             Destroy(gameObject);
         }
