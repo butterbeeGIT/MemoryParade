@@ -23,6 +23,7 @@ public class BattleTrigger : MonoBehaviour
     private Vector3 startPos;
 
     private bool init = false;
+    private bool traesure = false;
 
     void Init()
     {
@@ -59,16 +60,15 @@ public class BattleTrigger : MonoBehaviour
         enemyFollow.SetCurrentFollowEnemy(this);
         //battleCanvas = enemyFollow.battleCanvas;
         startPos = playerMove.transform.position;
-       
         if (!battleSystem.BattleIsEnd && enemyFollow.canBattle && !battleSystem.battleCanvas.activeSelf)
         {
             battleSystem.SetCurrentEnemyAnimator(this);
             StartBattle();
         }
-        if (battleSystem.BattleIsEnd && Vector2.Distance(playerMove.transform.position, enemyFollow.transform.position) < 0.1f)
+        if (traesure && Vector2.Distance(playerMove.transform.position, enemyFollow.transform.position) < 0.1f)
         {
             //PlayerСharacteristics.Instance.numberOfWins = PlayerСharacteristics.Instance.numberOfWins + 1;
-
+            traesure = false;
             PlayerСharacteristics.Instance.AddScore();
             Destroy(gameObject);
         }
@@ -78,7 +78,7 @@ public class BattleTrigger : MonoBehaviour
         }
         if (battleSystem.PlayerLose && battleSystem.battleCanvas.activeSelf && enemyFollow.canBattle)
         {
-            StartCoroutine(WaiterEnemyDie());
+            StartCoroutine(WaiterPlayerDie());
         }
     }
     public void ChangePositionGameObject(GameObject obj)
@@ -127,6 +127,8 @@ public class BattleTrigger : MonoBehaviour
     }
     void EndBattle()
     {
+        // Можно собрать кристалл
+        traesure = true;
         Debug.Log($"EndBattle");
         // Возвращаем все на начальные позиции
         //cinemachineVirtualCamera.m_Lens.OrthographicSize = (float)3.5;
@@ -144,7 +146,7 @@ public class BattleTrigger : MonoBehaviour
         spriteRendererEnemy.sortingOrder = 1;
         
         battleSystem.BattleIsEnd = false;
-        main.Render();
+        /*main.Render();*/
         init = false;
     }
 
