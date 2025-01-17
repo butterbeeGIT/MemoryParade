@@ -1,8 +1,6 @@
 ﻿using Assets.MemoryParade.Scripts.Game.Gameplay.Player;
 using System.Collections;
 using TMPro;
-using TMPro.EditorUtilities;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
