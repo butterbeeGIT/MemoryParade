@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 public class BattleTrigger : MonoBehaviour
 {
     private Follow enemyFollow;
-    private GameObject battleCanvas;
+    //private GameObject battleCanvas;
     private CharacterMove playerMove;
     private GameObject player;
     private CharacterAttack characterAttack;
@@ -34,13 +34,10 @@ public class BattleTrigger : MonoBehaviour
             Debug.LogWarning($"Не найден скрипт Follow");
         }
 
-        if (battleCanvas == null)
-        {
-            if (battleCanvas == null)
-            {
-                Debug.LogWarning($"Не найден BattleCanvas");
-            }
-        }
+        //if (battleCanvas == null)
+        //{
+        //    Debug.LogWarning($"Не найден BattleCanvas");
+        //}
         player = GameObject.FindGameObjectWithTag("Player");
         playerMove = player.GetComponent<CharacterMove>();
         characterAttack = FindObjectOfType<CharacterAttack>();
@@ -57,9 +54,9 @@ public class BattleTrigger : MonoBehaviour
     {
         if (!init) Init();
         enemyFollow.SetCurrentFollowEnemy(this);
-        battleCanvas = enemyFollow.battleCanvas;
+        //battleCanvas = enemyFollow.battleCanvas;
         startPos = playerMove.transform.position;
-        if (!battleSystem.BattleIsEnd && enemyFollow.canBattle && !battleCanvas.activeSelf)
+        if (!battleSystem.BattleIsEnd && enemyFollow.canBattle && !battleSystem.battleCanvas.activeSelf)
         {
             battleSystem.SetCurrentEnemyAnimator(this);
             StartBattle();
@@ -71,11 +68,11 @@ public class BattleTrigger : MonoBehaviour
             PlayerСharacteristics.Instance.AddScore();
             Destroy(gameObject);
         }
-        if (battleSystem.BattleIsEnd && enemyFollow.battleCanvas.activeSelf && enemyFollow.canBattle)
+        if (battleSystem.BattleIsEnd && battleSystem.battleCanvas.activeSelf && enemyFollow.canBattle)
         {
             StartCoroutine(WaiterEnemyDie());
         }
-        if (battleSystem.PlayerLose && enemyFollow.battleCanvas.activeSelf && enemyFollow.canBattle)
+        if (battleSystem.PlayerLose && battleSystem.battleCanvas.activeSelf && enemyFollow.canBattle)
         {
             StartCoroutine(WaiterEnemyDie());
         }
@@ -93,9 +90,9 @@ public class BattleTrigger : MonoBehaviour
         Vector3 shiftPositionEnemy = new Vector3(-2.13f * cameraApp, -0.08f * cameraApp + halfHeight, 0);
 
         if (obj.CompareTag("Player"))
-            obj.transform.position = battleCanvas.transform.position + shiftPositionPlayer;
+            obj.transform.position = battleSystem.battleCanvas.transform.position + shiftPositionPlayer;
         else if (obj.CompareTag("Enemy"))
-            obj.transform.position = battleCanvas.transform.position + shiftPositionEnemy;
+            obj.transform.position = battleSystem.battleCanvas.transform.position + shiftPositionEnemy;
     }
     void StartBattle()
     {
@@ -104,7 +101,7 @@ public class BattleTrigger : MonoBehaviour
         cinemachineVirtualCamera.m_Lens.OrthographicSize = BattleCanvasManager.orthographicSize;
         main.orthographicSize = BattleCanvasManager.orthographicSize;
         // Показываем окно боя
-        battleCanvas.SetActive(true);
+        battleSystem.battleCanvas.SetActive(true);
         // Отключаем скрипт для передвижения персонажа и включаем скрипт дляя атаки
         ChangePositionGameObject(player);
         playerMove.enabled = false;
@@ -129,7 +126,7 @@ public class BattleTrigger : MonoBehaviour
         cinemachineVirtualCamera.m_Lens.OrthographicSize = (float)3.5;
         main.orthographicSize = (float)3.5;
         // выключаем окно боя
-        battleCanvas.SetActive(false);
+        battleSystem.battleCanvas.SetActive(false);
         // Включаем скрипт для передвижения персонажа и выключаем скрипт дляя атаки
         playerMove.enabled = true;
         characterAttack.enabled = false;

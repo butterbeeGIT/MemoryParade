@@ -24,8 +24,8 @@ public class CharacterMove : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (SceneManager.GetActiveScene().name == Scenes.GAMEPLAY)
-            _gameObject.SetActive(false);
+        //if (SceneManager.GetActiveScene().name == Scenes.GAMEPLAY)
+        //    _gameObject.SetActive(false);
         if (_animator == null)
         {
             Debug.LogWarning("Animator равен null на объекте " + gameObject.name);

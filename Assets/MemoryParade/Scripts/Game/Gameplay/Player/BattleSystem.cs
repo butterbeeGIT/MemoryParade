@@ -5,6 +5,8 @@ using TMPro.EditorUtilities;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using Assets.MemoryParade.Scripts.Game.GameRoot;
 
 public class BattleSystem : MonoBehaviour
 {
@@ -14,6 +16,7 @@ public class BattleSystem : MonoBehaviour
     public int attackCount = 0;
     public int powerAttackCount = 0;
 
+    public GameObject battleCanvas;
     private int playerHP;// = 100;
     private int enemyHP = 100;
     private int playerDamage;
@@ -34,16 +37,24 @@ public class BattleSystem : MonoBehaviour
     void Start()
     {
         playerAnimator = GetComponent<Animator>(); // Предполагаем, что скрипт прикреплен к объекту игрока
-        enemyAnimator = GameObject.Find("Mummy_0").GetComponent<Animator>(); // Найдите объект врага по имени
+        //enemyAnimator = GameObject.Find("Mummy_0").GetComponent<Animator>(); // Найдите объект врага по имени
 
         battle = FindAnyObjectByType<BattleTrigger>();
         powerAttack = FindAnyObjectByType<PowerAttack>();
         superAttack = FindAnyObjectByType<SuperAttack>();
         сharacteristics = PlayerСharacteristics.Instance;//FindAnyObjectByType<PlayerСharacteristics>();
 
+        battleCanvas = battleCanvas = GameObject.Find("BattleCanvas");
+        if (battleCanvas == null)
+        {
+            Debug.LogWarning($"Не найден BattleCanvas");
+        }
         playerHP = сharacteristics.healthPoints;
+
         playerHPText = GameObject.Find("PlayerHP").GetComponent<TextMeshProUGUI>();
         enemyHPText = GameObject.Find("EnemyHP").GetComponent<TextMeshProUGUI>();
+        if (SceneManager.GetActiveScene().name == Scenes.GAMEPLAY)
+            battleCanvas.SetActive(false);
     }
 
     void Update()

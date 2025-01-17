@@ -18,7 +18,7 @@ public class Follow : MonoBehaviour
     // Слой, на котором находятся стены
     private LayerMask wallLayer;
     private BattleTrigger trigger;
-    public GameObject battleCanvas;
+    //public GameObject battleCanvas;
 
     public bool allAwake = false;
 
@@ -36,7 +36,7 @@ public class Follow : MonoBehaviour
         wallLayer = LayerMask.GetMask("Map");
 
         trigger = this.GetComponent<BattleTrigger>();
-        battleCanvas = GameObject.Find("BattleCanvas");
+        //battleCanvas = GameObject.Find("BattleCanvas");
         //battleCanvas.SetActive(false);
         //Canvas = BattleCanvasManager.Instance.GetComponent<Canvas>();
     }
