@@ -66689,8 +66689,8 @@ Camera:
   m_GameObject: {fileID: 123821631}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 4
-  m_BackGroundColor: {r: 0.5999999, g: 0.5999999, b: 0.5999999, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.11764707, g: 0.21568629, b: 0.22352943, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -70289,8 +70289,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8195053198171477269}
   - {fileID: 5776093845905200611}
+  - {fileID: 8195053198171477269}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &3714379302594797277
@@ -70344,8 +70344,8 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 8
   m_StandbyUpdate: 2
-  m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 0}
+  m_LookAt: {fileID: 3274203514133045856}
+  m_Follow: {fileID: 3274203514133045856}
   m_Lens:
     FieldOfView: 60
     OrthographicSize: 3.5

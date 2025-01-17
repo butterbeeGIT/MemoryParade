@@ -110,8 +110,8 @@ public class BattleSystem : MonoBehaviour
         attackCount++;
         canAttack = false;
         Attack();
-        //playerDamage = 50;
-        playerDamage = сharacteristics.baseAttack;
+        playerDamage = 50;
+        //playerDamage = сharacteristics.baseAttack;
         // После этого запускаем анимацию врага
         Invoke("EnemyAttack", 1f); // Время ожидания для завершения анимации атаки игрока
     }

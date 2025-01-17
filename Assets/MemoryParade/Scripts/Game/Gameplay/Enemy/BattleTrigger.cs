@@ -92,18 +92,21 @@ public class BattleTrigger : MonoBehaviour
         //выравнивает
         Vector3 shiftPositionPlayer = new Vector3(2.26f * cameraApp, -0.08f * cameraApp + halfHeight, 0);
         Vector3 shiftPositionEnemy = new Vector3(-2.13f * cameraApp, -0.08f * cameraApp + halfHeight, 0);
+        Vector3 pos = battleSystem.battleCanvas.transform.position;
+        pos.z = 0;
 
         if (obj.CompareTag("Player"))
-            obj.transform.position = battleSystem.battleCanvas.transform.position + shiftPositionPlayer;
+            obj.transform.position = pos + shiftPositionPlayer;
         else if (obj.CompareTag("Enemy"))
-            obj.transform.position = battleSystem.battleCanvas.transform.position + shiftPositionEnemy;
+            obj.transform.position = pos + shiftPositionEnemy;
     }
     void StartBattle()
     {
         Debug.Log($"StartBattle");
-        // Увеличиваем обу камеры, для того, чтобы приблизить игрока и врага
-        cinemachineVirtualCamera.m_Lens.OrthographicSize = BattleCanvasManager.orthographicSize;
-        main.orthographicSize = BattleCanvasManager.orthographicSize;
+        //// Увеличиваем обу камеры, для того, чтобы приблизить игрока и врага
+        //cinemachineVirtualCamera.m_Lens.OrthographicSize = BattleCanvasManager.orthographicSize;
+        UpdateCamera(true);
+
         // Показываем окно боя
         battleSystem.battleCanvas.SetActive(true);
         // Отключаем скрипт для передвижения персонажа и включаем скрипт дляя атаки
@@ -115,8 +118,7 @@ public class BattleTrigger : MonoBehaviour
         //characterAttack.transform.position = new Vector3(startPos.x + 1, (float)(startPos.y + 0.37), 0);
         // Отключаем скрипт для врага. Чтобы он не следовал за персонажем
         enemyFollow.enabled = false;
-        // Отключаем камеру персонажа
-        cinemachineVirtualCamera.enabled = false;
+        
         // Двигаем врага на платформу
         
         //enemyFollow.transform.position = new Vector3((float)(characterAttack.transform.position.x -0.8), (float)(characterAttack.transform.position.y + 0.4), 0);
@@ -127,20 +129,45 @@ public class BattleTrigger : MonoBehaviour
     {
         Debug.Log($"EndBattle");
         // Возвращаем все на начальные позиции
-        cinemachineVirtualCamera.m_Lens.OrthographicSize = (float)3.5;
-        main.orthographicSize = (float)3.5;
+        //cinemachineVirtualCamera.m_Lens.OrthographicSize = (float)3.5;
+        Vector3 pos = battleSystem.battleCanvas.transform.position;
+        pos.z = 0;
+        player.transform.position = pos;
+        // Включаем камеру персонажа
+        UpdateCamera(false);
+
         // выключаем окно боя
         battleSystem.battleCanvas.SetActive(false);
         // Включаем скрипт для передвижения персонажа и выключаем скрипт дляя атаки
         playerMove.enabled = true;
         characterAttack.enabled = false;
         spriteRendererEnemy.sortingOrder = 1;
-        // Включаем камеру персонажа
-        cinemachineVirtualCamera.enabled = true;
+        
         battleSystem.BattleIsEnd = false;
         main.Render();
         init = false;
     }
+
+    private void UpdateCamera(bool zoom)
+    {
+        if (zoom)
+        {
+            // Отключаем камеру персонажа
+            cinemachineVirtualCamera.enabled = false;
+            main.orthographicSize = BattleCanvasManager.orthographicSize;
+        }
+        else
+        {
+            main.orthographicSize = (float)3.5;
+            Camera.main.transform.position = player.transform.position;
+            Camera.main.ResetAspect();
+            cinemachineVirtualCamera.enabled = true;
+        }
+        var brain = Camera.main.GetComponent<CinemachineBrain>();
+        brain.ManualUpdate(); // Принудительное обновление виртуальной камеры
+        //Camera.main.Render();
+    }
+    
     IEnumerator WaiterEnemyDie()
     {
         Debug.Log($"Waiter");
