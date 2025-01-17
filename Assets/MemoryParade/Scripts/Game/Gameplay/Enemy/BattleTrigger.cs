@@ -1,4 +1,5 @@
 ﻿using Assets.MemoryParade.Scripts.Game.Gameplay.Enemy;
+using Assets.MemoryParade.Scripts.Game.GameRoot;
 using Cinemachine;
 using System;
 using System.Collections;
@@ -63,9 +64,20 @@ public class BattleTrigger : MonoBehaviour
             battleSystem.SetCurrentEnemyAnimator(this);
             StartBattle();
         }
+
+        if (battleSystem.BattleIsEnd && Vector2.Distance(playerMove.transform.position, enemyFollow.transform.position) < 0.1f)
+        {
+            //PlayerСharacteristics.Instance.numberOfWins = PlayerСharacteristics.Instance.numberOfWins + 1;
+            PlayerСharacteristics.Instance.AddScore();
+            Destroy(gameObject);
+        }
         if (battleSystem.BattleIsEnd && enemyFollow.battleCanvas.activeSelf && enemyFollow.canBattle)
         {
-            StartCoroutine(Waiter());
+            StartCoroutine(WaiterEnemyDie());
+        }
+        if (battleSystem.PlayerLose && enemyFollow.battleCanvas.activeSelf && enemyFollow.canBattle)
+        {
+            StartCoroutine(WaiterEnemyDie());
         }
     }
     public void ChangePositionGameObject(GameObject obj)
@@ -81,9 +93,9 @@ public class BattleTrigger : MonoBehaviour
         Vector3 shiftPositionEnemy = new Vector3(-2.13f * cameraApp, -0.08f * cameraApp + halfHeight, 0);
 
         if (obj.CompareTag("Player"))
-            obj.transform.position = startPos + shiftPositionPlayer;
+            obj.transform.position = battleCanvas.transform.position + shiftPositionPlayer;
         else if (obj.CompareTag("Enemy"))
-            obj.transform.position = startPos + shiftPositionEnemy;
+            obj.transform.position = battleCanvas.transform.position + shiftPositionEnemy;
     }
     void StartBattle()
     {

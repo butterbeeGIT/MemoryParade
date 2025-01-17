@@ -1,6 +1,8 @@
 //using Unity.Framework;
+using Assets.MemoryParade.Scripts.Game.GameRoot;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class CharacterMove : MonoBehaviour
 {
@@ -22,7 +24,8 @@ public class CharacterMove : MonoBehaviour
 
     void FixedUpdate()
     {
-        _gameObject.SetActive(false);
+        if (SceneManager.GetActiveScene().name == Scenes.GAMEPLAY)
+            _gameObject.SetActive(false);
         if (_animator == null)
         {
             Debug.LogWarning("Animator равен null на объекте " + gameObject.name);
