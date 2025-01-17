@@ -92,7 +92,7 @@ public class BattleSystem : MonoBehaviour
     {
         canAttack = false;
         Attack();
-        playerDamage = 50;
+        playerDamage = сharacteristics.baseAttack*3;
         Invoke("EnemyAttack", 1f);
     }
 
@@ -101,7 +101,7 @@ public class BattleSystem : MonoBehaviour
         powerAttackCount++;
         canAttack = false;
         Attack();
-        playerDamage = 10;
+        playerDamage = сharacteristics.baseAttack*2;
         Invoke("EnemyAttack", 1f);
     }
 
@@ -110,13 +110,13 @@ public class BattleSystem : MonoBehaviour
         attackCount++;
         canAttack = false;
         Attack();
-        playerDamage = 50;
-        //playerDamage = сharacteristics.baseAttack;
+        //playerDamage = 50;
+        playerDamage = сharacteristics.baseAttack;
         // После этого запускаем анимацию врага
         Invoke("EnemyAttack", 1f); // Время ожидания для завершения анимации атаки игрока
     }
 
-    void BattleEnd()
+    public void BattleEnd()
     {        
         powerAttackCount = 0;
         attackCount = 0;
@@ -150,6 +150,7 @@ public class BattleSystem : MonoBehaviour
             EnemyDie();
             BattleIsEnd = true;
             сharacteristics.healthPoints = playerHP;
+            //BattleEnd();
             playerAnimator.SetTrigger("battleIsEnd");
             return;
         }
@@ -170,6 +171,7 @@ public class BattleSystem : MonoBehaviour
             Debug.Log("Вы проиграли");
             //playerAnimator.SetTrigger("battleIsEnd");
             PlayerDie();
+            //BattleEnd();
             PlayerLose = true;
         }
     }

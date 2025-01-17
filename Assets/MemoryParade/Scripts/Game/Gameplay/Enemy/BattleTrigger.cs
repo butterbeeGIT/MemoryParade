@@ -118,9 +118,9 @@ public class BattleTrigger : MonoBehaviour
         //characterAttack.transform.position = new Vector3(startPos.x + 1, (float)(startPos.y + 0.37), 0);
         // Отключаем скрипт для врага. Чтобы он не следовал за персонажем
         enemyFollow.enabled = false;
-        
+
         // Двигаем врага на платформу
-        
+        battleSystem.BattleEnd();
         //enemyFollow.transform.position = new Vector3((float)(characterAttack.transform.position.x -0.8), (float)(characterAttack.transform.position.y + 0.4), 0);
         spriteRendererEnemy.sortingOrder = 5;
         BattleIsStart = true;

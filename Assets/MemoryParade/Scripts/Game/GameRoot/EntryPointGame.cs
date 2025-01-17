@@ -83,7 +83,7 @@ namespace Assets.MemoryParade.Scripts.Game.GameRoot
 
             //визуал Unity
             yield return LoadScene(Scenes.BOOT);
-            yield return LoadScene(Scenes.GAMEPLAY);
+            yield return LoadScene(Scenes.LOBBY);
             //чтобы все успело загрузиться
             yield return new WaitForSeconds(2);
             
