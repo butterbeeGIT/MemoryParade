@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using System;
+using System.Collections.Generic;
 
 namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
 {
@@ -17,7 +19,10 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
         public GameObject emptyWallPrefab;
         //персонаж
         public GameObject player;
-        public GameObject enemy;
+        //враги
+        public GameObject SlimePrefab;
+        public GameObject MummyPrefab;
+        //public GameObject FlamePrefab;
 
         public static Vector2 CellSize = new Vector2(1, 1); // Размер одной клетки карты
 
@@ -32,28 +37,30 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
             MapRenderer.WallAnglePrefab = wallAnglePrefab;
             MapRenderer.EmptyWallPrefab = emptyWallPrefab;
 
-            Room spawnRoom = GeneratingMap();
-            SpawnPlayerInRoom(player, spawnRoom);
-            SpawnEnemyInRoom(enemy, spawnRoom);
+            List<Room> rooms = GeneratingMap();           
+            SpawnPlayerInRoom(player, rooms[0]);
+            //SpawnEnemyInRoom(enemy, spawnRoom);
+            EnemyPositionGenerator.SpawnEnemies(SlimePrefab, 5, rooms, CellSize);
+            EnemyPositionGenerator.SpawnEnemies(MummyPrefab, 5, rooms, CellSize);
         }
 
         /// <summary>
         /// генерирует работчую карту
         /// </summary>
         /// <returns>комната спавна персонажа</returns>
-        Room GeneratingMap()
+        List<Room> GeneratingMap()
         {
-            Room spawnRoom;
-            spawnRoom = MapGenerator.GenerateAndRenderMap();
+            List<Room> spawnRooms;
+            spawnRooms = MapGenerator.GenerateAndRenderMap();
             while (CheckRegeneration())
             {
                 DestroyMap();
-                spawnRoom = MapGenerator.GenerateAndRenderMap();
+                spawnRooms = MapGenerator.GenerateAndRenderMap();
             }
 
             HandleCollisions();
-            
-            return spawnRoom;
+            OffFloorCollider();
+            return spawnRooms;
             
         }
 
@@ -72,23 +79,9 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
             }
         }
 
-        /// <summary>
-        /// Перемещает врага в комнату
-        /// </summary>
-        /// <param name="enemy"></param>
-        /// <param name="spawnRoom"></param>
-        void SpawnEnemyInRoom(GameObject enemy, Room spawnRoom)
-        {
-            if (spawnRoom != null)
-            {
-                var (centerX, centerY) = spawnRoom.Center();
-
-                enemy.transform.position = new Vector3((centerX+2) * CellSize.x, -(centerY+2) * CellSize.y, 0);
-            }
-        }
 
         /// <summary>
-        /// Отключает Box collider у стен, там где они сопадают с другими объектами карты
+        /// Удаляет стены, там где они сопадают с другими объектами карты
         /// </summary>
         void HandleCollisions()
         {
@@ -128,6 +121,14 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
                         }
                     }
                 }
+            }
+        }
+
+        private void OffFloorCollider()
+        {
+            foreach (var floor in GameObject.FindGameObjectsWithTag("Floor"))
+            {
+                floor.GetComponent<BoxCollider2D>().enabled = false;
             }
         }
 
@@ -186,6 +187,14 @@ namespace Assets.MemoryParade.Scripts.Game.Gameplay.MapGeneration
             foreach (var obj in GameObject.FindGameObjectsWithTag("Floor")) Destroy(obj);
             foreach (var obj in GameObject.FindGameObjectsWithTag("Corridor")) Destroy(obj);
             foreach (var obj in GameObject.FindGameObjectsWithTag("Corner")) Destroy(obj);
+        }
+
+        /// <summary>
+        /// Удаляет всех врагов
+        /// </summary>
+        void DestroyEnemy()
+        {
+            foreach (var obj in GameObject.FindGameObjectsWithTag("Enemy")) Destroy(obj);
         }
     }
 }

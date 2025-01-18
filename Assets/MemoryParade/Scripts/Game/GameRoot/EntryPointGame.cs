@@ -3,7 +3,6 @@ using Assets.MemoryParade.Scripts.Game.Gameplay.Root;
 using Assets.MemoryParade.Scripts.Game.GameRoot;
 using Assets.MemoryParade.Scripts.Game.MainMenu.Root;
 using Assets.MemoryParade.Scripts.Utils;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using R3;
@@ -83,7 +82,7 @@ namespace Assets.MemoryParade.Scripts.Game.GameRoot
 
             //визуал Unity
             yield return LoadScene(Scenes.BOOT);
-            yield return LoadScene(Scenes.GAMEPLAY);
+            yield return LoadScene(Scenes.LOBBY);
             //чтобы все успело загрузиться
             yield return new WaitForSeconds(2);
             

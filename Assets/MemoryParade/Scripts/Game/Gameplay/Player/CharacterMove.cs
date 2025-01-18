@@ -1,15 +1,18 @@
 //using Unity.Framework;
+using Assets.MemoryParade.Scripts.Game.GameRoot;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class CharacterMove : MonoBehaviour
 {
     private Animator _animator;
+    private GameObject _gameObject;
     
     void Start()
     {
         _animator = GetComponent<Animator>();
-
+        _gameObject = GameObject.Find("BattleCanvas");
         if (_animator == null)
         {
             Debug.LogError("Animator не найден на объекте " + gameObject.name);
@@ -21,7 +24,8 @@ public class CharacterMove : MonoBehaviour
 
     void FixedUpdate()
     {
-
+        //if (SceneManager.GetActiveScene().name == Scenes.GAMEPLAY)
+        //    _gameObject.SetActive(false);
         if (_animator == null)
         {
             Debug.LogWarning("Animator равен null на объекте " + gameObject.name);
@@ -34,8 +38,6 @@ public class CharacterMove : MonoBehaviour
         {
             _animator.SetFloat("X", move.x);
             _animator.SetFloat("Y", move.y);
-            //_animator.SetFloat("attackX", move.x);
-            //_animator.SetFloat("attackY", move.y);
 
             transform.Translate(move * 0.02f); // скорость
         }
@@ -45,17 +47,7 @@ public class CharacterMove : MonoBehaviour
             _animator.SetFloat("X", 0);
             _animator.SetFloat("Y", 0);
         }
-
-        /*if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Attack();
-        }*/
     }
-
-    /*void Attack()
-    {
-        _animator.SetTrigger("Attack");
-    }*/
 
     private Vector2 GetMove()
     {

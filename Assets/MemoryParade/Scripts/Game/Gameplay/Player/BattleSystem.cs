@@ -1,10 +1,11 @@
 ﻿using Assets.MemoryParade.Scripts.Game.Gameplay.Player;
 using System.Collections;
 using TMPro;
-using TMPro.EditorUtilities;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using Assets.MemoryParade.Scripts.Game.GameRoot;
 
 public class BattleSystem : MonoBehaviour
 {
@@ -14,7 +15,8 @@ public class BattleSystem : MonoBehaviour
     public int attackCount = 0;
     public int powerAttackCount = 0;
 
-    private int playerHP = 100;
+    public GameObject battleCanvas;
+    private int playerHP;// = 100;
     private int enemyHP = 100;
     private int playerDamage;
 
@@ -24,21 +26,38 @@ public class BattleSystem : MonoBehaviour
     private BattleTrigger battle;
     private PowerAttack powerAttack;
     private SuperAttack superAttack;
+    private PlayerСharacteristics сharacteristics;
+
     public bool BattleIsEnd = false;
+    public bool PlayerLose = false;
 
     private bool canAttack = true;
 
     void Start()
     {
         playerAnimator = GetComponent<Animator>(); // Предполагаем, что скрипт прикреплен к объекту игрока
-        enemyAnimator = GameObject.Find("Mummy_0").GetComponent<Animator>(); // Найдите объект врага по имени
+        //enemyAnimator = GameObject.Find("Mummy_0").GetComponent<Animator>(); // Найдите объект врага по имени
 
         battle = FindAnyObjectByType<BattleTrigger>();
-        powerAttack = FindAnyObjectByType<PowerAttack>();
-        superAttack = FindAnyObjectByType<SuperAttack>();
+
+        сharacteristics = PlayerСharacteristics.Instance;//FindAnyObjectByType<PlayerСharacteristics>();
+
+        //battleCanvas = GameObject.Find("BattleCanvas");
+        if (battleCanvas == null)
+        {
+            Debug.LogWarning($"Не найден BattleCanvas");
+        }
+        playerHP = сharacteristics.healthPoints;
 
         playerHPText = GameObject.Find("PlayerHP").GetComponent<TextMeshProUGUI>();
         enemyHPText = GameObject.Find("EnemyHP").GetComponent<TextMeshProUGUI>();
+
+        powerAttack = FindAnyObjectByType<PowerAttack>();
+        superAttack = FindAnyObjectByType<SuperAttack>();
+        
+        if (SceneManager.GetActiveScene().name == Scenes.GAMEPLAY)
+            battleCanvas.SetActive(false);
+
     }
 
     void Update()
@@ -57,6 +76,11 @@ public class BattleSystem : MonoBehaviour
             playerAnimator.SetBool("turn", false);
         }
     }
+    public void SetCurrentEnemyAnimator(BattleTrigger enemy)
+    {
+        enemyAnimator = enemy.GetComponent<Animator>();
+        battle = enemy;
+    }
     public void Attack()
     {
         playerAnimator.SetBool("turn", true);
@@ -68,15 +92,6 @@ public class BattleSystem : MonoBehaviour
         canAttack = false;
         Attack();
         playerDamage = 50;
-        if (enemyHP <= 0)
-        {
-            Debug.Log("Вы выиграли");
-            EnemyDie();
-            BattleIsEnd = true;
-            playerAnimator.SetTrigger("win");
-            return;
-        }
-        else Debug.Log("Вы атаковали врага! HP врага: " + enemyHP);
         Invoke("EnemyAttack", 1f);
     }
 
@@ -85,16 +100,7 @@ public class BattleSystem : MonoBehaviour
         powerAttackCount++;
         canAttack = false;
         Attack();
-        playerDamage = 10;
-        if (enemyHP <= 0)
-        {
-            Debug.Log("Вы выиграли");
-            EnemyDie();
-            BattleIsEnd = true;
-            playerAnimator.SetTrigger("win");
-            return;
-        }
-        else Debug.Log("Вы атаковали врага! HP врага: " + enemyHP);
+        playerDamage = сharacteristics.baseAttack*2;
         Invoke("EnemyAttack", 1f);
     }
 
@@ -103,30 +109,50 @@ public class BattleSystem : MonoBehaviour
         attackCount++;
         canAttack = false;
         Attack();
-        playerDamage = 2;
-        if (enemyHP <= 0)
-        {
-            Debug.Log("Вы выиграли");
-            EnemyDie();
-            BattleIsEnd = true;
-            playerAnimator.SetTrigger("win");
-            return;
-        }
-        else Debug.Log("Вы атаковали врага! HP врага: " + enemyHP);
-
+        //playerDamage = 50;
+        playerDamage = сharacteristics.baseAttack;
         // После этого запускаем анимацию врага
         Invoke("EnemyAttack", 1f); // Время ожидания для завершения анимации атаки игрока
     }
 
+    public void BattleEnd()
+    {        
+        powerAttackCount = 0;
+        attackCount = 0;
+        canAttack = true;
+        enemyHP = 100;
+    }
     void EnemyDie()
     {
         enemyAnimator.SetBool("die", true);
-        enemyAnimator.transform.position = new Vector3(enemyAnimator.transform.position.x, (float)(enemyAnimator.transform.position.y - 0.3), 0);
+        //enemyAnimator.transform.position = new Vector3(enemyAnimator.transform.position.x, (float)(enemyAnimator.transform.position.y - 0.3), 0);
+        Invoke("Treasure", 3f);
     }
 
+    void PlayerDie()
+    {
+        playerAnimator.SetTrigger("die");
+        playerAnimator.transform.position = new Vector3(playerAnimator.transform.position.x, (float)(playerAnimator.transform.position.y - 0.3), 0);
+    }
+    void Treasure()
+    {
+        enemyAnimator.SetTrigger("treasure");
+        enemyAnimator.transform.localScale = new Vector3(1.5f, 1.5f, 0);
+    }
     public void EnemyAttack()
     {
         enemyHP -= playerDamage;
+        if (enemyHP <= 0)
+        {
+            enemyHP = 0;
+            Debug.Log("Вы выиграли");
+            EnemyDie();
+            BattleIsEnd = true;
+            сharacteristics.healthPoints = playerHP;
+            //BattleEnd();
+            playerAnimator.SetTrigger("battleIsEnd");
+            return;
+        }
         enemyAnimator.SetBool("turn", true);
         canAttack = true;
         // Возврат врага в базовую анимацию
@@ -136,7 +162,16 @@ public class BattleSystem : MonoBehaviour
     void ResetEnemyAnimation()
     {
         enemyAnimator.SetBool("turn", false);
-        int damage = Random.Range(1, 9); // Урон от врага
+        int damage = Random.Range(1, 9); // Урон от врага 1-9
         playerHP -= damage;
+        if (playerHP <= 0)
+        {
+            playerHP = 0;
+            Debug.Log("Вы проиграли");
+            //playerAnimator.SetTrigger("battleIsEnd");
+            PlayerDie();
+            //BattleEnd();
+            PlayerLose = true;
+        }
     }
 }
