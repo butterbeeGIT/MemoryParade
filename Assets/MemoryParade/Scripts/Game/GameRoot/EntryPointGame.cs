@@ -3,7 +3,6 @@ using Assets.MemoryParade.Scripts.Game.Gameplay.Root;
 using Assets.MemoryParade.Scripts.Game.GameRoot;
 using Assets.MemoryParade.Scripts.Game.MainMenu.Root;
 using Assets.MemoryParade.Scripts.Utils;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using R3;
